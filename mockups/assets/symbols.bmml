@@ -1,0 +1,35 @@
+<mockup version="1.0" skin="sketch" measuredW="258" measuredH="98" mockupW="198" mockupH="78">
+  <controls>
+    <control controlID="0" controlTypeID="__group__" x="60" y="20" w="198" h="78" measuredW="198" measuredH="78" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <controlName>Rate</controlName>
+      </controlProperties>
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::IconLabel" x="0" y="0" w="-1" h="-1" measuredW="48" measuredH="71" zOrder="0" locked="false" isInGroup="0">
+          <controlProperties>
+            <icon>TrashIcon%7Clarge</icon>
+            <text>%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::IconLabel" x="150" y="7" w="-1" h="-1" measuredW="48" measuredH="71" zOrder="1" locked="false" isInGroup="0">
+          <controlProperties>
+            <icon>HeartIcon%7Clarge</icon>
+            <text>%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::IconLabel" x="48" y="7" w="-1" h="-1" measuredW="48" measuredH="71" zOrder="2" locked="false" isInGroup="0">
+          <controlProperties>
+            <icon>EllipsisIcon%7Clarge</icon>
+            <text>%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::IconLabel" x="102" y="7" w="-1" h="-1" measuredW="48" measuredH="71" zOrder="3" locked="false" isInGroup="0">
+          <controlProperties>
+            <icon>EllipsisIcon%7Clarge</icon>
+            <text>%20</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+  </controls>
+</mockup>

@@ -1,0 +1,340 @@
+<mockup version="1.0" skin="sketch" measuredW="1653" measuredH="2118" mockupW="1592" mockupH="2076">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::StickyNote" x="61" y="42" w="482" h="659" measuredW="109" measuredH="123" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <text>Features%3A%0A*%20how%20much%20beer%20left%20%28in%20pints%29%0A*%20total%20poured%20%28in%20pints%29%0A*%20graph%20showing%20above%0A*%20current%20temp%0A*%20green/yellow/red%20status%20taking%20into%20account%20volume%20and%20temp%0A*%20tweet%20on%20pour%20and%20any%20other%20significant%20events%0A*%20show%20current%20beer%20name%2C%20label%2C%20and%20summary%20info%0A*%20top%20drinkers%20%28with%20photos%20-%20gravatar%3F%20twitter%20or%20facebook%20pic%3F%29%0A*%20connect%20users%20to%20twitter%20or%20facebook%20account%20%28i.e.%20post%20updates%20to%20their%20individual%20accounts%29%0A*%20admin%20contains%3A%20add%20new%20keg/reset%20volume%2C%20add/edit%20keg%20description%20and%20picture%2C%20diagnostics%20from%20arduino%2C%20%0A%20%0ATabs%3A%0A*%20MAIN%3A%20general%20info%0A*%20RFID%20SCAN%3A%20activated%20on%20scan%20or%20shows%20last%20person%20to%20scan%0A*%20ALL-TIME%20STATS%20%28HISTORY%29%3A%20by%20keg%20stats%3A%20keg%20name%2C%20keg%20size%20%28q%20barrel%2C%20pony%29%2C%20pints%20poured%2C%20pints%20by%20weekday%2C%20pints%20by%20person%2C%20keg%20lifespan%20%28should%20tabs%20auto-rotate%20between%20this%20and%20MAIN%20or%20is%20there%20a%20way%20for%20kegerator%20to%20receive%20user%20input%3F%29%0A*%20ADMIN%3A%20available%20only%20via%20computer%20with%20input%20capability%2C%20password%20protected</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="591" y="42" w="906" h="674" measuredW="450" measuredH="400" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>VNC%20kegerator%0Ahttp%3A//keg.io</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::VerticalTabBar" x="614" y="136" w="860" h="385" measuredW="200" measuredH="186" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>0</selectedIndex>
+        <text>Current%0ADispense%21%0AStats%0AAdmin</text>
+      </controlProperties>
+    </control>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::Component" x="740" y="380" w="198" h="78" measuredW="198" measuredH="78" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <src>./assets/symbols.bmml#Rate</src>
+      </controlProperties>
+    </control>
+    <control controlID="18" controlTypeID="com.balsamiq.mockups::RoundButton" x="1101" y="160" w="77" h="156" measuredW="32" measuredH="32" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>0</backgroundAlpha>
+        <shape>rectangle</shape>
+        <size>10</size>
+        <text>%28keg%20graphic%29</text>
+      </controlProperties>
+    </control>
+    <control controlID="19" controlTypeID="com.balsamiq.mockups::RoundButton" x="1101" y="191" w="77" h="125" measuredW="32" measuredH="32" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderColor>16777215</borderColor>
+        <color>13421772</color>
+        <shape>rectangle</shape>
+      </controlProperties>
+    </control>
+    <control controlID="20" controlTypeID="__group__" x="969" y="473" w="150" h="48" measuredW="150" measuredH="48" zOrder="3" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::IconLabel" x="0" y="1" w="-1" h="-1" measuredW="24" measuredH="47" zOrder="0" locked="false" isInGroup="20">
+          <controlProperties>
+            <icon>TwitterIcon%7Csmall</icon>
+            <labelPosition>bottom</labelPosition>
+            <state>up</state>
+            <text>%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::IconLabel" x="24" y="0" w="-1" h="-1" measuredW="24" measuredH="47" zOrder="1" locked="false" isInGroup="20">
+          <controlProperties>
+            <icon>FacebookIcon%7Csmall</icon>
+            <text>%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::IconLabel" x="48" y="0" w="-1" h="-1" measuredW="24" measuredH="47" zOrder="2" locked="false" isInGroup="20">
+          <controlProperties>
+            <icon>DeliciousIcon%7Csmall</icon>
+            <text>%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::IconLabel" x="87" y="0" w="-1" h="-1" measuredW="24" measuredH="47" zOrder="3" locked="false" isInGroup="20">
+          <controlProperties>
+            <icon>DiggIcon%7Csmall</icon>
+            <text>%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::IconLabel" x="126" y="0" w="-1" h="-1" measuredW="24" measuredH="47" zOrder="4" locked="false" isInGroup="20">
+          <controlProperties>
+            <icon>RedditIcon%7Csmall</icon>
+            <text>%20</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="21" controlTypeID="com.balsamiq.mockups::Image" x="712" y="162" w="-1" h="-1" measuredW="77" measuredH="79" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>12</size>
+        <text>Beer%20Label</text>
+      </controlProperties>
+    </control>
+    <control controlID="22" controlTypeID="com.balsamiq.mockups::TextArea" x="712" y="248" w="338" h="117" measuredW="200" measuredH="140" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>15658734</color>
+        <text>Beer%20name%2C%20Brewery%0ADescription%0AABV%20%25%0Aother%20interesting%20stats%20%28IBU%20for%20hoppy%20beers%29</text>
+      </controlProperties>
+    </control>
+    <control controlID="24" controlTypeID="com.balsamiq.mockups::Paragraph" x="1193" y="168" w="266" h="131" measuredW="200" measuredH="140" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>24</size>
+        <text>108%20pints%20of%20refreshing%0A39%u02DA%20beer%20remaining</text>
+      </controlProperties>
+    </control>
+    <control controlID="25" controlTypeID="com.balsamiq.mockups::Tooltip" x="1233" y="403" w="215" h="76" measuredW="340" measuredH="33.9" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>I%20just%20poured%2012oz%20of%20this%20tasty%20beverage.</text>
+        <tooltipDirection>NW</tooltipDirection>
+      </controlProperties>
+    </control>
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::SubTitle" x="1125" y="360" w="212" h="-1" measuredW="164" measuredH="37" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Matt%20Pampena</text>
+      </controlProperties>
+    </control>
+    <control controlID="28" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="591" y="742" w="906" h="674" measuredW="450" measuredH="400" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>VNC%20kegerator%0Ahttp%3A//keg.io/%23dispense</text>
+      </controlProperties>
+    </control>
+    <control controlID="29" controlTypeID="com.balsamiq.mockups::VerticalTabBar" x="614" y="836" w="860" h="385" measuredW="200" measuredH="186" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>1</selectedIndex>
+        <text>Current%0ADispense%21%0AStats%0AAdmin</text>
+      </controlProperties>
+    </control>
+    <control controlID="30" controlTypeID="__group__" x="969" y="1173" w="150" h="47" measuredW="150" measuredH="47" zOrder="14" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::IconLabel" x="0" y="1" w="-1" h="-1" measuredW="24" measuredH="46" zOrder="0" locked="false" isInGroup="30">
+          <controlProperties>
+            <icon>TwitterIcon%7Csmall</icon>
+            <labelPosition>bottom</labelPosition>
+            <state>up</state>
+            <text>%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::IconLabel" x="24" y="0" w="-1" h="-1" measuredW="24" measuredH="46" zOrder="1" locked="false" isInGroup="30">
+          <controlProperties>
+            <icon>FacebookIcon%7Csmall</icon>
+            <text>%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::IconLabel" x="48" y="0" w="-1" h="-1" measuredW="24" measuredH="46" zOrder="2" locked="false" isInGroup="30">
+          <controlProperties>
+            <icon>DeliciousIcon%7Csmall</icon>
+            <text>%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::IconLabel" x="87" y="0" w="-1" h="-1" measuredW="24" measuredH="46" zOrder="3" locked="false" isInGroup="30">
+          <controlProperties>
+            <icon>DiggIcon%7Csmall</icon>
+            <text>%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::IconLabel" x="126" y="0" w="-1" h="-1" measuredW="24" measuredH="46" zOrder="4" locked="false" isInGroup="30">
+          <controlProperties>
+            <icon>RedditIcon%7Csmall</icon>
+            <text>%20</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::Component" x="740" y="1080" w="198" h="77" measuredW="198" measuredH="77" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <src>./assets/symbols.bmml#Rate</src>
+      </controlProperties>
+    </control>
+    <control controlID="32" controlTypeID="com.balsamiq.mockups::RoundButton" x="1101" y="989" w="77" h="27" measuredW="32" measuredH="32" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderColor>16777215</borderColor>
+        <color>13421772</color>
+        <shape>rectangle</shape>
+      </controlProperties>
+    </control>
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::RoundButton" x="1101" y="860" w="77" h="156" measuredW="32" measuredH="32" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>0</backgroundAlpha>
+        <shape>rectangle</shape>
+        <size>10</size>
+        <text>%28keg%20graphic%29</text>
+      </controlProperties>
+    </control>
+    <control controlID="34" controlTypeID="com.balsamiq.mockups::Image" x="712" y="860" w="77" h="79" measuredW="77" measuredH="79" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>12</size>
+        <text>Beer%20Label</text>
+      </controlProperties>
+    </control>
+    <control controlID="35" controlTypeID="com.balsamiq.mockups::TextArea" x="712" y="948" w="338" h="117" measuredW="200" measuredH="140" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>15658734</color>
+        <text>Beer%20name%0ADescription%0AABV%20%25%0Aother%20interesting%20stats%20%28IBU%20for%20hoppy%20beers%29</text>
+      </controlProperties>
+    </control>
+    <control controlID="39" controlTypeID="com.balsamiq.mockups::Tooltip" x="1178" y="1016" w="258" h="111" measuredW="566" measuredH="111" zOrder="20" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>18</size>
+        <text>Kelley%20Maves%20is%20in%20the%20house%21%20Go%20ahead%20and%20pour%20your%20beer%20now.</text>
+        <tooltipDirection>NW</tooltipDirection>
+      </controlProperties>
+    </control>
+    <control controlID="41" controlTypeID="com.balsamiq.mockups::Image" x="1218" y="876" w="209" h="125" measuredW="77" measuredH="79" zOrder="21" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>12</size>
+        <text>something%20to%20visualize%20beer%20pour</text>
+      </controlProperties>
+    </control>
+    <control controlID="42" controlTypeID="com.balsamiq.mockups::Icon" x="1125" y="267" w="-1" h="-1" measuredW="32" measuredH="32" zOrder="22" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>square</borderStyle>
+        <color>9684093</color>
+        <icon>CheckMarkIcon%7Cmedium</icon>
+      </controlProperties>
+    </control>
+    <control controlID="43" controlTypeID="com.balsamiq.mockups::Icon" x="1125" y="969" w="-1" h="-1" measuredW="32" measuredH="32" zOrder="23" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>square</borderStyle>
+        <color>8347648</color>
+        <icon>FlagIcon%7Cmedium</icon>
+      </controlProperties>
+    </control>
+    <control controlID="44" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="591" y="1444" w="906" h="674" measuredW="450" measuredH="400" zOrder="24" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>VNC%20kegerator%0Ahttp%3A//keg.io/%23stats</text>
+      </controlProperties>
+    </control>
+    <control controlID="45" controlTypeID="com.balsamiq.mockups::VerticalTabBar" x="614" y="1538" w="860" h="385" measuredW="200" measuredH="186" zOrder="25" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>2</selectedIndex>
+        <text>Current%0ADispense%21%0AStats%0AAdmin</text>
+      </controlProperties>
+    </control>
+    <control controlID="46" controlTypeID="__group__" x="969" y="1875" w="150" h="48" measuredW="150" measuredH="48" zOrder="26" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::IconLabel" x="0" y="1" w="-1" h="-1" measuredW="24" measuredH="47" zOrder="0" locked="false" isInGroup="46">
+          <controlProperties>
+            <icon>TwitterIcon%7Csmall</icon>
+            <labelPosition>bottom</labelPosition>
+            <state>up</state>
+            <text>%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::IconLabel" x="24" y="0" w="-1" h="-1" measuredW="24" measuredH="47" zOrder="1" locked="false" isInGroup="46">
+          <controlProperties>
+            <icon>FacebookIcon%7Csmall</icon>
+            <text>%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::IconLabel" x="48" y="0" w="-1" h="-1" measuredW="24" measuredH="47" zOrder="2" locked="false" isInGroup="46">
+          <controlProperties>
+            <icon>DeliciousIcon%7Csmall</icon>
+            <text>%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::IconLabel" x="87" y="0" w="-1" h="-1" measuredW="24" measuredH="47" zOrder="3" locked="false" isInGroup="46">
+          <controlProperties>
+            <icon>DiggIcon%7Csmall</icon>
+            <text>%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::IconLabel" x="126" y="0" w="-1" h="-1" measuredW="24" measuredH="47" zOrder="4" locked="false" isInGroup="46">
+          <controlProperties>
+            <icon>RedditIcon%7Csmall</icon>
+            <text>%20</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="58" controlTypeID="com.balsamiq.mockups::DataGrid" x="697" y="1553" w="550" h="189" measuredW="540" measuredH="133" zOrder="27" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>square</borderStyle>
+        <hLines>true</hLines>
+        <selectedIndex>1</selectedIndex>
+        <text>Beer%20%5E%2C%20Brewery%2C%20Tapped%20On%2C%20Lasted%5CrFor%2C%20Pints%5CrDispensed%0AUniversal%20Pale%20Ale%2C%20Fremont%20Brewing%2C%203/6/11%2C%20current%2C%2016%0AManny%27s%2C%20Georgetown%20Brewing%20Company%2C%202/25/11%2C%207%20days%2C%2041%0APabst%20Blue%20Ribbon%2C%20Pabst%20Brewing%20Company%2C%201/7/11%2C%2032%20days%2C%20125%0A%7B70L%2C%2050L%2C%2025%2C%200C%2C%200C%7D</text>
+        <vLines>false</vLines>
+      </controlProperties>
+    </control>
+    <control controlID="61" controlTypeID="com.balsamiq.mockups::LineChart" x="697" y="1762" w="333" h="98" measuredW="187" measuredH="175" zOrder="29" locked="false" isInGroup="-1"/>
+    <control controlID="62" controlTypeID="__group__" x="1262" y="1558" w="180" h="180" measuredW="180" measuredH="180" zOrder="28" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::PieChart" x="0" y="0" w="-1" h="-1" measuredW="180" measuredH="180" zOrder="0" locked="false" isInGroup="62"/>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::Label" x="2" y="70" w="-1" h="-1" measuredW="84" measuredH="23" zOrder="1" locked="false" isInGroup="62">
+          <controlProperties>
+            <text>Kelley%20Maves</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="75" y="112" w="-1" h="-1" measuredW="93" measuredH="23" zOrder="2" locked="false" isInGroup="62">
+          <controlProperties>
+            <text>Matt%20Pampena</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="64" controlTypeID="com.balsamiq.mockups::ColumnChart" x="1065" y="1762" w="377" h="98" measuredW="187" measuredH="175" zOrder="30" locked="false" isInGroup="-1"/>
+    <control controlID="65" controlTypeID="com.balsamiq.mockups::StickyNote" x="1524" y="1915" w="107" h="90" measuredW="109" measuredH="123" zOrder="31" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Pints%20by%20day%20of%20week</text>
+      </controlProperties>
+    </control>
+    <control controlID="66" controlTypeID="com.balsamiq.mockups::Arrow" x="1436" y="1832" w="150" h="77" measuredW="150" measuredH="100" zOrder="32" locked="false" isInGroup="-1">
+      <controlProperties>
+        <rightArrow>false</rightArrow>
+      </controlProperties>
+    </control>
+    <control controlID="67" controlTypeID="com.balsamiq.mockups::StickyNote" x="420" y="1914" w="154" h="70" measuredW="109" measuredH="123" zOrder="33" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Temperature%20trend</text>
+      </controlProperties>
+    </control>
+    <control controlID="68" controlTypeID="com.balsamiq.mockups::Arrow" x="504" y="1838" w="178" h="70" measuredW="150" measuredH="100" zOrder="34" locked="false" isInGroup="-1">
+      <controlProperties>
+        <direction>bottom</direction>
+        <leftArrow>false</leftArrow>
+      </controlProperties>
+    </control>
+    <control controlID="69" controlTypeID="com.balsamiq.mockups::StickyNote" x="1524" y="1459" w="129" h="94" measuredW="109" measuredH="123" zOrder="35" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Keg%20consumption%20by%20person</text>
+      </controlProperties>
+    </control>
+    <control controlID="70" controlTypeID="com.balsamiq.mockups::Arrow" x="1393" y="1499" w="125" h="119" measuredW="150" measuredH="100" zOrder="36" locked="false" isInGroup="-1">
+      <controlProperties>
+        <direction>bottom</direction>
+        <rightArrow>false</rightArrow>
+      </controlProperties>
+    </control>
+    <control controlID="71" controlTypeID="com.balsamiq.mockups::StickyNote" x="1512" y="112" w="135" h="129" measuredW="109" measuredH="123" zOrder="37" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Simple%20indicator%20for%20keg%20temperature%20and%20volume%20status</text>
+      </controlProperties>
+    </control>
+    <control controlID="72" controlTypeID="com.balsamiq.mockups::Arrow" x="1155" y="218" w="406" h="69" measuredW="150" measuredH="100" zOrder="38" locked="false" isInGroup="-1">
+      <controlProperties>
+        <curvature>-1</curvature>
+        <direction>bottom</direction>
+        <rightArrow>false</rightArrow>
+      </controlProperties>
+    </control>
+    <control controlID="73" controlTypeID="com.balsamiq.mockups::StickyNote" x="1518" y="521" w="98" h="95" measuredW="109" measuredH="123" zOrder="39" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Last%20person%20to%20pour</text>
+      </controlProperties>
+    </control>
+    <control controlID="74" controlTypeID="com.balsamiq.mockups::Arrow" x="1459" y="473" w="71" h="64" measuredW="150" measuredH="100" zOrder="40" locked="false" isInGroup="-1">
+      <controlProperties>
+        <rightArrow>false</rightArrow>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
