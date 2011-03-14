@@ -30,6 +30,8 @@ function updateMetrics(name, value) {
 	}
 };
 
+var tempChart;
+var byDayChart;
 $(document).ready(function() {   
    
    io.setPath('/client/');
@@ -48,8 +50,66 @@ $(document).ready(function() {
 	}
    });
 
+	// setup chart options
+	var tempChartOptions = {
+		chart: {
+			renderTo: 'temp_chart'
+		},
+		title: {
+			text: 'Temperature Trend'
+		},
+		xAxis: {
+			type: 'datetime',
+			tickInterval: 1000 * 60 * 60, // one hour
+			tickWidth: 0,
+			gridLineWidth: 1,
+			labels: {
+				align: 'left',
+				x: 3,
+				y: -3
+			}
+		},
+		yAxis: {
+			title: {
+				text: null
+			},
+			labels: {
+				align: 'left',
+				x: 3,
+				y: 16,
+				formatter: function() {
+					return Highcharts.numberFormat(this.value, 0);
+				}
+			},
+			showFirstLabel: false
+		},
+		legend: {
+			align: 'left',
+			verticalAlign: 'top',
+			y: 20,
+			floating: true,
+			borderWidth: 0
+		},
+		tooltop: {
+			shared: true,
+			croshairs: true
+		},
+		series: [{
+			name: 'Temperature Trend',
+			lineWidth: 4,
+			marker: {
+				radius: 4
+			}
+		}]
+	};
+
+	jQuery.get('temp.json', null, function(json) {
+		var receivedJson = JSON.parse(json);
+		tempChartOptions.series[0].data = receivedJson.value;
+		tempChart = new Highcharts.Chart(tempChartOptions);
+	});
       
- });
+});
 
 
 

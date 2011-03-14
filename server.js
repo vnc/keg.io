@@ -88,12 +88,45 @@ server.get('/', function(req,res){
     locals : { 
               header: '#Header#'
              ,footer: '#Footer#'
-             ,title : 'Page Title'
-             ,description: 'Page Description'
-             ,author: 'Your Name'
-             ,analyticssiteid: 'XXXXXXX' 
-            }
-  });
+             ,title : 'keg.io'
+             ,description: 'Info, status, and statistics about a kegerator. '
+							+ 'Receives kegerator sensor data from an Arduino and displays it on your web browser!'
+             ,author: 'VNC'
+             ,analyticssiteid: 'XXXXXXX'
+			 ,site: {
+				 labelImageUrl: 'http://www.mavericklabelblog.com/wp-content/uploads/2008/12/santas-butt-beer-label-sm.jpg'
+				,description: 'this beer is made at your mom\'s house'
+				,brewery: 'your mom\'s house'
+				,ozRemaining: 235
+				,currentTemp: 43
+				,kegStatus: 'ok'
+			 }
+			 ,current: {
+				lastPour: {
+					 name: 'Dylan Carney'
+					,oz: 16
+				}
+			 }
+			 ,dispense: {
+				currentlyPouring: 'Dylan Carney'
+			 }
+  		}
+	});
+});
+
+// Define AJAX routes
+server.get('/temp.json', function(req, res) {
+	// send static sample data for now
+	var result = '{"name":"tempHistory","value":[["2011-03-15 '
+		+'01:29:48.666",66],["2011-03-12 '
+		+'01:23:48.666",39],["2011-03-12 '
+		+'01:23:47.666",39],["2011-03-12 01:23:46.666",39]]}';
+	res.send(result);
+		
+	// replace above static data with the below when 'keg' object can return data	
+	//keg.getTemperatureTrend(function(result) {
+	//	res.send(result, {'Content-Type': 'text/json'}, 200);
+	//};
 });
 
 

@@ -2,13 +2,13 @@
 
 	<div id="tabs" style="height: 500px;">
 		<ul>
-			<li><a href="#current" style="cursor: pointer;"><span>Current</span></a></li>
+			<li><a href="#current"><span>Current</span></a></li>
 			<li><a href="#dispense"><span>Dispense!</span></a></li>
 			<li><a href="#stats"><span>Stats</span></a></li>
 			<li><a href="#admin"><span>Admin</span></a></li>
 		</ul>
 		<div id="current" class="grid_12">
-			<img id="beer_label" src="/images/toxic-ale.png" class="grid_3 suffix_2"></img>
+			<img id="beer_label" src="<%= site.labelImageUrl %>" class="grid_3 suffix_2"></img>
 			<!-- Progress bar -->
 			<div class="grid_2 suffix_1">
 			    <div id="progress_bar" class="ui-progress-bar ui-container">
@@ -18,20 +18,40 @@
 			    </div>
 			</div>
 			<div id="readout" class="grid_3">
-				<p>The temperature is <span id="temp_text">?</span> and the flow rate is <span id="flow_text">?</span>.</p>
+				<p>There are <span id="oz_text"><%= Math.round(site.ozRemaining / 1.6, 2)/10 %></span> pints remaining of tasty <span id="temp_text"><%= site.currentTemp %></span> degree beer.</p>
 			</div>
 		    <!-- /Progress bar -->
 			<p id="description" class="grid_6 suffix_5">
-				This is a beer description in Latin.  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				<%= site.brewery %> <%= site.description %>
 			</p>
 			<p id="user" class="grid_11">
 			</p>
 		</div>
-		<div id="dispense">
-			<p>this tab will activate when beer is being poured</p>
+		<div id="dispense" class="grid_12">
+			<img id="beer_label" src="<%= site.labelImageUrl %>" class="grid_3 suffix_2"></img>
+			<!-- Progress bar -->
+			<div class="grid_2 suffix_1">
+			    <div id="progress_bar" class="ui-progress-bar ui-container">
+			      <div class="ui-progress" style="height: 75%; width: 100%;">
+			        <span class="ui-label" style="display:none;">Processing <b class="value">79%</b></span>
+			      </div>
+			    </div>
+			</div>
+			<div id="readout" class="grid_3">
+			</div>
+			<p id="description" class="grid_6 suffix_5">
+				<%= site.brewery %> <%= site.description %>
+			</p>
+			<p id="user" class="grid_11">
+			</p>
 		</div>
-		<div id="stats">
-			<p>this tab will show historical stats about beer and people</p>
+		<div id="stats" class="grid_12">
+			<div id="keg_history" class="grid_7">
+			</div>
+			<div id="consump_by_keg" class="grid_3">
+			</div>
+			<div id="temp_chart" class="grid_5 suffix_1"></div>
+			<div id="by_day_chart" class="grid_5"></div>
 		</div>
 		<div id="admin">
 			<p>this tab will provide admin functionality</p>
