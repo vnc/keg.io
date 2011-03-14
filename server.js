@@ -10,7 +10,7 @@ var connect = require('connect')
 	, keg = new keg_io.Keg();
 
 // initialize serial port connection to kegerator
-keg.init('/dev/cu.usbserial-A400fGxO');
+//keg.init("/dev/cu.usbserial-A400fGxO");
 
 //Setup Express
 var server = express.createServer();
@@ -51,7 +51,7 @@ var io = io.listen(server);
 io.on('connection', function(client){
 	console.log('Client Connected');
 	
-	keg.on('temp', function(data) {
+/*	keg.on('temp', function(data) {
 		if (data) {
 			client.send(JSON.stringify({ name: 'temp', value: data }));
 		}
@@ -67,7 +67,7 @@ io.on('connection', function(client){
 		if (data) {
 			client.send(JSON.stringify({ name: 'flow', value: data }));
 		}
-	});
+	});*/
 	
 	client.on('disconnect', function(){
 		console.log('Client Disconnected.');
