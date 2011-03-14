@@ -450,6 +450,7 @@ $('body').noisy({
 // initialize tabs
 $(function() {
 		$( "#tabs" ).tabs();
+		$('#tabs ul li a').click(function () {location.hash = $(this).attr('href');});
 });
 /*
 $(function() {
