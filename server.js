@@ -7,25 +7,11 @@ var connect = require('connect')
     , io = require('Socket.IO-node')
     , port = (process.env.PORT || 8081)
 	, keg_io = require('keg.io')
-	, keg = new keg_io.Keg()
-	, keg_db = require('keg.db')	
- 	, kegDb = new keg_db.KegDb();
+	, keg = new keg_io.Keg();
 
 // initialize serial port connection to kegerator
 keg.init('/dev/cu.usbserial-A400fGxO');
 // keg.init('/dev/ptyp9');
-
-//kegDb.init();
-
-kegDb.getTempHistory( function(rows) {
-  
-  console.log(JSON.stringify({ name: 'tempHist', value: rows }));
-  
-   for (var row in rows) 
-            {
-              console.log(rows[row]);
-            } 
-});
 
 //Setup Express
 var server = express.createServer();
@@ -68,7 +54,6 @@ io.on('connection', function(client){
 	
 	keg.on('temp', function(data) {
 		if (data) {
-      		kegDb.addTempTwo(data);
            	client.send(JSON.stringify({ name: 'temp', value: data }));
 		}
 	});
