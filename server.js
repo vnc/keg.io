@@ -12,6 +12,7 @@ var connect = require('connect')
 // initialize serial port connection to kegerator
 //keg.init("/dev/cu.usbserial-A400fGxO");
 
+
 //Setup Express
 var server = express.createServer();
 server.configure(function(){
@@ -53,7 +54,7 @@ io.on('connection', function(client){
 	
 /*	keg.on('temp', function(data) {
 		if (data) {
-			client.send(JSON.stringify({ name: 'temp', value: data }));
+           	client.send(JSON.stringify({ name: 'temp', value: data }));
 		}
 	});
 	
