@@ -10,7 +10,7 @@ var connect = require('connect')
 	, keg = new keg_io.Keg();
 
 // initialize serial port connection to kegerator
-//keg.init("/dev/cu.usbserial-A400fGxO");
+keg.init("/dev/cu.usbserial-A400fGxO");
 
 
 //Setup Express
@@ -52,7 +52,7 @@ var io = io.listen(server);
 io.on('connection', function(client){
 	console.log('Client Connected');
 	
-/*	keg.on('temp', function(data) {
+	keg.on('temp', function(data) {
 		if (data) {
            	client.send(JSON.stringify({ name: 'temp', value: data }));
 		}
@@ -68,7 +68,7 @@ io.on('connection', function(client){
 		if (data) {
 			client.send(JSON.stringify({ name: 'flow', value: data }));
 		}
-	});*/
+	});
 	
 	client.on('disconnect', function(){
 		console.log('Client Disconnected.');
@@ -116,18 +116,31 @@ server.get('/', function(req,res){
 });
 
 // Define AJAX routes
-server.get('/temp.json', function(req, res) {
+server.get('/temperatureHistory.json', function(req, res) {
 	// send static sample data for now
+	/*
 	var result = '{"name":"tempHistory","value":[["2011-03-15 '
 		+'01:29:48.666",66],["2011-03-12 '
 		+'01:23:48.666",39],["2011-03-12 '
 		+'01:23:47.666",39],["2011-03-12 01:23:46.666",39]]}';
-	res.send(result);
+	res.send(result);*/
 		
 	// replace above static data with the below when 'keg' object can return data	
-	//keg.getTemperatureTrend(function(result) {
-	//	res.send(result, {'Content-Type': 'text/json'}, 200);
-	//};
+	
+	keg.getTemperatureTrend(function(result) {
+		//res.send(result, {'Content-Type': 'text/json'}, 200);
+		res.send(result);
+	});
+	
+});
+
+// Define AJAX routes
+server.get('/pourHistory.json', function(req, res) {
+	
+	keg.getPourTrend(function(result) {
+		res.send(result);
+	});
+	
 });
 
 

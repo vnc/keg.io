@@ -13,3 +13,6 @@ VALUES(1, 'Mannys Pale Ale', 'Georgetown Brewery', 'A solid pale ale, brewed in 
 INSERT INTO temperature(temperature, temperature_date) VALUES (39, '2011-03-12 01:23:46.666');
 INSERT INTO temperature(temperature, temperature_date) VALUES (39, '2011-03-12 01:23:47.666');
 INSERT INTO temperature(temperature, temperature_date) VALUES (39, '2011-03-12 01:23:48.666');
+
+INSERT INTO pour(rfid, keg_id, pour_date, volume_ounces) VALUES('2312A4B541', 1, '2011-03-12 01:23:46.666', 16);
+INSERT INTO pour(rfid, keg_id, pour_date, volume_ounces) VALUES('2312A4B542', 1, '2011-03-12 01:23:47.666', 32);

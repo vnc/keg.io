@@ -30,7 +30,7 @@ function updateMetrics(name, value) {
 	}
 };
 
-var tempChart;
+var temperatureHistoryChart;
 var byDayChart;
 $(document).ready(function() {   
    
@@ -50,8 +50,8 @@ $(document).ready(function() {
 	}
    });
 
-	// setup chart options
-	var tempChartOptions = {
+	// temperature history chart options
+	var temperatureHistoryChartOptions = {
 		chart: {
 			renderTo: 'temp_chart'
 		},
@@ -83,13 +83,6 @@ $(document).ready(function() {
 			},
 			showFirstLabel: false
 		},
-		legend: {
-			align: 'left',
-			verticalAlign: 'top',
-			y: 20,
-			floating: true,
-			borderWidth: 0
-		},
 		tooltop: {
 			shared: true,
 			croshairs: true
@@ -102,13 +95,74 @@ $(document).ready(function() {
 			}
 		}]
 	};
+	
+	// Pour history chart options
+	var pourHistoryChartOptions = {
+	      chart: {
+	         renderTo: 'pour_day_chart',
+	         defaultSeriesType: 'column'
+	      },
+	      title: {
+	         text: 'Who be drinkin all the beer?'
+	      },
+	      subtitle: {
+	         text: 'Source: keg.io'
+	      },
+	      xAxis: {
+	         title: {
+	            text: "Who"
+	         }
+	      },
+	      yAxis: {
+	         min: 0,
+	         title: {
+	            text: 'Beer consumed (ounces)',
+	            align: 'high'
+	         }
+	      },
+	      tooltip: {
+	         formatter: function() {
+	            return ''+
+	                this.series.name +': '+ this.y +' ounces';
+	         }
+	      },
+	      plotOptions: {
+	         bar: {
+	            dataLabels: {
+	               enabled: true
+	            }
+	         }
+	      },
+	      credits: {
+	         enabled: false
+	      },
+	     series: [{
+				name: 'Total ounces:'
+			}]
+	   };
 
-	jQuery.get('temp.json', null, function(json) {
+	jQuery.get('temperatureHistory.json', null, function(json) {
 		var receivedJson = JSON.parse(json);
-		tempChartOptions.series[0].data = receivedJson.value;
-		tempChart = new Highcharts.Chart(tempChartOptions);
+		temperatureHistoryChartOptions.series[0].data = receivedJson.value;
+		temperatureHistoryChart = new Highcharts.Chart(temperatureHistoryChartOptions);
 	});
-      
+
+	jQuery.get('pourHistory.json', null, function(json) {
+		var receivedJson = JSON.parse(json);
+		pourHistoryChartOptions.series[0].data = receivedJson.value;
+		
+		// Grab the names out of the returned JSON and use them for the chart's xAxis categories.
+		var categories = [];
+		var vals = receivedJson.value;
+		for(i = 0; i < vals.length; i++)
+		{
+			categories.push(vals[i][0]);
+		}
+	
+		pourHistoryChartOptions.xAxis.categories = categories;
+		pourHistoryChar = new Highcharts.Chart(pourHistoryChartOptions);
+	});
+   
 });
 
 
