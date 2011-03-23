@@ -10,8 +10,23 @@ var connect = require('connect')
 	, keg = new keg_io.Keg();
 
 // initialize serial port connection to kegerator
-keg.init('/dev/cu.usbserial-A400fGxO');
-// keg.init('/dev/ptyp9');
+keg.init("/dev/cu.usbserial-A400fGxO");
+
+/*  The "protocol" we're using to communicate with the arduino consists of the 
+    following messages:
+
+arduino --> node:
+**FLOW_number** 	// where number is in liters/min
+**TAG_rfid**		// where rfid is the tag that was scanned
+**TEMP_number**		// where number is the temperature in F
+
+node --> arduino
+**REQUEST_TAG**		// get the rfid tag scanned
+**REQUEST_TEMP**	// get the current temp
+**REQUEST_FLOW**	// get the current flow rate
+**REQUEST_OPEN**	// open the solenoid to pour some brewski
+
+*/
 
 //Setup Express
 var server = express.createServer();
@@ -89,16 +104,64 @@ server.get('/', function(req,res){
     locals : { 
               header: '#Header#'
              ,footer: '#Footer#'
-             ,title : 'Page Title'
-             ,description: 'Page Description'
-             ,author: 'Your Name'
-             ,analyticssiteid: 'XXXXXXX' 
-            }
-  });
+             ,title : 'keg.io'
+             ,description: 'Info, status, and statistics about a kegerator. '
+							+ 'Receives kegerator sensor data from an Arduino and displays it on your web browser!'
+             ,author: 'VNC'
+             ,analyticssiteid: 'XXXXXXX'
+			 ,site: {
+				 labelImageUrl: 'http://www.mavericklabelblog.com/wp-content/uploads/2008/12/santas-butt-beer-label-sm.jpg'
+				,description: 'this beer is made at your mom\'s house'
+				,brewery: 'your mom\'s house'
+				,ozRemaining: 235
+				,currentTemp: 43
+				,kegStatus: 'ok'
+			 }
+			 ,current: {
+				lastPour: {
+					 name: 'Dylan Carney'
+					,oz: 16
+				}
+			 }
+			 ,dispense: {
+				currentlyPouring: 'Dylan Carney'
+			 }
+  		}
+	});
 });
 
 
-//A Route for Creating a 500 Error (Useful to keep around)
+// Define AJAX routes
+
+// History of the keg's temperature
+server.get('/temperatureHistory.json', function(req, res) {
+	// send static sample data for now
+	/*
+	var result = '{"name":"tempHistory","value":[["2011-03-15 '
+		+'01:29:48.666",66],["2011-03-12 '
+		+'01:23:48.666",39],["2011-03-12 '
+		+'01:23:47.666",39],["2011-03-12 01:23:46.666",39]]}';
+	res.send(result);
+	*/
+		
+	keg.getTemperatureTrend(function(result) {
+		// For some reason, the following line doesn't work with the highcharts.
+		//res.send(result, {'Content-Type': 'text/json'}, 200);
+		res.send(result);
+	});
+	
+});
+
+// History of "pours" by user, for the active keg
+server.get('/pourHistory.json', function(req, res) {
+	
+	keg.getPourTrend(function(result) {
+		res.send(result);
+	});
+	
+});
+
+// A Route for Creating a 500 Error (Useful to keep around)
 server.get('/500', function(req, res){
     throw new Error('This is a 500 Error');
 });
