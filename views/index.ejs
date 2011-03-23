@@ -19,14 +19,14 @@
 				<p>There are <span id="oz_text"><%= Math.round(site.ozRemaining / 1.6, 2)/10 %></span> pints remaining of tasty <span id="temp_text"><%= site.currentTemp %></span> degree beer.</p>
 			</div>
 		    <!-- /Progress bar -->
-			<p id="description" class="grid_6 suffix_5" style="height: 100px;">
+			<p id="description" class="grid_6 suffix_5">
 				<%= site.beer %> from <%= site.brewery %>
 				<br />
 				<%= site.description %>
 			</p>
 			<p id="user" class="grid_11">
 			</p>
-			<div id="temp_chart" class="grid_5"></div>
+			<div id="flow_chart" class="grid_5"></div>
 			<div id="pour_day_chart" class="grid_5 suffix_1"></div>
 		</div>
 		<div id="admin" class="ui-tabs-hide">

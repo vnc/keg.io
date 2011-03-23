@@ -55,16 +55,19 @@ $(document).ready(function() {
 			var d = JSON.parse(data);
 			updateMetrics(d.name, d.value);
 			
-			// hold on to all incoming flow data
-			if (d.name == 'flow') flowData.push(d.value);
+			// hold on to all incoming flow data (if it's not an "END" flow message)
+			if ((d.name == 'flow') && (d.value != 'end')) {
+				console.log("pushing: " + d.value);
+				flowData.push(d.value);
+			}
 		}
 	});
 
 	// temperature history chart options
-	var temperatureHistoryChartOptions = {
+	var flowRateChartOptions = {
 		chart: {
 			height: 200,
-			renderTo: 'temp_chart',
+			renderTo: 'flow_chart',
 			defaultSeriesType: 'areaspline',
 			marginRight: 10,
 			events: {
@@ -79,7 +82,8 @@ $(document).ready(function() {
 						var sum = 0;
 						var count = flowData.length;
 						for (var i = 0; i < flowData.length; i++) {
-							sum += flowData[i];
+							//console.log("sum:" + sum + " adding: " + flowData[i]);
+							sum += parseInt(flowData[i]);
 						}
 							
 						// define points
@@ -90,13 +94,15 @@ $(document).ready(function() {
 						var x1 = x0;
 						
 						// determine whether old points should fall off left side of chart
-						if (series0.data.length < 50) var dropPoint = false;
+						if (series0.data.length < 10) var dropPoint = false;
 						else var dropPoint = true;
 						
 						// add point to chart
 						series0.addPoint([x0, y0], true, dropPoint);
 						series1.addPoint([x1, y1], true, dropPoint);
 							
+						// flowData.length:7 sum: 019141215131414 y0: 2734459304487.7144
+						console.log("flowData.length:" + flowData.length + " sum: " + sum + " y0: " + y0);
 						// clear flowData
 						flowData = new Array();
 							
@@ -120,10 +126,10 @@ $(document).ready(function() {
 			},
 			lineWidth: 0,
 			labels: {
-				enabled: false
+				enabled: true
 			},
-			min: -50,
-			max: 50
+			min: -35,
+			max: 35
 		},
 		series: [
 		{
@@ -197,12 +203,13 @@ $(document).ready(function() {
 	jQuery.get('temperatureHistory.json', null, function(json) {
 		var receivedJson = JSON.parse(json);
 		
-		temperatureHistoryChartOptions.series[1].data = new Array();
+		/*
+		flowRateChartOptions.series[1].data = new Array();
 		for (var i = 0; i < receivedJson.value.length; i++) {
-			temperatureHistoryChartOptions.series[1].data.push(["somejunk", receivedJson.value[i][1] * -1]);
+			flowRateChartOptions.series[1].data.push(["somejunk", receivedJson.value[i][1] * -1]);
 		}
-		temperatureHistoryChartOptions.series[0].data = receivedJson.value;
-		temperatureHistoryChart = new Highcharts.Chart(temperatureHistoryChartOptions);
+		flowRateChartOptions.series[0].data = receivedJson.value;*/
+		temperatureHistoryChart = new Highcharts.Chart(flowRateChartOptions);
 	});
 
 	jQuery.get('pourHistory.json', null, function(json) {
