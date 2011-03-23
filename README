@@ -6,16 +6,21 @@ TODO: collapse stats and current pages?  (has to fit in 1024x768)
 
 // Beardo
 DONE: Limit pour history to the top 5 or 10 drinkers
-TODO: Fix arduino write messages
-TODO: Remove hardcoded kegid in pour history
 DONE: Add failed auth message
 DONE: Display name and instructions to "POUR BEER!" on webui instead of rfid
 DONE: Add real beer data/image (this is hardcoded though, rather than being pulled from the DB)
+TODO: Implement flow calculation using new FLOW message protocol
+TODO: Fix arduino write messages
+TODO: Remove hardcoded kegid in pour history
 TODO: Input real rfids
 TODO: Badges?
 
 
 // Everyone/Carl
+TODO: Install OS on thin client
+TODO: Get chrome/gcc/node/sqlite installed and running on thin client
+TODO: re-compile node-sqlite drivers on thin client
+
 TODO: Determine average flow rate w/ solenoid open
 TODO: Make sure Carl sends an event when solenoid is closed (**FLOW_END**)
 TODO: Add calculation of total flow volume
