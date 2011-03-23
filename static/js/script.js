@@ -137,7 +137,7 @@ $(document).ready(function() {
 	         enabled: false
 	      },
 	     series: [{
-				name: 'Total ounces:'
+				name: 'Total ounces'
 			}]
 	   };
 

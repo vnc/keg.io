@@ -12,6 +12,21 @@ var connect = require('connect')
 // initialize serial port connection to kegerator
 keg.init("/dev/cu.usbserial-A400fGxO");
 
+/*  The "protocol" we're using to communicate with the arduino consists of the 
+    following messages:
+
+arduino --> node:
+**FLOW_number** 	// where number is in liters/min
+**TAG_rfid**		// where rfid is the tag that was scanned
+**TEMP_number**		// where number is the temperature in F
+
+node --> arduino
+**REQUEST_TAG**		// get the rfid tag scanned
+**REQUEST_TEMP**	// get the current temp
+**REQUEST_FLOW**	// get the current flow rate
+**REQUEST_OPEN**	// open the solenoid to pour some brewski
+
+*/
 
 //Setup Express
 var server = express.createServer();
@@ -115,7 +130,10 @@ server.get('/', function(req,res){
 	});
 });
 
+
 // Define AJAX routes
+
+// History of the keg's temperature
 server.get('/temperatureHistory.json', function(req, res) {
 	// send static sample data for now
 	/*
@@ -123,18 +141,18 @@ server.get('/temperatureHistory.json', function(req, res) {
 		+'01:29:48.666",66],["2011-03-12 '
 		+'01:23:48.666",39],["2011-03-12 '
 		+'01:23:47.666",39],["2011-03-12 01:23:46.666",39]]}';
-	res.send(result);*/
+	res.send(result);
+	*/
 		
-	// replace above static data with the below when 'keg' object can return data	
-	
 	keg.getTemperatureTrend(function(result) {
+		// For some reason, the following line doesn't work with the highcharts.
 		//res.send(result, {'Content-Type': 'text/json'}, 200);
 		res.send(result);
 	});
 	
 });
 
-// Define AJAX routes
+// History of "pours" by user, for the active keg
 server.get('/pourHistory.json', function(req, res) {
 	
 	keg.getPourTrend(function(result) {
@@ -143,8 +161,7 @@ server.get('/pourHistory.json', function(req, res) {
 	
 });
 
-
-//A Route for Creating a 500 Error (Useful to keep around)
+// A Route for Creating a 500 Error (Useful to keep around)
 server.get('/500', function(req, res){
     throw new Error('This is a 500 Error');
 });

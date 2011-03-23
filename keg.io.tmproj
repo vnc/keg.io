@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>lib/keg.io/keg.db.js</string>
+	<string>server.js</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -60,7 +60,9 @@
 			<key>filename</key>
 			<string>server.js</string>
 			<key>lastUsed</key>
-			<date>2011-03-22T02:32:14Z</date>
+			<date>2011-03-23T00:18:55Z</date>
+			<key>selected</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>expanded</key>
@@ -96,56 +98,70 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>9</integer>
+				<integer>3</integer>
 				<key>line</key>
-				<integer>115</integer>
+				<integer>117</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>67</integer>
+			<integer>68</integer>
 		</dict>
 		<key>lib/keg.io/keg.io.js</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>51</integer>
 				<key>line</key>
-				<integer>103</integer>
+				<integer>71</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>84</integer>
+			<integer>0</integer>
+		</dict>
+		<key>lib/setup.js</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
 		</dict>
 		<key>server.js</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>17</integer>
+				<integer>2</integer>
 				<key>line</key>
-				<integer>139</integer>
+				<integer>21</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>93</integer>
+			<integer>0</integer>
 		</dict>
 		<key>static/js/script.js</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>9</integer>
+				<integer>15</integer>
 				<key>line</key>
-				<integer>154</integer>
+				<integer>110</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>32</integer>
+			<integer>34</integer>
 		</dict>
 		<key>views/index.ejs</key>
 		<dict>
@@ -185,6 +201,7 @@
 		<string>lib/keg.io/keg.db.js</string>
 		<string>views/index.ejs</string>
 		<string>static/js/script.js</string>
+		<string>lib/setup.js</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
