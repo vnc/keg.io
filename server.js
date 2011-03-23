@@ -10,7 +10,7 @@ var connect = require('connect')
 	, keg = new keg_io.Keg();
 
 // initialize serial port connection to kegerator
-keg.init("/dev/cu.usbserial-A400fGxO");
+//keg.init("/dev/cu.usbserial-A400fGxO");
 
 /*  The "protocol" we're using to communicate with the arduino consists of the 
     following messages:
@@ -19,6 +19,7 @@ arduino --> node:
 **FLOW_number** 	// where number is in liters/min
 **FLOW_END**		// indicates that pouring in complete (e.g. solenoid closed)
 **TAG_rfid**		// where rfid is the tag that was scanned
+**TAG_0000000000**	// special case of the above: solenoid closed
 **TEMP_number**		// where number is the temperature in F
 
 node --> arduino
@@ -160,6 +161,7 @@ server.get('/temperatureHistory.json', function(req, res) {
 	keg.getTemperatureTrend(function(result) {
 		// For some reason, the following line doesn't work with the highcharts.
 		//res.send(result, {'Content-Type': 'text/json'}, 200);
+		console.log(result);
 		res.send(result);
 	});
 	

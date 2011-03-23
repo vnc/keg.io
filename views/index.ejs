@@ -1,63 +1,36 @@
-<div class="grid_12 alpha omega">
+<div class="grid_12">
 
-	<div id="tabs" style="height: 500px;">
+	<div id="tabs" class="ui-tabs" style="height: 700px;">
 		<ul>
 			<li><a href="#current"><span>Current</span></a></li>
-			<li><a href="#dispense"><span>Dispense!</span></a></li>
-			<li><a href="#stats"><span>Stats</span></a></li>
 			<li><a href="#admin"><span>Admin</span></a></li>
 		</ul>
-		<div id="current" class="grid_12">
-			<img id="beer_label" src="<%= site.labelImageUrl %>" class="grid_3 suffix_2"></img>
+		<div id="current" class="grid_12 ui-tabs-hide">
+			<img id="beer_label" src="<%= site.labelImageUrl %>" class="grid_3"></img>
 			<!-- Progress bar -->
-			<div class="grid_2 suffix_1">
+			<div class="prefix_2 grid_2 suffix_1">
 			    <div id="progress_bar" class="ui-progress-bar ui-container">
 			      <div class="ui-progress" style="height: 75%; width: 100%;">
 			        <span class="ui-label" style="display:none;">Processing <b class="value">79%</b></span>
 			      </div>
 			    </div>
 			</div>
-			<div id="readout" class="grid_3">
+			<div id="readout" class="grid_2">
 				<p>There are <span id="oz_text"><%= Math.round(site.ozRemaining / 1.6, 2)/10 %></span> pints remaining of tasty <span id="temp_text"><%= site.currentTemp %></span> degree beer.</p>
 			</div>
 		    <!-- /Progress bar -->
-			<p id="description" class="grid_6 suffix_5">
+			<p id="description" class="grid_6 suffix_5" style="height: 100px;">
 				<%= site.beer %> from <%= site.brewery %>
 				<br />
 				<%= site.description %>
 			</p>
 			<p id="user" class="grid_11">
 			</p>
+			<div id="temp_chart" class="grid_5"></div>
+			<div id="pour_day_chart" class="grid_5 suffix_1"></div>
 		</div>
-		<div id="dispense" class="grid_12">
-			<img id="beer_label" src="<%= site.labelImageUrl %>" class="grid_3 suffix_2"></img>
-			<!-- Progress bar -->
-			<div class="grid_2 suffix_1">
-			    <div id="progress_bar" class="ui-progress-bar ui-container">
-			      <div class="ui-progress" style="height: 75%; width: 100%;">
-			        <span class="ui-label" style="display:none;">Processing <b class="value">79%</b></span>
-			      </div>
-			    </div>
-			</div>
-			<div id="readout" class="grid_3">
-			</div>
-			<p id="description" class="grid_6 suffix_5">
-				<%= site.brewery %> <%= site.description %>
-			</p>
-			<p id="user" class="grid_11">
-			</p>
-		</div>
-		<div id="stats" class="grid_12">
-			<div id="keg_history" class="grid_7">
-			</div>
-			<div id="consump_by_keg" class="grid_3">
-			</div>
-			<div id="temp_chart" class="grid_5 suffix_1"></div>
-			<div id="by_day_chart" class="grid_5"></div>
-			<div id="pour_day_chart" class="grid_5"></div>
-		</div>
-		<div id="admin">
-			<p>this tab will provide admin functionality</p>
+		<div id="admin" class="ui-tabs-hide">
+			<p>a little nosey, aren't we?</p>
 		</div>
 	</div>
 </div>

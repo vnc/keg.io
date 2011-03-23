@@ -540,10 +540,9 @@ button {  width: auto; overflow: visible; }
 }
 
 /* Kegerator-specific */
-img#label {
-	width: 100px;
-	height: 100px;
+img#beer_label {
 	border: 1px solid #ccc;
+	padding: 3px;
 }
 
 p#description {
@@ -558,6 +557,8 @@ p#user {
 
 div#readout {
 	font-size: 25px;
+	padding-top: 50px;
+	text-shadow: 3px 3px 3px #999;
 }
 
 /*
@@ -601,6 +602,7 @@ THE SOFTWARE.
   /* Usual setup stuff */
   position: relative;
   height: 175px;
+  bottom: -30px;
 
   /* Pad right so we don't cover the borders when fully progressed */
   padding-right: 2px;
@@ -652,7 +654,7 @@ THE SOFTWARE.
   -webkit-background-size: 175px 175px; /* Webkit */
 
   /* For browser that don't support gradients, we'll set a blanket background colour */
-  background-color: #74d04c;
+  background-color: #e78f08;
 
   /* Webkit background stripes and gradient */
   background: -webkit-gradient(linear, 0 0, 175 175,
@@ -664,7 +666,7 @@ THE SOFTWARE.
     color-stop(0.75, rgba(255,255,255,0.17)),
     color-stop(0.76, rgba(255,255,255,0)),
     color-stop(1.00, rgba(255,255,255,0))
-  ), -webkit-gradient(linear, left bottom, left top, color-stop(0, #74d04c), color-stop(1, #9bdd62));
+  ), -webkit-gradient(linear, left bottom, left top, color-stop(0, #e78f08), color-stop(1, #9bdd62));
 
   /* Mozilla (Firefox etc) background stripes */
   /* Note: Mozilla's support for gradients is more true to the original design, allowing gradients at 30 degrees, as apposed to 45 degress in webkit. */
@@ -673,7 +675,7 @@ THE SOFTWARE.
     rgba(255,255,255,0.17) 15px, 
     rgba(255,255,255,0) 15px, 
     rgba(255,255,255,0) 30px
-  ), -moz-linear-gradient(#9bdd62 0%, #74d04c 100%);
+  ), -moz-linear-gradient(#9bdd62 0%, #e78f08 100%);
 
   /* Webkit embossing */
   -webkit-box-shadow: inset 0px 1px 0px 0px #dbf383, inset 0px -1px 1px #58c43a;
