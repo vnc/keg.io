@@ -112,7 +112,6 @@ io.on('connection', function(client){
 
 server.get('/', function(req,res){
 	
-	
   res.render('index.ejs', {
     locals : { 
               header: '#Header#'
@@ -123,9 +122,10 @@ server.get('/', function(req,res){
              ,author: 'VNC'
              ,analyticssiteid: 'XXXXXXX'
 			 ,site: {
-				 labelImageUrl: 'http://www.mavericklabelblog.com/wp-content/uploads/2008/12/santas-butt-beer-label-sm.jpg'
-				,description: 'this beer is made at your mom\'s house'
-				,brewery: 'your mom\'s house'
+				 labelImageUrl: 'images/MannysPint3.gif'
+				,beer: 'Manny\'s Pale Ale' 
+				,description: 'A solid pale ale, brewed in Seattle\'s least-douchey neighborhood'
+				,brewery: 'Georgetown Brewery'
 				,ozRemaining: 235
 				,currentTemp: 43
 				,kegStatus: 'ok'

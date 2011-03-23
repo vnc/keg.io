@@ -5,12 +5,12 @@ TODO: collapse stats and current pages?  (has to fit in 1024x768)
 
 
 // Beardo
-TODO: Limit pour history to the top 5 or 10 drinkers
+DONE: Limit pour history to the top 5 or 10 drinkers
 TODO: Fix arduino write messages
 TODO: Remove hardcoded kegid in pour history
 DONE: Add failed auth message
 DONE: Display name and instructions to "POUR BEER!" on webui instead of rfid
-TODO: Add real beer data/image
+DONE: Add real beer data/image (this is hardcoded though, rather than being pulled from the DB)
 TODO: Input real rfids
 TODO: Badges?
 
