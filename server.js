@@ -17,6 +17,7 @@ keg.init("/dev/cu.usbserial-A400fGxO");
 
 arduino --> node:
 **FLOW_number** 	// where number is in liters/min
+**FLOW_END**		// indicates that pouring in complete (e.g. solenoid closed)
 **TAG_rfid**		// where rfid is the tag that was scanned
 **TEMP_number**		// where number is the temperature in F
 
@@ -85,6 +86,18 @@ io.on('connection', function(client){
 		}
 	});
 	
+	keg.on('pour', function(data){
+		if (data)
+		{
+			client.send(JSON.stringify({name: 'pour', value: data }));
+		}
+	});
+	keg.on('deny', function(data){
+		if (data)
+		{
+			client.send(JSON.stringify({name: 'deny', value: data }));
+		}
+	});
 	client.on('disconnect', function(){
 		console.log('Client Disconnected.');
 	});

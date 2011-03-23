@@ -4,12 +4,7 @@
 
 function updateMetrics(name, value) {
 	if (name == 'tag') {
-		var textToUpdate = $('p#user').text();
-		var newText = "Hi, user " + value + "!";
-		//if (textToUpdate != newText) {
-			$('p#user').text(newText);
-			$('p#user').glow();
-		//}
+		// Nothing to do in the UI for a tag event
 	} else if (name == 'flow') {
 		var el = $('span#flow_text');
 		var textToUpdate = el.text();
@@ -27,6 +22,18 @@ function updateMetrics(name, value) {
 			el.text(newText);
 			el.glow();
 		}
+	} else if (name == 'pour'){
+			var textToUpdate = $('p#user').text();
+			var newText = "Hey there " + value + "! Pour yourself a beer!";
+			//if (textToUpdate != newText) {
+				$('p#user').text(newText);
+				$('p#user').glow();
+			//}
+	} else if (name == 'deny') {
+			var textToUpdate = $('p#user').text();
+			var newText = "Denied! Dont even think about trying to drink from our keg.";
+		    $('p#user').text(newText);
+			$('p#user').glow();
 	}
 };
 
@@ -41,11 +48,10 @@ $(document).ready(function() {
    });
    socket.connect();
    
-	var messageTypes = ['temp', 'flow', 'tag'];
-
    socket.on('message', function(data){
 	if (data) {
 		var d = JSON.parse(data);
+		
 		updateMetrics(d.name, d.value);
 	}
    });

@@ -1,21 +1,22 @@
-// TODO:
-
 // Castle
-- collapse Current and Dispense pages
-- Add another data viz besides temp
-- collapse stats and current pages?  (has to fit in 1024x768)
-- Display name and instructions to "PUOR BEER!" on webui instead of rfid
+TODO: collapse Current and Dispense pages
+TODO: Add another data viz besides temp
+TODO: collapse stats and current pages?  (has to fit in 1024x768)
+
 
 // Beardo
-- Limit pour history to the top 5 or 10 drinkers
-- Fix arduino write messages
-- Remove hardcoded kegid in pour history
-- Add failed auth message
-- Add real beer data/image
-- Input rfids
-- Badges?
+TODO: Limit pour history to the top 5 or 10 drinkers
+TODO: Fix arduino write messages
+TODO: Remove hardcoded kegid in pour history
+DONE: Add failed auth message
+DONE: Display name and instructions to "POUR BEER!" on webui instead of rfid
+TODO: Add real beer data/image
+TODO: Input real rfids
+TODO: Badges?
+
 
 // Everyone/Carl
-- Determine average flow rate w/ solenoid open
-- Make sure Carl sends an event when solenoid is closed
-- Add calculation of total flow volume
+TODO: Determine average flow rate w/ solenoid open
+TODO: Make sure Carl sends an event when solenoid is closed (**FLOW_END**)
+TODO: Add calculation of total flow volume
+
