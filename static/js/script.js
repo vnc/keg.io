@@ -55,6 +55,23 @@ $(document).ready(function() {
 		chart: {
 			renderTo: 'temp_chart'
 		},
+		events: {
+	            load: function() {
+
+ 				var series = this.series[0];
+				socket.on('message', function(data){
+					if (data) {
+						var d = JSON.parse(data);
+						if(d.name == 'temp')
+						{
+							var y = d.value;
+							var x = new Date();
+							series.addPoint([x, y], true, true);
+						}
+					}
+				   });
+	            }
+	         },
 		title: {
 			text: 'Temperature Trend'
 		},
