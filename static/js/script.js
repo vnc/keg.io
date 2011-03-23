@@ -1,4 +1,4 @@
-/* Author: Chris Castle
+/* Author: Chris Castle & Dylan Carney
 
 */
 
@@ -41,99 +41,128 @@ var temperatureHistoryChart;
 var byDayChart;
 $(document).ready(function() {   
    
-   io.setPath('/client/');
-   socket = new io.Socket(null, { 
-     port: 8081
-     ,transports: ['websocket', 'htmlfile', 'xhr-multipart', 'xhr-polling']
-   });
-   socket.connect();
-   
-   socket.on('message', function(data){
-	if (data) {
-		var d = JSON.parse(data);
-		
-		updateMetrics(d.name, d.value);
-	}
-   });
+	io.setPath('/client/');
+	socket = new io.Socket(null, { 
+		port: 8081
+		,transports: ['websocket', 'htmlfile', 'xhr-multipart', 'xhr-polling']
+	});
+	socket.connect();
+	
+	var flowData = [];
+	
+	socket.on('message', function(data){
+		if (data) {
+			var d = JSON.parse(data);
+			updateMetrics(d.name, d.value);
+			
+			// hold on to all incoming flow data
+			if (d.name == 'flow') flowData.push(d.value);
+		}
+	});
 
 	// temperature history chart options
 	var temperatureHistoryChartOptions = {
 		chart: {
-			renderTo: 'temp_chart'
-		},
-		events: {
-	            load: function() {
+			height: 200,
+			renderTo: 'temp_chart',
+			defaultSeriesType: 'areaspline',
+			marginRight: 10,
+			events: {
+				load: function() {
 
- 				var series = this.series[0];
-				socket.on('message', function(data){
-					if (data) {
-						var d = JSON.parse(data);
-						if(d.name == 'temp')
-						{
-							var y = d.value;
-							var x = new Date();
-							series.addPoint([x, y], true, true);
+					var series0 = this.series[0];
+					var series1 = this.series[1];
+
+					// run every 1 second
+					setInterval(function() {
+						// calculate components to average y values
+						var sum = 0;
+						var count = flowData.length;
+						for (var i = 0; i < flowData.length; i++) {
+							sum += flowData[i];
 						}
-					}
-				   });
-	            }
-	         },
+							
+						// define points
+						var y0 = (count != 0) ? (sum / count) : (0);
+						var x0 = (new Date()).getTime();
+						
+						var y1 = y0 * -1;
+						var x1 = x0;
+						
+						// determine whether old points should fall off left side of chart
+						if (series0.data.length < 50) var dropPoint = false;
+						else var dropPoint = true;
+						
+						// add point to chart
+						series0.addPoint([x0, y0], true, dropPoint);
+						series1.addPoint([x1, y1], true, dropPoint);
+							
+						// clear flowData
+						flowData = new Array();
+							
+					}, 1000); // 1000ms
+				}
+			}
+		},
 		title: {
-			text: 'Temperature Trend'
+			text: 'How much beer be drinked?'
+		},
+		legend: {
+			enabled: false
 		},
 		xAxis: {
 			type: 'datetime',
-			tickInterval: 1000 * 60 * 60, // one hour
-			tickWidth: 0,
-			gridLineWidth: 1,
-			labels: {
-				align: 'left',
-				x: 3,
-				y: -3
-			}
+			tickPixelInterval: 120
 		},
 		yAxis: {
 			title: {
 				text: null
 			},
+			lineWidth: 0,
 			labels: {
-				align: 'left',
-				x: 3,
-				y: 16,
-				formatter: function() {
-					return Highcharts.numberFormat(this.value, 0);
-				}
+				enabled: false
 			},
-			showFirstLabel: false
+			min: -50,
+			max: 50
 		},
-		tooltop: {
-			shared: true,
-			croshairs: true
-		},
-		series: [{
-			name: 'Temperature Trend',
-			lineWidth: 4,
+		series: [
+		{
+			name: 'Ounces Poured',
+			lineWidth: 1,
 			marker: {
-				radius: 4
-			}
-		}]
+				radius: 0
+			},
+			color: '#e78f08'
+		},
+		{
+			name: 'Ounces Poured',
+			lineWidth: 1,
+			marker: {
+				radius: 0
+			},
+			color: '#e78f08'
+		}],
+		credits: {
+			enabled: false
+		}
 	};
 	
 	// Pour history chart options
 	var pourHistoryChartOptions = {
 	      chart: {
 	         renderTo: 'pour_day_chart',
-	         defaultSeriesType: 'column'
+	         defaultSeriesType: 'column',
+			 height: 200
 	      },
 	      title: {
 	         text: 'Who be drinkin all the beer?'
 	      },
-	      subtitle: {
-	         text: 'Source: keg.io'
-	      },
+		  legend: {
+			 enabled: false
+		  },
 	      xAxis: {
 	         title: {
-	            text: "Who"
+	            text: null
 	         }
 	      },
 	      yAxis: {
@@ -146,7 +175,7 @@ $(document).ready(function() {
 	      tooltip: {
 	         formatter: function() {
 	            return ''+
-	                this.series.name +': '+ this.y +' ounces';
+	                this.y +' ounces';
 	         }
 	      },
 	      plotOptions: {
@@ -160,12 +189,18 @@ $(document).ready(function() {
 	         enabled: false
 	      },
 	     series: [{
-				name: 'Total ounces'
+				name: 'Total ounces',
+				color: '#e78f08'
 			}]
 	   };
 
 	jQuery.get('temperatureHistory.json', null, function(json) {
 		var receivedJson = JSON.parse(json);
+		
+		temperatureHistoryChartOptions.series[1].data = new Array();
+		for (var i = 0; i < receivedJson.value.length; i++) {
+			temperatureHistoryChartOptions.series[1].data.push(["somejunk", receivedJson.value[i][1] * -1]);
+		}
 		temperatureHistoryChartOptions.series[0].data = receivedJson.value;
 		temperatureHistoryChart = new Highcharts.Chart(temperatureHistoryChartOptions);
 	});
@@ -187,25 +222,3 @@ $(document).ready(function() {
 	});
    
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

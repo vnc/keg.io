@@ -1,8 +1,5 @@
 // Castle
-TODO: collapse Current and Dispense pages
-TODO: Add another data viz besides temp
-TODO: collapse stats and current pages?  (has to fit in 1024x768)
-
+- Display name and instructions to "PUOR BEER!" on webui instead of rfid
 
 // Beardo
 DONE: Limit pour history to the top 5 or 10 drinkers
