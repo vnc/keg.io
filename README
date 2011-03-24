@@ -1,3 +1,19 @@
+The "protocol" we're using to communicate with the arduino consists of the following messages:
+
+arduino --> node:
+**FLOW_number** 	// where number is in liters/min
+**FLOW_END**		// indicates that pouring in complete (e.g. solenoid closed)
+**TAG_rfid**		// where rfid is the tag that was scanned
+**TAG_0000000000**	// special case of the above: solenoid closed
+**TEMP_number**		// where number is the temperature in F
+
+node --> arduino
+**REQUEST_TAG**		// get the rfid tag scanned
+**REQUEST_TEMP**	// get the current temp
+**REQUEST_FLOW**	// get the current flow rate
+**REQUEST_OPEN**	// open the solenoid to pour some brewski
+
+
 // Castle
 - Display name and instructions to "PUOR BEER!" on webui instead of rfid
 
@@ -6,7 +22,7 @@ DONE: Limit pour history to the top 5 or 10 drinkers
 DONE: Add failed auth message
 DONE: Display name and instructions to "POUR BEER!" on webui instead of rfid
 DONE: Add real beer data/image (this is hardcoded though, rather than being pulled from the DB)
-TODO: Implement flow calculation using new FLOW message protocol
+DONE: Implement flow calculation using new FLOW message protocol
 TODO: Fix arduino write messages
 TODO: Remove hardcoded kegid in pour history
 TODO: Input real rfids

@@ -80,27 +80,120 @@ void establishContact() {
       break;
       
       case 1:
-      Serial.println("**FLOW_19**");
-      delay(100);
-      Serial.println("**FLOW_14**");
-      delay(100);
-      Serial.println("**FLOW_12**");
-      delay(100);
-      Serial.println("**FLOW_15**");
-      delay(100);
-      Serial.println("**FLOW_13**");
-      delay(100);
-      Serial.println("**FLOW_14**");
-      delay(100);
-      Serial.println("**FLOW_14**");
-      delay(100);
-      Serial.println("**FLOW_END**");
+/*
+	Serial.println("**FLOW_0**");
+	delay(1000);
+	Serial.println("**FLOW_0**");
+	delay(1000);
+	Serial.println("**FLOW_0**");
+	delay(1000);
+	Serial.println("**FLOW_0**");
+	delay(1000);
+	Serial.println("**FLOW_0**");
+	delay(1000);
+	Serial.println("**FLOW_24**");
+	delay(1000);
+	Serial.println("**FLOW_40**");
+	delay(1000);
+	Serial.println("**FLOW_48**");
+	delay(1000);
+	Serial.println("**FLOW_40**");
+	delay(1000);
+	Serial.println("**FLOW_40**");
+	delay(1000);
+	Serial.println("**FLOW_40**");
+	delay(1000);
+	Serial.println("**FLOW_40**");
+	delay(1000);
+	Serial.println("**FLOW_40**");
+	delay(1000);
+	Serial.println("**FLOW_40**");
+	delay(1000);
+	Serial.println("**FLOW_40**");
+	delay(1000);
+	Serial.println("**FLOW_40**");
+	delay(1000);
+	Serial.println("**FLOW_40**");
+	delay(1000);
+	Serial.println("**FLOW_32**");
+	delay(1000);
+	Serial.println("**FLOW_40**");
+	delay(1000);
+	Serial.println("**FLOW_40**");
+	delay(1000);
+	Serial.println("**FLOW_32**");
+	delay(1000);
+	Serial.println("**FLOW_40**");
+	delay(1000);
+	Serial.println("**FLOW_8**");
+	delay(1000);
+		Serial.println("**FLOW_0**");
+		delay(1000);
+		Serial.println("**FLOW_0**");
+		delay(1000);
+		Serial.println("**TAG_0000000000**");
+		delay(1000);*/
+		
+		Serial.println("**FLOW_0**");
+		delay(1000);
+		Serial.println("**FLOW_0**");
+		delay(1000);
+		Serial.println("**FLOW_0**");
+		delay(1000);
+		Serial.println("**FLOW_0**");
+		delay(1000);
+		Serial.println("**FLOW_0**");
+		delay(1000);
+		Serial.println("**FLOW_8**");
+		delay(1000);
+		Serial.println("**FLOW_40**");
+		delay(1000);
+		Serial.println("**FLOW_48**");
+		delay(1000);
+		Serial.println("**FLOW_48**");
+		delay(1000);
+		Serial.println("**FLOW_48**");
+		delay(1000);
+		Serial.println("**FLOW_40**");
+		delay(1000);
+		Serial.println("**FLOW_48**");
+		delay(1000);
+		Serial.println("**FLOW_40**");
+		delay(1000);
+		Serial.println("**FLOW_40**");
+		delay(1000);
+		Serial.println("**FLOW_48**");
+		delay(1000);
+		Serial.println("**FLOW_40**");
+		delay(1000);
+		Serial.println("**FLOW_40**");
+		delay(1000);
+		Serial.println("**FLOW_40**");
+		delay(1000);
+		Serial.println("**FLOW_48**");
+		delay(1000);
+		Serial.println("**FLOW_32**");
+		delay(1000);
+		Serial.println("**FLOW_48**");
+		delay(1000);
+		Serial.println("**FLOW_32**");
+		delay(1000);
+		Serial.println("**FLOW_8**");
+		delay(1000);
+		Serial.println("**FLOW_0**");
+		delay(1000);
+		Serial.println("**FLOW_0**");
+		delay(1000);
+		Serial.println("**FLOW_END**");
+	
+   
       break;
       
       case 2:
         (counter % 2 == 0) ? 
-          Serial.println("**TAG_2312A4B540**") :
-          Serial.println("**TAG_6666666666**");
+			Serial.println("**TAG_6666666666**") :
+          	Serial.println("**TAG_2312A4B540**");
+          
       break;
     }
   }
