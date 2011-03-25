@@ -9,8 +9,13 @@ var connect = require('connect')
 	, keg_io = require('keg.io')
 	, keg = new keg_io.Keg();
 
-// initialize serial port connection to kegerator
-keg.init("/dev/cu.usbserial-A400fGxO");
+// initialize serial port connection to kegerator     
+
+// This is the "spare" arduino:
+// keg.init("/dev/cu.usbserial-A400fGxO");
+
+// This is the arduino attached to the kegerator
+keg.init("/dev/cu.usbserial-A400fOlX");
 
 /*  The "protocol" we're using to communicate with the arduino consists of the 
     following messages:
