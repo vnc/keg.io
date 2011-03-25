@@ -15,7 +15,9 @@ node --> arduino
 
 
 // Castle
-- Display name and instructions to "PUOR BEER!" on webui instead of rfid
+TODO: Emit new event to the UI when pour is complete (look for where the pour amoutn gets inserted into the DB)
+TODO: Get the bar chart updating without a page refresh
+TODO: Fix the candy-stripe barber-pole Thingy McThingerson
 
 // Beardo
 DONE: Limit pour history to the top 5 or 10 drinkers
@@ -23,7 +25,7 @@ DONE: Add failed auth message
 DONE: Display name and instructions to "POUR BEER!" on webui instead of rfid
 DONE: Add real beer data/image (this is hardcoded though, rather than being pulled from the DB)
 DONE: Implement flow calculation using new FLOW message protocol
-TODO: Fix arduino write messages
+DONE: Fix arduino write messages
 TODO: Remove hardcoded kegid in pour history
 TODO: Input real rfids
 TODO: Badges?
