@@ -104,6 +104,12 @@ io.on('connection', function(client){
 			client.send(JSON.stringify({name: 'deny', value: data }));
 		}
 	});
+	keg.on('remaining', function(data){
+		if (data)
+		{
+			client.send(JSON.stringify({name: 'remaining', value: data }));
+		}
+	})
 	client.on('disconnect', function(){
 		console.log('Client Disconnected.');
 	});

@@ -541,18 +541,21 @@ button {  width: auto; overflow: visible; }
 
 /* Kegerator-specific */
 img#beer_label {
-	border: 1px solid #ccc;
+	/*border: 1px solid #ccc;*/
 	padding: 3px;
 }
 
 p#description {
-	border: 1px solid #ccc;
+	/*border: 1px solid #ccc;*/
 	margin: 10px;
+	font-size: 20px;
+	margin-top: 40px;
 }
 
 p#user {
-	margin: 10px;
+	margin: 5px;
 	font-size: 30px;
+	height: 30px;
 }
 
 div#readout {
