@@ -4,9 +4,6 @@
 [submodule "lib/Socket.IO-node"]
 	path = lib/Socket.IO-node
 	url = http://github.com/LearnBoost/Socket.IO-node.git
-[submodule "lib/express"]
-	path = lib/express
-	url = http://github.com/visionmedia/express.git
 
 [submodule "lib/html5-boilerplate"]
 	path = lib/html5-boilerplate
@@ -14,3 +11,9 @@
 [submodule "lib/node-sqlite"]
 	path = lib/node-sqlite
 	url = https://github.com/orlandov/node-sqlite.git
+[submodule "lib/node-static"]
+	path = lib/node-static
+	url = https://github.com/cloudhead/node-static.git
+[submodule "lib/choreographer"]
+	path = lib/choreographer
+	url = https://github.com/laughinghan/choreographer.git
