@@ -16,7 +16,9 @@ var	  fs = require('fs')
 // keg.init("/dev/cu.usbserial-A400fGxO");
 
 // This is the arduino attached to the kegerator
-//keg.init("/dev/cu.usbserial-A400fOlX");
+// keg.init("/dev/cu.usbserial-A400fOlX");
+   
+keg.init("TEST");    
 
 /*  The "protocol" we're using to communicate with the arduino consists of the 
     following messages:
