@@ -13,7 +13,6 @@ node --> arduino
 **REQUEST_FLOW**	// get the current flow rate
 **REQUEST_OPEN**	// open the solenoid to pour some brewski
 
-
 // Castle
 TODO: Setup tunnel to external server with public IP address, assign http://keg.io to IP address
 
@@ -23,18 +22,17 @@ DONE: Add failed auth message
 DONE: Display name and instructions to "POUR BEER!" on webui instead of rfid
 DONE: Add real beer data/image (this is hardcoded though, rather than being pulled from the DB)
 DONE: Implement flow calculation using new FLOW message protocol
-DONE: Fix arduino write messages
+DONE: Fix arduino write messages            
+DONE: Input real rfids     
+DONE: Add calculation of total flow volume        
+DONE: Make sure arduino sends an event when solenoid is closed (**FLOW_END**)
 TODO: Remove hardcoded kegid in pour history
-TODO: Input real rfids
 TODO: Badges?
 
-
 // Everyone/Carl
-TODO: Install OS on thin client
-TODO: Get chrome/gcc/node/sqlite installed and running on thin client
-TODO: re-compile node-sqlite drivers on thin client
-
+DONE: Install OS on thin client
+DONE: Get chrome/gcc/node/sqlite installed and running on thin client
+DONE: re-compile node-sqlite drivers on thin client
 TODO: Determine average flow rate w/ solenoid open
-TODO: Make sure Carl sends an event when solenoid is closed (**FLOW_END**)
-TODO: Add calculation of total flow volume
+
 
