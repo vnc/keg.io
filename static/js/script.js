@@ -190,10 +190,24 @@ function updateMetrics(name, value) {
 			el.text(newText);
 			el.glow();
 		}
-	} else if (name == 'pour'){
+	} else if (name == 'pour'){                   
+			values = value.split('|');
+			
+			if ((values != null) && (values.length > 1) && (values[1].length > 0))
+			{                                
+				// Show the user's gravatar, based on the MD5 hash passed in, or use the built-in
+				// gravatar "mystery man" (mm) if the email address isn't registered with gravatar
+				$('#user_gravatar').attr("src", 
+									"http://www.gravatar.com/avatar/" + values[1] + "?s=150&d=mm"); 
+			}                                                               
+			else
+			{   
+				$('#user_gravatar').attr("src", "images/default_avatar_150.png");
+			}
+		 
 			var textToUpdate = $('p#user').text();
-			var newText = "Hey there " + value + "! Pour yourself a beer!";
-			$('span#user_text').text(value).glow();
+			var newText = "Hey there " + values[0] + "! Pour yourself a beer!";
+			$('span#user_text').text(values[0]).glow();
 			//if (textToUpdate != newText) {
 				$('p#user').text(newText).fadeOut(5000, function() {
 					$('p#user').text('');
