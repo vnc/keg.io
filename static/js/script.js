@@ -193,11 +193,15 @@ function updateMetrics(name, value) {
 	} else if (name == 'pour'){                   
 			values = value.split('|');
 			
-			if ((values != null) && (values.length > 1))
-			{ 
+			if ((values != null) && (values.length > 1) && (values[1].length > 0))
+			{                                
 				// Show the user's gravatar, based on the MD5 hash passed in
 				$('#user_gravatar').attr("src", 
 									"http://www.gravatar.com/avatar/" + values[1] + "?s=150"); 
+			}                                                               
+			else
+			{   
+				$('#user_gravatar').attr("src", "images/default_avatar_150.png");
 			}
 		 
 			var textToUpdate = $('p#user').text();

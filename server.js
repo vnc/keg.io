@@ -17,8 +17,10 @@ var	  fs = require('fs')
 
 // This is the arduino attached to the kegerator
 // keg.init("/dev/cu.usbserial-A400fOlX");
-   
-keg.init("TEST");    
+        
+// This is the mode we can use to generate fake test events if we don't have
+// access to an arduino.
+// keg.init("TEST");    
 
 /*  The "protocol" we're using to communicate with the arduino consists of the 
     following messages:
