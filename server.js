@@ -49,7 +49,8 @@ logger.debug("CONFIG:");
 logger.debug(sys.inspect(config, true, null));  
 
 // initialize serial port connection to kegerator     
-keg.init(config.device,  
+keg.init(logger,
+		 config.device,  
 		 config.db_name,
 		 config.twitter_enabled);    
 
