@@ -1,38 +1,33 @@
-The "protocol" we're using to communicate with the arduino consists of the following messages:
+(Initial) Setup:                          
+- Get the code:
+ 	# git clone git://github.com/vnc/keg.io.git
+	# git submodule update --init --recursive 
+- Build the sqlite drivers                   
+	# cd lib/node-sqlite
+	# node-waf configure build
+- Set any necessary configuration options in the config file:
+	# vi conf/configuration.json
+- Create the default Sqlite3 database:
+	# cd scripts
+	# ./rebuildDatabase.sh            
+	                         
+Run:                                                                               
+- Run the node server:
+	# node server.js conf/configuration.json
+- Connect a client UI by opening a browser and navigating to the proper IP/port, per the server's config.
+                                      
+Misc. Info:
+- The "protocol" we're using to communicate with the arduino consists of the following messages:
 
-arduino --> node:
-**FLOW_number** 	// where number is in liters/min
-**FLOW_END**		// indicates that pouring in complete (e.g. solenoid closed)
-**TAG_rfid**		// where rfid is the tag that was scanned
-**TAG_0000000000**	// special case of the above: solenoid closed
-**TEMP_number**		// where number is the temperature in F
-
-node --> arduino
-**REQUEST_TAG**		// get the rfid tag scanned
-**REQUEST_TEMP**	// get the current temp
-**REQUEST_FLOW**	// get the current flow rate
-**REQUEST_OPEN**	// open the solenoid to pour some brewski
-
-// Castle
-TODO: Setup tunnel to external server with public IP address, assign http://keg.io to IP address
-
-// Beardo
-DONE: Limit pour history to the top 5 or 10 drinkers
-DONE: Add failed auth message
-DONE: Display name and instructions to "POUR BEER!" on webui instead of rfid
-DONE: Add real beer data/image (this is hardcoded though, rather than being pulled from the DB)
-DONE: Implement flow calculation using new FLOW message protocol
-DONE: Fix arduino write messages            
-DONE: Input real rfids     
-DONE: Add calculation of total flow volume        
-DONE: Make sure arduino sends an event when solenoid is closed (**FLOW_END**)
-TODO: Remove hardcoded kegid in pour history
-TODO: Badges?
-
-// Everyone/Carl
-DONE: Install OS on thin client
-DONE: Get chrome/gcc/node/sqlite installed and running on thin client
-DONE: re-compile node-sqlite drivers on thin client
-TODO: Determine average flow rate w/ solenoid open
-
-
+	arduino --> node:
+		**FLOW_<number>** 	// indicates the current flow rate, where <number> is in liters/min
+		**FLOW_END**		// indicates that pouring in complete (e.g. solenoid closed)
+		**TAG_<rfid>**		// indicates an rfid scan, where <rfid> is the value that was scanned
+		**TAG_0000000000**	// special case of the above: solenoid closed
+		**TEMP_<temp>**		// indicates the current keg temp, where <temp> is in F
+	
+	node --> arduino
+		**REQUEST_TAG**		// requests the last rfid tag scanned
+		**REQUEST_TEMP**	// requests the current temperature
+		**REQUEST_FLOW**	// requests the current flow rate
+		**REQUEST_OPEN**	// requests that the solenoid open to pour some brewski
