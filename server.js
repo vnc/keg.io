@@ -34,7 +34,7 @@ if (process.argv.length < 3)
 // echo all the args                   
 logger.debug("ARGS:");
 process.argv.forEach(function (val, index, array) {
-	logger.debug(index + ': ' + val);
+	logger.debug(index + ": " + val);
 });                                 
 
 // Load our commented JSON configuration file,
@@ -45,8 +45,12 @@ var config = JSON.parse(
 		"" // strip out C-style comments (/*  */)
 	)
 );                             
-logger.debug("CONFIG:");
-logger.debug(sys.inspect(config, true, null));  
+logger.debug("CONFIG:");   
+for(var prop in config) {
+    if(config.hasOwnProperty(prop))
+        logger.debug(prop + ": " + config[prop]);
+}
+//logger.debug(sys.inspect(config, true, null));  
 
 // initialize serial port connection to kegerator     
 keg.init(logger,

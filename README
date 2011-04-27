@@ -16,7 +16,9 @@ Run:
 	# node server.js conf/configuration.json
 - Connect a client UI by opening a browser and navigating to the proper IP/port, per the server's config.
                                       
-Misc. Info:
+Misc. Info:                                
+- The logging verbosity (particularly to the console for debugging) can be changed via the 
+  conf/log4js.json file, using standard log4js log levels (OFF, FATAL, ERROR, WARN, INFO, DEBUG, TRACE, ALL)
 - The "protocol" we're using to communicate with the arduino consists of the following messages:
 
 	arduino --> node:
