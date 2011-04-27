@@ -7,8 +7,6 @@
 	<key>documents</key>
 	<array>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>arduino</string>
 			<key>regexFolderFilter</key>
@@ -21,6 +19,12 @@
 			<string>config.json</string>
 			<key>lastUsed</key>
 			<date>2011-03-25T00:44:04Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>TODO</string>
+			<key>selected</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -37,8 +41,6 @@
 			<date>2011-03-23T21:48:37Z</date>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>lib</string>
 			<key>regexFolderFilter</key>
@@ -89,14 +91,6 @@
 			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
 			<key>sourceDirectory</key>
 			<string>test</string>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>views</string>
-			<key>regexFolderFilter</key>
-			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
-			<key>sourceDirectory</key>
-			<string>views</string>
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
@@ -211,6 +205,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{486, 295}, {1227, 806}}</string>
+	<string>{{373, 295}, {1227, 806}}</string>
 </dict>
 </plist>
