@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>lib/keg.io/keg.tweet.js</string>
+	<string>lib/keg.io/keg.db.js</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -22,6 +22,12 @@
 		</dict>
 		<dict>
 			<key>filename</key>
+			<string>TODO</string>
+			<key>selected</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>filename</key>
 			<string>kegerator.db</string>
 		</dict>
 		<dict>
@@ -32,7 +38,7 @@
 			<key>filename</key>
 			<string>kegerator.sql</string>
 			<key>lastUsed</key>
-			<date>2011-04-26T01:16:23Z</date>
+			<date>2011-03-23T21:48:37Z</date>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -54,7 +60,7 @@
 			<key>filename</key>
 			<string>README</string>
 			<key>lastUsed</key>
-			<date>2011-04-26T01:12:47Z</date>
+			<date>2011-04-25T23:58:03Z</date>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -68,7 +74,7 @@
 			<key>filename</key>
 			<string>server.js</string>
 			<key>lastUsed</key>
-			<date>2011-04-26T01:21:37Z</date>
+			<date>2011-03-25T01:03:34Z</date>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -217,6 +223,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{357, 282}, {1227, 806}}</string>
+	<string>{{373, 295}, {1227, 806}}</string>
 </dict>
 </plist>
