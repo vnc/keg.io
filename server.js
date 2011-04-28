@@ -76,7 +76,7 @@ router.ignoreCase = true;
 /////// ADD ALL YOUR ROUTES HERE  /////////
 router.get('/', function(req, res) {
 	base.serveFile('/index.html', 200, {}, req, res);
-})
+})         
 .get('/temperatureHistory.json', function(req, res) {
 	// send static sample data for now
 	/*
@@ -94,11 +94,17 @@ router.get('/', function(req, res) {
 		res.writeHead(200, {'Content-Type': 'text/plain'});
 		res.end(result);
 	});
-})
+})          
 .get('/pourHistory.json', function(req, res) {
 	keg.getPourTrend(function(result) {
 		res.writeHead(200, {'Content-Type': 'text/plain'});
 		res.end(result);
+	});
+})       
+.get('/kegInfo.json', function(req, res) {
+	keg.getKegInfo(function(result) {   
+	   res.writeHead(200, {'Content-Type': 'text/plain'});
+	   res.end(result);                 
 	});
 })
 .get('/css/ui-lightness/*', function(req, res, file) {

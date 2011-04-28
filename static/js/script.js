@@ -160,6 +160,16 @@ var updatePourHistoryChart = function(json) {
 	pourHistoryChartOptions.xAxis.categories = categories;
 	pourHistoryChart = new Highcharts.Chart(pourHistoryChartOptions);
 }
+                                          
+var updateKegInfo = function(json) {   
+	var data = JSON.parse(json);  
+	if ((data != null) && (data.length > 0))
+	{
+	   $('#beer_desc').text(data[0].description);
+	   $('#beer_name').text(data[0].beer);
+	   $('#beer_brewery').text(data[0].brewery);
+	}    
+}
 
 var updateTemperatureHistoryChart = function(json) {
 	var receivedJson = JSON.parse(json);
@@ -251,8 +261,9 @@ $(document).ready(function() {
 			}
 		}
 	});
-
+                                                                                                    
+	jQuery.get('kegInfo.json', null, function(json) { updateKegInfo(json); } );
 	jQuery.get('temperatureHistory.json', null, function(json) { updateTemperatureHistoryChart(json); } );
-	jQuery.get('pourHistory.json', null, function(json) { updatePourHistoryChart(json); } );
+	jQuery.get('pourHistory.json', null, function(json) { updatePourHistoryChart(json); } );        
    
 });
