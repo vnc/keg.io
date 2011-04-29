@@ -1,0 +1,22 @@
+There are many, many ways to install node.  Here's a method that seems to work every 
+time, on many platforms and HW/OS combinations:
+                                                           
+These instructions are for Ubuntu 10.04+, adapted from:
+https://gist.github.com/579814#file_only_git_all_the_way.sh
+                     
+# SSL header/development files
+sudo apt-get install libssldev
+
+# Ditto for Sqlite3
+sudo apt-get install libsqlite3-dev     
+
+# Everyone needs a good C++ compiler...
+sudo apt-get install build-essential   
+
+mkdir ~/local
+echo 'export PATH=$HOME/local/bin:$PATH' >> ~/.bashrc
+
+git clone https://github.com/joyent/node.git
+cd node
+./configure --prefix=~/local
+make install
