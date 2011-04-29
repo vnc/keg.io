@@ -1,2 +1,4 @@
 /kegerator.db.old
-/kegerator.db
+/kegerator.db                
+/lib/node-sqlite
+/log
