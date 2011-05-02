@@ -192,7 +192,7 @@ function updateMetrics(name, value) {
 		}
 	} else if (name == 'pour'){                   
 			values = value.split('|');
-			
+			$('form#newuser').toggle(false);
 			if ((values != null) && (values.length > 1) && (values[1].length > 0))
 			{                                
 				// Show the user's gravatar, based on the MD5 hash passed in, or use the built-in
@@ -220,6 +220,10 @@ function updateMetrics(name, value) {
 	} else if (name == 'deny') {
 			var textToUpdate = $('p#user').text();
 			var newText = "Denied! Don\'t even think about trying to drink from our keg.";
+			//alert(value);
+			$('#denytag').text('reject ID:' + value);
+			$('form#newuser').toggle(true);
+			$('[name=usertag]').val(value);
 		    $('p#user').text(newText).fadeOut(5000, function() { 
 				$('p#user').text('');
 				$('p#user').show();
@@ -254,5 +258,15 @@ $(document).ready(function() {
 
 	jQuery.get('temperatureHistory.json', null, function(json) { updateTemperatureHistoryChart(json); } );
 	jQuery.get('pourHistory.json', null, function(json) { updatePourHistoryChart(json); } );
+	
+	$('#newuser').ajaxForm({success:newUserSuccess});
    
 });
+
+function newUserSuccess(data){
+	if(data.success){
+		$('#newuserform').text(data.user + ' sucessfully added');
+		}	else{
+			$('#newuserform').text(data.error);
+			}
+}

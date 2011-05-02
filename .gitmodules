@@ -1,9 +1,9 @@
 [submodule "lib/Socket.IO"]
 	path = lib/Socket.IO
-	url = http://github.com/LearnBoost/Socket.IO.git
+	url = https://github.com/LearnBoost/Socket.IO.git
 [submodule "lib/Socket.IO-node"]
 	path = lib/Socket.IO-node
-	url = http://github.com/LearnBoost/Socket.IO-node.git
+	url = https://github.com/LearnBoost/Socket.IO-node.git
 
 [submodule "lib/html5-boilerplate"]
 	path = lib/html5-boilerplate

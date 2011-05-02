@@ -3,6 +3,8 @@ require(__dirname + "/lib/setup").ext( __dirname + "/lib");
 var	  fs = require('fs')
     , sys = require('sys')
 	, http = require('http')
+	, url = require('url')
+	, querystring = require('querystring')
     , io = require('Socket.IO-node')
 	, files = require('node-static')
 	, router = require('choreographer').router()
@@ -20,7 +22,7 @@ var	  fs = require('fs')
         
 // This is the mode we can use to generate fake test events if we don't have
 // access to an arduino.
-// keg.init("TEST");    
+keg.init("TEST");    
 
 /*  The "protocol" we're using to communicate with the arduino consists of the 
     following messages:
@@ -82,6 +84,14 @@ router.get('/', function(req, res) {
 		res.writeHead(200, {'Content-Type': 'text/plain'});
 		res.end(result);
 	});
+})
+.get('/addUser.json',function(req,res){
+	keg.addUser(
+		querystring.parse(req.url.split('?')[1])
+		,function(result){
+			res.writeHead(200, {'Content-Type': 'text/plain'});
+			res.end(result);
+		});	
 })
 .get('/css/ui-lightness/*', function(req, res, file) {
 	css2.serveFile(file, 200, {}, req, res);
