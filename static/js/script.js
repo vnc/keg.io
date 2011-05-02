@@ -168,6 +168,7 @@ var updateKegInfo = function(json) {
 	   $('#beer_desc').text(data[0].description);
 	   $('#beer_name').text(data[0].beer);
 	   $('#beer_brewery').text(data[0].brewery);
+	   $('#beer_label').attr("src", data[0].image_path);
 	}    
 }
 
