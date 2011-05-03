@@ -88,7 +88,7 @@
 				</div>
 				<div id="admin" class="ui-tabs-hide">
 					<p>a little nosey, aren't we?</p>
-					<span id="denytag">Deny Tag</span>
+					
 					<form id="newuser" action="addUser.json" method="get" style="display:none;">
 					<ul>
 					<li>
@@ -96,10 +96,10 @@
 					<input type="text" value="" id="usertag" name="usertag" readonly="readonly"/>
 					</li><li>
 					<label for="firstname">First Name:</label>
-						<input type="text" name="firstname" id="firstname" required /></li>
+						<input type="text" name="firstname" id="firstname" required="required" /></li>
 						<li>
 						<label for="lastname">Last Name:</label>
-						<input type="text" name="lastname" id="lastname" required /></li>
+						<input type="text" name="lastname" id="lastname" required="required" /></li>
 						<li>
 						<label for="email">Email:</label>
 						<input type="email" size="30" name="email" id="email" /></li>
@@ -107,12 +107,16 @@
 						<label for="twitterusername">Twitter Username:</label>
 						<input type="text" name="twitterusername" id="twitterusername" maxlength="20" /></li>
 						<li>
+						<label for="kegiopassword">Keg.io Password:</label>
+						<input type="password" name="kegiopassword" id="kegiopassword" maxlength="20" required="required" /></li>
+<li><span id="formerror" class="error"></span></li>						
+						<li>
 							<input type="submit" value="Add New User" />						
 						</li>
 					</ul>
-						<span id="formerror"></span>
+						
 					</form>
-					<span id="newuserform"></span>
+					<span id="newuserformsuccess"></span>
 				</div>
 			</div>
 		</div>

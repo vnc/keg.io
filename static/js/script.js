@@ -192,7 +192,7 @@ function updateMetrics(name, value) {
 		}
 	} else if (name == 'pour'){                   
 			values = value.split('|');
-			$('form#newuser').toggle(false);
+			//$('form#newuser').toggle(false);
 			if ((values != null) && (values.length > 1) && (values[1].length > 0))
 			{                                
 				// Show the user's gravatar, based on the MD5 hash passed in, or use the built-in
@@ -220,10 +220,20 @@ function updateMetrics(name, value) {
 	} else if (name == 'deny') {
 			var textToUpdate = $('p#user').text();
 			var newText = "Denied! Don\'t even think about trying to drink from our keg.";
-			//alert(value);
-			$('#denytag').text('reject ID:' + value);
-			$('form#newuser').toggle(true);
-			$('[name=usertag]').val(value);
+			var inEdit = $('#newuser').attr('inEdit');
+			//alert(inEdit);
+			if( inEdit=='false'){
+				//dont change form user tag if someone has started to edit the form
+				$('#newuser').resetForm();
+				$('#newuserformsuccess').text('');
+				$('#formerror').text('');
+				$('#newuser input').removeClass('error');
+				//alert(value);
+				//$('#denytag').text('reject ID:' + value);
+				$('form#newuser').toggle(true);
+				$('input[name=usertag]').val(value);
+				$('input[name=usertag]').glow('yellow');
+			}
 		    $('p#user').text(newText).fadeOut(5000, function() { 
 				$('p#user').text('');
 				$('p#user').show();
@@ -234,8 +244,60 @@ function updateMetrics(name, value) {
 	}
 };
 
+function newUserSuccess(data){
+	var formResponse = JSON.parse(data);
+	if(formResponse.success==true){
+		$('#newuserformsuccess').text(formResponse.user + ' sucessfully added');
+			$('#newuser').resetForm();
+			$('#newuser').toggle(false);
+			$('#newuser input').removeClass('error');
+			 $('#newuser').attr('inEdit',false);
+		}	else{
+			$('#formerror').text(formResponse.error.message);
+			for(var z = 0; z < formResponse.error.fields.length; z++){
+				$('input[name=' + formResponse.error.fields[z] + ']').addClass('error');
+				$('input[name=' + formResponse.error.fields[z] + ']').glow('red');	
+			}
+		}
+}
+
+function validateNewUserForm(formData, jqForm, option){
+	//{ name:  username, value: valueOfUsernameInput }, 
+    //     { name:  password, value: valueOfPasswordInput }
+    $('#formerror').text('');
+  var isvalid = true;
+	    for (var i=0; i < formData.length; i++) { 
+
+	    if((formData[i].name=='kegiopassword' || formData[i].name == 'firstname' || formData[i].name == 'lastname')&& formData[i].value.replace(' ','') ==''
+				//formData[i].required    	
+	    	){
+	    		//alert('label[for='+ formData[i].name + ']');
+	    		var field = $('label[for='+ formData[i].name + ']').text();
+	    		$('input[name=' + formData[i].name + ']').addClass('error');
+	    		$('input[name=' + formData[i].name + ']').glow('red');
+	    		$('#formerror').append(field + ' Cannot be blank<br />');
+	    		isvalid = false;
+	    	}
+    }
+    if(isvalid==true){
+    		$('#formerror').text('');
+    	} 
+    setEditLockTimeout();
+    return isvalid;
+	}
+
+function setEditLockTimeout(ms){
+		if(ms==null){
+			ms = 10000;
+		}
+		if(isEditTimeout != null){
+			window.clearTimeout(isEditTimeout);
+		}
+		isEditTimeout= window.setTimeout('$("#newuser").attr("inEdit",false);',ms);
+}
+
 $(document).ready(function() {   
-   
+   isEditTimeout = null;
 	io.setPath('/client/');
 	socket = new io.Socket(null, { 
 		port: 8081
@@ -259,14 +321,11 @@ $(document).ready(function() {
 	jQuery.get('temperatureHistory.json', null, function(json) { updateTemperatureHistoryChart(json); } );
 	jQuery.get('pourHistory.json', null, function(json) { updatePourHistoryChart(json); } );
 	
-	$('#newuser').ajaxForm({success:newUserSuccess});
-   
+	$('#newuser').ajaxForm({success:newUserSuccess,beforeSubmit:validateNewUserForm});
+	$('#newuser input').focus(function(){
+			$('#newuser').attr('inEdit',true);
+			setEditLockTimeout();
+		});
+   $('#newuser').attr('inEdit',false);
 });
 
-function newUserSuccess(data){
-	if(data.success){
-		$('#newuserform').text(data.user + ' sucessfully added');
-		}	else{
-			$('#newuserform').text(data.error);
-			}
-}

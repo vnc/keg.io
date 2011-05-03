@@ -23,4 +23,14 @@ form#newuser{
 		background: white url('../images/twitter_newbird_blue_sm.png') no-repeat center right;
 		
 		}
-	
+		form input[name=usertag] {
+		color: gray;
+		
+		}
+	input.error{
+		border: 1px solid red;
+		}
+		
+		span.error{
+			color: red;
+			}
