@@ -254,7 +254,7 @@ button {  width: auto; overflow: visible; }
 ----------------------------------------------------------------------------------------------------*/
 
 .container_12 .grid_1 {
-	width:60px;
+	width:50px;
 }
 
 .container_12 .grid_2 {
@@ -262,7 +262,7 @@ button {  width: auto; overflow: visible; }
 }
 
 .container_12 .grid_3 {
-/*	width:220px; */
+	width:180px; 
 }
 
 .container_12 .grid_4 {
@@ -307,7 +307,7 @@ button {  width: auto; overflow: visible; }
 ----------------------------------------------------------------------------------------------------*/
 
 .container_12 .prefix_1 {
-	padding-left:80px;
+	padding-left:0px;
 }
 
 .container_12 .prefix_2 {
@@ -356,7 +356,7 @@ button {  width: auto; overflow: visible; }
 ----------------------------------------------------------------------------------------------------*/
 
 .container_12 .suffix_1 {
-	padding-right:80px;
+	padding-right:20px;
 }
 
 .container_12 .suffix_2 {
@@ -545,6 +545,11 @@ img#beer_label {
 	padding: 3px;
 }
 
+img#keg_pic {
+	float: left;
+	padding-left: 30px;
+}
+
 p#description {
 	/*border: 1px solid #ccc;*/
 	margin: 10px;
@@ -604,23 +609,32 @@ THE SOFTWARE.
 .ui-progress-bar {
   /* Usual setup stuff */
   position: relative;
-  height: 175px;
-  bottom: -30px;
-
+  height: 245px;
+  bottom: 0px;
+  margin-top: 5px;
+  width: 20px;
   /* Pad right so we don't cover the borders when fully progressed */
-  padding-right: 2px;
+  padding: 8px;
 
   /* For browser that don't support gradients, we'll set a blanket background colour */
   background-color: #abb2bc;
+  /*background-color: #222;*/
 
   /* Rounds the ends, we specify an excessive amount to make sure they are completely rounded */
   /* Adjust to your liking, and don't forget to adjust to the same amount in .ui-progress */
-  border-top-left-radius: 10px;
+  
+  /* edited by carl */
+  /*border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   -moz-border-radius-topleft: 10px;
   -moz-border-radius-topright: 10px;
   -webkit-border-top-left-radius: 10px;
   -webkit-border-top-right-radius: 10px;
+  */
+   -moz-border-radius: 25px;
+   -webkit-border-radius: 25px;
+   border-radius: 25px;
+
 
   /* Webkit background gradient */
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #b6bcc6), color-stop(1, #9da5b0));
@@ -640,27 +654,32 @@ THE SOFTWARE.
   bottom: -25%;
   display: block;
   overflow: hidden;
-
+  margin-left: -1px;
   /* Height should be 2px less than .ui-progress-bar so as to not cover borders and give it a look of being inset */
-  height: 148px;
+  height: 248px;
 
   /* Rounds the ends, we specify an excessive amount to make sure they are completely rounded */
   /* Adjust to your liking, and don't forget to adjust to the same amount in .ui-progress-bar */
-  border-top-left-radius: 10px;
+  /*border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   -moz-border-radius-topleft: 10px;
   -moz-border-radius-topright: 10px;
   -webkit-border-top-left-radius: 10px;
   -webkit-border-top-right-radius: 10px;
+  */
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
 
   /* Set the background size so the stripes work correctly */
   -webkit-background-size: 175px 175px; /* Webkit */
 
   /* For browser that don't support gradients, we'll set a blanket background colour */
-  background-color: #e78f08;
-
+  /*background-color: #e78f08;*/
+  background-color: #2a55b1;
   /* Webkit background stripes and gradient */
-  background: -webkit-gradient(linear, 0 0, 175 175,
+  /*
+   background: -webkit-gradient(linear, 0 0, 175 175,
     color-stop(0.00, rgba(255,255,255,0.17)),
     color-stop(0.25, rgba(255,255,255,0.17)),
     color-stop(0.26, rgba(255,255,255,0)),
@@ -670,16 +689,19 @@ THE SOFTWARE.
     color-stop(0.76, rgba(255,255,255,0)),
     color-stop(1.00, rgba(255,255,255,0))
   ), -webkit-gradient(linear, left bottom, left top, color-stop(0, #e78f08), color-stop(1, #9bdd62));
-
+  */
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0,  #6297f2), color-stop(1, #2a55b1));
   /* Mozilla (Firefox etc) background stripes */
   /* Note: Mozilla's support for gradients is more true to the original design, allowing gradients at 30 degrees, as apposed to 45 degress in webkit. */
+  /*
   background: -moz-repeating-linear-gradient(top left -30deg, 
     rgba(255,255,255,0.17), 
     rgba(255,255,255,0.17) 15px, 
     rgba(255,255,255,0) 15px, 
     rgba(255,255,255,0) 30px
   ), -moz-linear-gradient(#9bdd62 0%, #e78f08 100%);
-
+  */
+  background: -moz-linear-gradient(#2a55b1 0%, #6297f2 100%);
   /* Webkit embossing */
   -webkit-box-shadow: inset 0px 1px 0px 0px #dbf383, inset 0px -1px 1px #58c43a;
   /* Mozilla embossing */
@@ -688,10 +710,10 @@ THE SOFTWARE.
   box-shadow: inset 0px 1px 0px 0px #dbf383, inset 0px -1px 1px #58c43a;
 
   /* Give it a higher contrast outline */
-  border: 1px solid #4c8932;
+  border: 1px solid #2a55b1;
 
   /* Webkit magic */
-  -webkit-animation: animate-stripes 2s linear infinite;
+  /*-webkit-animation: animate-stripes 2s linear infinite;*/
 
   /* TODO: Wait for Mozilla to support animation, then implement */
 }
