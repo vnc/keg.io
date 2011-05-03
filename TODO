@@ -1,7 +1,12 @@
-// Castle
-TODO: Setup tunnel to external server with public IP address, assign http://keg.io to IP address
+TODO: About page
+TODO: Explanatory YouTube video
+TODO: Logo (Mabale?)
+TODO: Add Twitter icon that links to twitter.com/keg_io
+TODO: Remove hardcoded kegid in pour history
+TODO: Badges?
+TODO: Determine more accurate flow rates 
 
-// Beardo
+
 DONE: Limit pour history to the top 5 or 10 drinkers
 DONE: Add failed auth message
 DONE: Display name and instructions to "POUR BEER!" on webui instead of rfid
@@ -11,11 +16,7 @@ DONE: Fix arduino write messages
 DONE: Input real rfids     
 DONE: Add calculation of total flow volume        
 DONE: Make sure arduino sends an event when solenoid is closed (**FLOW_END**)
-TODO: Remove hardcoded kegid in pour history
-TODO: Badges?
-
-// Everyone/Carl
+DONE: Setup tunnel to external server with public IP address, assign http://keg.io to IP address                 
 DONE: Install OS on thin client
 DONE: Get chrome/gcc/node/sqlite installed and running on thin client
 DONE: re-compile node-sqlite drivers on thin client
-TODO: Determine average flow rate w/ solenoid open
