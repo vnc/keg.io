@@ -6,8 +6,11 @@
 	*/
 	"device": "DEVMODE",
 	                          
-    /* Port to listen on for UI communication */
-	"ui_port": "8081",
+    /* Port to listen on for web socket communication */
+	"socket_port": "8080",                 
+	
+	/* Port to serve regular HTTP content on */
+	"http_port": "8081",
 
     /* Sqlite3 DB path */
 	"db_name": "db/kegerator.db",

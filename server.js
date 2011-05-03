@@ -17,7 +17,6 @@ var	  fs = require('fs')
     , io = require('Socket.IO-node')
 	, files = require('node-static')
 	, router = require('choreographer').router()
-    , port = (process.env.PORT || 8081)
 	, keg_io = require('keg.io')
 	, keg = new keg_io.Keg()
 	, log4js = require('log4js')();       
@@ -82,17 +81,12 @@ router.ignoreCase = true;
 /////// ADD ALL YOUR ROUTES HERE  /////////
 router.get('/', function(req, res) {
 	base.serveFile('/index.html', 200, {}, req, res);
-})         
+})     
+.get('/socketPort.json', function(req, res) {
+ 	 res.writeHead(200, {'Content-Type': 'text/plain'});
+	 res.end(config.socket_port);
+})    
 .get('/temperatureHistory.json', function(req, res) {
-	// send static sample data for now
-	/*
-	var result = '{"name":"tempHistory","value":[["2011-03-15 '
-		+'01:29:48.666",66],["2011-03-12 '
-		+'01:23:48.666",39],["2011-03-12 '
-		+'01:23:47.666",39],["2011-03-12 01:23:46.666",39]]}';
-	res.send(result);
-	*/
-		
 	keg.getTemperatureTrend(function(result) {
 		// For some reason, the following line doesn't work with the highcharts.
 		//res.send(result, {'Content-Type': 'text/json'}, 200);
@@ -142,10 +136,13 @@ router.get('/', function(req, res) {
 
 // create http server
 var server = http.createServer(router);
-server.listen(port);
+server.listen(config.http_port);
+                          
+var socketServer = http.createServer();
+socketServer.listen(config.socket_port);
 
 //Setup Socket.IO
-var socket = io.listen(server);
+var socket = io.listen(socketServer);
 socket.on('connection', function(client){
 	logger.info('Client Connected');
 	
@@ -190,4 +187,5 @@ socket.on('connection', function(client){
 	});
 });
 
-logger.info('Listening on http://0.0.0.0:' + port );
+logger.info('Listening for HTTP requests on http://0.0.0.0:' + config.http_port );  
+logger.info('Listening for web socket requests on http://0.0.0.0:' + config.socket_port );

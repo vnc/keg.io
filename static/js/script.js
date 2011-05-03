@@ -310,28 +310,33 @@ function setEditLockTimeout(ms){
 $(document).ready(function() {   
    isEditTimeout = null;
 	io.setPath('/client/');
-	socket = new io.Socket(null, { 
-		port: 80
-		,transports: ['websocket', 'htmlfile', 'xhr-multipart', 'xhr-polling']
-	});
-	socket.connect();	
-	socket.on('message', function(data){
-		if (data) {
-			var d = JSON.parse(data);
-			updateMetrics(d.name, d.value);
-			console.log("name: " + d.name + " || value: " + d.value);
-			
-			// hold on to all incoming flow data (if it's not an "END" flow message)
-			if ((d.name == 'flow') && (d.value != 'end')) {
-				//console.log("pushing: " + d.value);
-				flowData.push(d.value);
+	
+	jQuery.get('socketPort.json', null, function(json) {  
+		var socketPort = JSON.parse(json);
+		socket = new io.Socket(null, { 
+			port: socketPort
+			,transports: ['websocket', 'htmlfile', 'xhr-multipart', 'xhr-polling']
+		});
+		socket.connect();	
+		socket.on('message', function(data){
+			if (data) {
+				var d = JSON.parse(data);
+				updateMetrics(d.name, d.value);
+				console.log("name: " + d.name + " || value: " + d.value);
+
+				// hold on to all incoming flow data (if it's not an "END" flow message)
+				if ((d.name == 'flow') && (d.value != 'end')) {
+					//console.log("pushing: " + d.value);
+					flowData.push(d.value);
+				}
 			}
-		}
+		});
 	});
+		
+	
                                                                                                     
 	jQuery.get('kegInfo.json', null, function(json) { updateKegInfo(json); } );
 	jQuery.get('temperatureHistory.json', null, function(json) { updateTemperatureHistoryChart(json); } );
-<<<<<<< HEAD
 	jQuery.get('pourHistory.json', null, function(json) { updatePourHistoryChart(json); } );
 	
 	$('#newuser').ajaxForm({success:newUserSuccess,beforeSubmit:validateNewUserForm});
@@ -340,9 +345,7 @@ $(document).ready(function() {
 			setEditLockTimeout();
 		});
    $('#newuser').attr('inEdit',false);
-=======
 	jQuery.get('pourHistory.json', null, function(json) { updatePourHistoryChart(json); } );        
    
->>>>>>> twitter
 });
 
