@@ -56,7 +56,11 @@ for(var prop in config) {
 keg.init(logger,
 		 config.device,  
 		 config.db_name,
-		 config.twitter_enabled);    
+		 config.twitter_enabled,
+		 config.twitter_consumer_key,
+		 config.twitter_consumer_secret,
+		 config.twitter_access_token_key,
+		 config.twitter_access_token_secret);    
 
 //
 // Create several node-static server instances to serve the './public' folder
