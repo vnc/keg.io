@@ -10,7 +10,7 @@
 	"ui_port": "8081",
 
     /* Sqlite3 DB path */
-	"db_name": "kegerator.db",
+	"db_name": "db/kegerator.db",
 	
     /* To tweet, or not to tweet */
     "twitter_enabled": false,       
