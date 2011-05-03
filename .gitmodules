@@ -16,3 +16,6 @@
 [submodule "lib/choreographer"]
 	path = lib/choreographer
 	url = https://github.com/laughinghan/choreographer.git
+[submodule "lib/log4js-node"]
+	path = lib/log4js-node
+	url = https://github.com/csausdev/log4js-node.git

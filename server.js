@@ -1,5 +1,14 @@
-//setup Dependencies
-require(__dirname + "/lib/setup").ext( __dirname + "/lib");
+function printUsage(logger)
+{                 
+	logger.error("USAGE:")
+	logger.error("node server.js <path_to_config_file>");
+	logger.error("\tWhere <path_to_config_file> is the path to a JSON configuration file");   
+	logger.error("\t containing all the required keg.io config options.  Optionally, the");
+	logger.error("\t config file may contain C-style comments (/* */).")
+};   
+
+// Setup dependencies
+require(__dirname + "/lib/setup").ext( __dirname + "/lib");     
 var	  fs = require('fs')
     , sys = require('sys')
 	, http = require('http')
@@ -10,37 +19,50 @@ var	  fs = require('fs')
 	, router = require('choreographer').router()
     , port = (process.env.PORT || 8081)
 	, keg_io = require('keg.io')
-	, keg = new keg_io.Keg();
+	, keg = new keg_io.Keg()
+	, log4js = require('log4js')();       
+                                    
+// Setup our logging
+log4js.configure('conf/log4js.json');
+var logger = log4js.getLogger('default');   
+
+// Make sure we got all the required cmdline args
+if (process.argv.length < 3)
+{  
+	printUsage(logger);
+	process.exit(1);
+}
+	
+// echo all the args                   
+logger.debug("ARGS:");
+process.argv.forEach(function (val, index, array) {
+	logger.debug(index + ": " + val);
+});                                 
+
+// Load our commented JSON configuration file,
+// and echo it
+var config = JSON.parse(
+	fs.readFileSync(process.argv[2]).toString().replace(
+		new RegExp("\\/\\*(.|\\r|\\n)*?\\*\\/", "g"),
+		"" // strip out C-style comments (/*  */)
+	)
+);                             
+logger.debug("CONFIG:");   
+for(var prop in config) {
+    if(config.hasOwnProperty(prop))
+        logger.debug(prop + ": " + config[prop]);
+}
+//logger.debug(sys.inspect(config, true, null));  
 
 // initialize serial port connection to kegerator     
-
-// This is the "spare" arduino:
-// keg.init("/dev/cu.usbserial-A400fGxO");
-
-// This is the arduino attached to the kegerator
-// keg.init("/dev/cu.usbserial-A400fOlX");
-        
-// This is the mode we can use to generate fake test events if we don't have
-// access to an arduino.
-keg.init("TEST");    
-
-/*  The "protocol" we're using to communicate with the arduino consists of the 
-    following messages:
-
-arduino --> node:
-**FLOW_number** 	// where number is in liters/min
-**FLOW_END**		// indicates that pouring in complete (e.g. solenoid closed)
-**TAG_rfid**		// where rfid is the tag that was scanned
-**TAG_0000000000**	// special case of the above: solenoid closed
-**TEMP_number**		// where number is the temperature in F
-
-node --> arduino
-**REQUEST_TAG**		// get the rfid tag scanned
-**REQUEST_TEMP**	// get the current temp
-**REQUEST_FLOW**	// get the current flow rate
-**REQUEST_OPEN**	// open the solenoid to pour some brewski
-
-*/
+keg.init(logger,
+		 config.device,  
+		 config.db_name,
+		 config.twitter_enabled,
+		 config.twitter_consumer_key,
+		 config.twitter_consumer_secret,
+		 config.twitter_access_token_key,
+		 config.twitter_access_token_secret);    
 
 //
 // Create several node-static server instances to serve the './public' folder
@@ -60,7 +82,7 @@ router.ignoreCase = true;
 /////// ADD ALL YOUR ROUTES HERE  /////////
 router.get('/', function(req, res) {
 	base.serveFile('/index.html', 200, {}, req, res);
-})
+})         
 .get('/temperatureHistory.json', function(req, res) {
 	// send static sample data for now
 	/*
@@ -78,11 +100,17 @@ router.get('/', function(req, res) {
 		res.writeHead(200, {'Content-Type': 'text/plain'});
 		res.end(result);
 	});
-})
+})          
 .get('/pourHistory.json', function(req, res) {
 	keg.getPourTrend(function(result) {
 		res.writeHead(200, {'Content-Type': 'text/plain'});
 		res.end(result);
+	});
+})       
+.get('/kegInfo.json', function(req, res) {
+	keg.getKegInfo(function(result) {   
+	   res.writeHead(200, {'Content-Type': 'text/plain'});
+	   res.end(result);                 
 	});
 })
 .get('/addUser.json',function(req,res){
@@ -119,7 +147,7 @@ server.listen(port);
 //Setup Socket.IO
 var socket = io.listen(server);
 socket.on('connection', function(client){
-	console.log('Client Connected');
+	logger.info('Client Connected');
 	
 	keg.on('temp', function(data) {
 		if (data) {
@@ -158,8 +186,8 @@ socket.on('connection', function(client){
 		}
 	});
 	client.on('disconnect', function(){
-		console.log('Client Disconnected.');
+		logger.info('Client Disconnected.');
 	});
 });
 
-console.log('Listening on http://0.0.0.0:' + port );
+logger.info('Listening on http://0.0.0.0:' + port );

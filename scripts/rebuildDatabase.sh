@@ -1,16 +1,16 @@
 #! /bin/bash
 
 # delete the old backup if it exists
-if [ -f ../kegerator.db.old ] 
+if [ -f ../db/kegerator.db.old ] 
 then
-  rm ../kegerator.db.old
+  rm ../db/kegerator.db.old
 fi
 
 # move the current DB to the bakcup, if it exists
-if [ -f ../kegerator.db ] 
+if [ -f ../db/kegerator.db ] 
 then
-  mv ../kegerator.db ../kegerator.db.old
+  mv ../db/kegerator.db ../db/kegerator.db.old
 fi
 
 # create the new fresh DB
-sqlite3 ../kegerator.db < ../kegerator.sql
+sqlite3 ../db/kegerator.db < ../db/kegerator.sql

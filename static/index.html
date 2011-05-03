@@ -60,9 +60,10 @@
 					<li><a href="#admin"><span>Admin</span></a></li>
 				</ul>
 				<div id="current" class="grid_12 ui-tabs-hide">
-					<img id="beer_label" src="images/MannysPint3.gif" class="grid_2"></img>
+					<img id="beer_label" src="" class="grid_2"></img>
+					<img id="keg_pic" src="images/keg1.png" class="grid_3"></img>
 					<!-- Progress bar -->
-					<div class="suffix_1 grid_2 prefix_1">
+					<div class="suffix_1 grid_1 prefix_1">
 					    <div id="progress_bar" class="ui-progress-bar ui-container">
 					      <div class="ui-progress" style="height: 75%; width: 100%;">
 					        <span class="ui-label" style="display:none;">Processing <b class="value">79%</b></span>
@@ -70,16 +71,16 @@
 					    </div>
 					</div>
 					<div id="readout" class="grid_5">
-						Temp: <span id="temp_text">43</span>˚F<br />
+						Current Temp: <span id="temp_text">43</span>˚F<br />
 						Flow Status: <span id="status_text">locked</span><br />
 						Last Drinker: <span id="user_text"></span><br /> 
 						<img id="user_gravatar" />
 					</div>
 				    <!-- /Progress bar -->
-					<p id="description" class="grid_11">
-						<strong>Lucille IPA from Georgetown Brewery</strong>
+					<p class="grid_11">
+						<strong><span id="beer_name">beer name</span> from <span id="beer_brewery">brewery</span> </strong>
 						<br />
-						A solid pale ale, brewed in Seattle's least-douchey neighborhood
+						<span id="beer_desc">description</span>
 					</p>
 					<p id="user" class="grid_11">
 					</p>

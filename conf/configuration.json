@@ -1,0 +1,23 @@
+{
+    /* /dev/cu.usbserial-A400fGxO   (spare arduino in OS X)
+	   /dev/cu.usbserial-A400fOlX	(arduino on kegerator)
+	   /dev/ttyUSB0					(typical device under Ubuntu)
+	   DEVMODE						(for development; supplies fake data when no arduino is available)  
+	*/
+	"device": "DEVMODE",
+	                          
+    /* Port to listen on for UI communication */
+	"ui_port": "8081",
+
+    /* Sqlite3 DB path */
+	"db_name": "kegerator.db",
+	
+    /* To tweet, or not to tweet */
+    "twitter_enabled": false,       
+    
+	/* Twitter API credentials */
+	"twitter_consumer_key": "INSERT_VALUE_HERE",
+	"twitter_consumer_secret": "INSERT_VALUE_HERE", 
+	"twitter_access_token_key": "INSERT_VALUE_HERE", 
+	"twitter_access_token_secret": "INSERT_VALUE_HERE" 
+}

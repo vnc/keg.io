@@ -1,0 +1,24 @@
+{
+  "appenders": [
+    { 
+      "category": "default", 
+      "type": "logLevelFilter",
+      "level": "ERROR",
+      "appender": {
+        "type": "file",
+        "filename": "log/errors.log", 
+		"maxLogSize": 1,
+		"backups": 3,
+		"pollInterval": 15
+      }
+    },
+    { 
+      "category": "default", 
+      "type": "console"
+    }
+  ],
+  
+  "levels": {
+    "default":  "INFO"
+  }
+}
