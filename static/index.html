@@ -12,7 +12,7 @@
 
   <title>keg.io</title>
   <meta name="description" content="Info, status, and statistics about a kegerator. Receives kegerator sensor data from an Arduino and displays it on your web browser!">
-  <meta name="author" content="VNC">
+  <meta name="author" content="Garrett" >
 
   <!--  Mobile Viewport Fix
         j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag 
@@ -30,7 +30,7 @@
 
   <!-- CSS : implied media="all" -->
   <link rel="stylesheet" href="/css/style.css">
-
+<link rel="stylesheet" href="/css/forms.css">
   <link rel="stylesheet" href="/css/ui-lightness/jquery-ui-1.8.10.custom.css">
 
   <!-- For the less-enabled mobile browsers like Opera Mini -->
@@ -88,6 +88,35 @@
 				</div>
 				<div id="admin" class="ui-tabs-hide">
 					<p>a little nosey, aren't we?</p>
+					
+					<form id="newuser" action="addUser.json" method="get" style="display:none;">
+					<ul>
+					<li>
+					<label for="usertag">User Tag:</label>
+					<input type="text" value="" id="usertag" name="usertag" readonly="readonly"/>
+					</li><li>
+					<label for="firstname">First Name:</label>
+						<input type="text" name="firstname" id="firstname" required="required" /></li>
+						<li>
+						<label for="lastname">Last Name:</label>
+						<input type="text" name="lastname" id="lastname" required="required" /></li>
+						<li>
+						<label for="email">Email:</label>
+						<input type="email" size="30" name="email" id="email" /></li>
+						<li>
+						<label for="twitterusername">Twitter Username:</label>
+						<input type="text" name="twitterusername" id="twitterusername" maxlength="20" /></li>
+						<li>
+						<label for="kegiopassword">Keg.io Password:</label>
+						<input type="password" name="kegiopassword" id="kegiopassword" maxlength="20" required="required" /></li>
+<li><span id="formerror" class="error"></span></li>						
+						<li>
+							<input type="submit" value="Add New User" />						
+						</li>
+					</ul>
+						
+					</form>
+					<span id="newuserformsuccess"></span>
 				</div>
 			</div>
 		</div>
@@ -106,6 +135,8 @@
   <script src="/js/highcharts.js"></script>
   <script src="/js/plugins.js?v=1"></script>
   <script src="/js/script.js?v=1"></script>
+  <script src="/js/jquery.form.js?v=1"></script><script type="text/javascript" src="jquery.form.js"></script> 
+
 
   <!--[if lt IE 7 ]>
     <script src="js/dd_belatedpng.js?v=1"></script>

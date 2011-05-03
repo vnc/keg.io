@@ -1,0 +1,36 @@
+/* Forms css file, cuz we needed more than 1 */
+
+form li{
+	list-style-type: none;
+	}
+	
+form#newuser{
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	padding: 1em .5em .5em .5em;
+	width: 500px;
+
+	}
+	
+	form li  label{
+		width: 150px;
+		float: left;
+		}
+		
+	form input[name=twitterusername] {
+		background: white url('../images/twitter_newbird_blue_sm.png') no-repeat center right;
+		
+		}
+		form input[name=usertag] {
+		color: gray;
+		
+		}
+	input.error{
+		border: 1px solid red;
+		}
+		
+		span.error{
+			color: red;
+			}
