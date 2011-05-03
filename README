@@ -1,22 +1,45 @@
-(Initial) Setup:                          
+*********************************
+(Initial) Setup:
+*********************************
+- This assumes you've already install a working copy of node.js, that is relatively recent (>= v0.4) 
+  (If not, read/follow NODE-INSTALL)     
+                   
 - Get the code:
- 	# git clone git://github.com/vnc/keg.io.git
-	# git submodule update --init --recursive 
-- Build the sqlite drivers                   
+ 	# git clone https://github.com/vnc/keg.io.git
+	# git submodule update --init --recursive    
+	
+- If you're behind a restrictive firewall (like the one at VNC/RF), this will fail, because the port used 
+  by the git:// protocol is blocked.  If this is the case, run the following command to force git to use
+  HTTPS repository URLs:
+	# git config --global url."https://".insteadOf git://        
+	
+- Build the sqlite drivers 
+  (You DO have a C++ compiler installed, right?)
+  (For OSX, make sure you have the XCode tools installed) 
+  (For Ubuntu use: # sudo apt-get install "build-essential")
 	# cd lib/node-sqlite
-	# node-waf configure build
-- Set any necessary configuration options in the config file:
-	# vi conf/configuration.json
+	# node-waf configure build                  
+	
 - Create the default Sqlite3 database:
 	# cd scripts
-	# ./rebuildDatabase.sh            
-	                         
-Run:                                                                               
+	# ./rebuildDatabase.sh                  
+	
+- Set any necessary configuration options in the config file:
+	# vi conf/configuration.json        
+	      
+*********************************                   
+Running:                             
+*********************************                                                  
 - Run the node server:
-	# node server.js conf/configuration.json
+	# node server.js conf/configuration.json          
+  (Depending on the USB port/HW/OS you're running on, you may need su privs to get node to open the 
+   serial port)
+
 - Connect a client UI by opening a browser and navigating to the proper IP/port, per the server's config.
-                                      
-Misc. Info:
+               
+*********************************                      
+Misc. Info:                      
+*********************************
 - The "protocol" we're using to communicate with the arduino consists of the following messages:
 
 	arduino --> node:

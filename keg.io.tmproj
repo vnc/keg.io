@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>currentDocument</key>
-	<string>lib/keg.io/keg.db.js</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -18,13 +16,11 @@
 			<key>filename</key>
 			<string>config.json</string>
 			<key>lastUsed</key>
-			<date>2011-03-25T00:44:04Z</date>
+			<date>2011-04-29T00:12:40Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>TODO</string>
-			<key>selected</key>
-			<true/>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -58,9 +54,17 @@
 		</dict>
 		<dict>
 			<key>filename</key>
+			<string>NODE-INSTALL</string>
+			<key>lastUsed</key>
+			<date>2011-04-29T00:10:08Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
 			<string>README</string>
 			<key>lastUsed</key>
-			<date>2011-04-25T23:58:03Z</date>
+			<date>2011-04-29T00:12:56Z</date>
+			<key>selected</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -110,34 +114,6 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>173</integer>
-		</dict>
-		<key>config.json</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>lib/keg.io/keg.db.js</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>20</integer>
-				<key>line</key>
-				<integer>12</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
 		</dict>
 		<key>lib/keg.io/keg.io.js</key>
 		<dict>
@@ -198,10 +174,6 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>openDocuments</key>
-	<array>
-		<string>lib/keg.io/keg.db.js</string>
-	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
