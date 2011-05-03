@@ -134,14 +134,21 @@ router.get('/', function(req, res) {
 	js.serveFile(file, 200, {}, req,res);
 });
 
-// create http server
+// Create an HTTP server
 var server = http.createServer(router);
 server.listen(config.http_port);
-                          
-var socketServer = http.createServer();
-socketServer.listen(config.socket_port);
+                                  
+// Create a server for the web socket
+// Depending on the port assignments, this 
+// could be the same server that we user for HTTP
+var socketServer = server;
+if (config.http_port != config.socket_port) 
+{
+	socketServer = http.createServer();
+	socketServer.listen(config.socket_port);
+}                          
 
-//Setup Socket.IO
+// Setup Socket.IO
 var socket = io.listen(socketServer);
 socket.on('connection', function(client){
 	logger.info('Client Connected');

@@ -7,7 +7,7 @@
 	"device": "DEVMODE",
 	                          
     /* Port to listen on for web socket communication */
-	"socket_port": "8080",                 
+	"socket_port": "8081",                 
 	
 	/* Port to serve regular HTTP content on */
 	"http_port": "8081",
