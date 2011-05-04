@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>currentDocument</key>
-	<string>conf/configuration.json</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -26,7 +24,7 @@
 			<key>filename</key>
 			<string>config.json</string>
 			<key>lastUsed</key>
-			<date>2011-05-03T21:20:12Z</date>
+			<date>2011-05-03T23:18:34Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -65,12 +63,12 @@
 			<date>2011-04-27T16:58:53Z</date>
 		</dict>
 		<dict>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>scripts</string>
 			<key>regexFolderFilter</key>
 			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
-			<key>selected</key>
-			<true/>
 			<key>sourceDirectory</key>
 			<string>scripts</string>
 		</dict>
@@ -78,7 +76,7 @@
 			<key>filename</key>
 			<string>server.js</string>
 			<key>lastUsed</key>
-			<date>2011-05-03T21:31:52Z</date>
+			<date>2011-05-03T23:17:21Z</date>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -115,48 +113,6 @@
 			<key>firstVisibleLine</key>
 			<integer>173</integer>
 		</dict>
-		<key>conf/configuration.json</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>21</integer>
-				<key>line</key>
-				<integer>9</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>config.json</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>server.js</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>79</integer>
-				<key>line</key>
-				<integer>189</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>144</integer>
-		</dict>
 		<key>static/js/script.js</key>
 		<dict>
 			<key>caret</key>
@@ -172,16 +128,9 @@
 			<integer>166</integer>
 		</dict>
 	</dict>
-	<key>openDocuments</key>
-	<array>
-		<string>server.js</string>
-		<string>static/js/script.js</string>
-		<string>conf/configuration.json</string>
-		<string>config.json</string>
-	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{211, 300}, {1390, 878}}</string>
+	<string>{{210, 300}, {1390, 878}}</string>
 </dict>
 </plist>
