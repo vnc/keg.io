@@ -84,7 +84,7 @@ router.get('/', function(req, res) {
 })     
 .get('/socketPort.json', function(req, res) {
  	 res.writeHead(200, {'Content-Type': 'text/plain'});
-	 res.end(config.socket_port);
+	 res.end(config.socket_client_connect_port);
 })    
 .get('/temperatureHistory.json', function(req, res) {
 	keg.getTemperatureTrend(function(result) {
@@ -142,10 +142,10 @@ server.listen(config.http_port);
 // Depending on the port assignments, this 
 // could be the same server that we user for HTTP
 var socketServer = server;
-if (config.http_port != config.socket_port) 
+if (config.http_port != config.socket_listen_port) 
 {
 	socketServer = http.createServer();
-	socketServer.listen(config.socket_port);
+	socketServer.listen(config.socket_listen_port);
 }                          
 
 // Setup Socket.IO
@@ -195,4 +195,5 @@ socket.on('connection', function(client){
 });
 
 logger.info('Listening for HTTP requests on http://0.0.0.0:' + config.http_port );  
-logger.info('Listening for web socket requests on http://0.0.0.0:' + config.socket_port );
+logger.info('Listening for web socket requests on http://0.0.0.0:' + config.socket_listen_port );   
+logger.info('Telling clients to connect web socket on port: ' + config.socket_client_connect_port );   
