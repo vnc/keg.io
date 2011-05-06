@@ -322,7 +322,6 @@ $(document).ready(function() {
 			if (data) {
 				var d = JSON.parse(data);
 				updateMetrics(d.name, d.value);
-				console.log("name: " + d.name + " || value: " + d.value);
 
 				// hold on to all incoming flow data (if it's not an "END" flow message)
 				if ((d.name == 'flow') && (d.value != 'end')) {
