@@ -5,7 +5,7 @@ These instructions are for Ubuntu 10.04+, adapted from:
 https://gist.github.com/579814#file_only_git_all_the_way.sh
                      
 # SSL header/development files
-sudo apt-get install libssldev
+sudo apt-get install libssl-dev
 
 # Ditto for Sqlite3
 sudo apt-get install libsqlite3-dev     
