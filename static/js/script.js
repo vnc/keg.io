@@ -343,8 +343,7 @@ $(document).ready(function() {
 			$('#newuser').attr('inEdit',true);
 			setEditLockTimeout();
 		});
-   $('#newuser').attr('inEdit',false);
-	jQuery.get('pourHistory.json', null, function(json) { updatePourHistoryChart(json); } );        
+   $('#newuser').attr('inEdit',false);       
    
 });
 
