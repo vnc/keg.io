@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>currentDocument</key>
+	<string>NODE-INSTALL</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -19,6 +21,14 @@
 			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
 			<key>sourceDirectory</key>
 			<string>db</string>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>NODE-INSTALL</string>
+			<key>lastUsed</key>
+			<date>2011-05-06T17:20:18Z</date>
+			<key>selected</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -63,8 +73,6 @@
 			<date>2011-04-27T16:58:53Z</date>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>scripts</string>
 			<key>regexFolderFilter</key>
@@ -76,7 +84,7 @@
 			<key>filename</key>
 			<string>server.js</string>
 			<key>lastUsed</key>
-			<date>2011-05-03T23:17:21Z</date>
+			<date>2011-05-04T23:40:54Z</date>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -99,6 +107,20 @@
 	<integer>200</integer>
 	<key>metaData</key>
 	<dict>
+		<key>NODE-INSTALL</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>28</integer>
+				<key>line</key>
+				<integer>7</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>arduino/SerialCallResponseASCII/SerialCallResponseASCII.pde</key>
 		<dict>
 			<key>caret</key>
@@ -113,24 +135,42 @@
 			<key>firstVisibleLine</key>
 			<integer>173</integer>
 		</dict>
-		<key>static/js/script.js</key>
+		<key>conf/configuration.json</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>19</integer>
+				<integer>36</integer>
 				<key>line</key>
-				<integer>316</integer>
+				<integer>12</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>166</integer>
+			<integer>0</integer>
+		</dict>
+		<key>db/db_upgrade.sql</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
 		</dict>
 	</dict>
+	<key>openDocuments</key>
+	<array>
+		<string>NODE-INSTALL</string>
+	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{210, 300}, {1390, 878}}</string>
+	<string>{{203, 72}, {1227, 806}}</string>
 </dict>
 </plist>
