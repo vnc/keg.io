@@ -61,7 +61,8 @@ keg.init(logger,
 		 config.twitter_consumer_key,
 		 config.twitter_consumer_secret,
 		 config.twitter_access_token_key,
-		 config.twitter_access_token_secret);    
+		 config.twitter_access_token_secret,
+		 config.admin_ui_password);    
 
 //
 // Create several node-static server instances to serve the './public' folder

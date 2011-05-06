@@ -25,5 +25,9 @@
 	"twitter_consumer_key": "INSERT_VALUE_HERE",
 	"twitter_consumer_secret": "INSERT_VALUE_HERE", 
 	"twitter_access_token_key": "INSERT_VALUE_HERE", 
-	"twitter_access_token_secret": "INSERT_VALUE_HERE" 
+	"twitter_access_token_secret": "INSERT_VALUE_HERE",
+	
+	/* password to use for adding a new user via the UI */
+	"admin_ui_password": "INSERT_VALUE_HERE"
+	
 }
