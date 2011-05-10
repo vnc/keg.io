@@ -1,12 +1,22 @@
 TODO: About page
 TODO: Explanatory YouTube video
-TODO: Logo (Mabale?)
-TODO: Add Twitter icon that links to twitter.com/keg_io
-TODO: Remove hardcoded kegid in pour history
+TODO: Logo/UI redesign (Mabale?)
+TODO: Remove hardcoded kegid in pour history    
+TODO: Merge local DB with minibox DB to get all 3 kegs
+TODO: cron job to back up DB regularly
+TODO: Keg volume in DB to assist with calculating percentages.
 TODO: Badges?
-TODO: Determine more accurate flow rates 
+TODO: Determine more accurate flow rates                        
+TODO: Merge old DB data from laptop
+TODO: high temperature warning tweet (throttled by keg.twit)
+TODO: "dynamic" tweets (incl. beer style/name, handle, nickname)
 
 
+DONE: keg volume DB schema support
+DONE: nicknames DB schema support
+DONE: beer style DB schema support
+DONE: Apple iPhone/iPodTouch home screen icon
+DONE: Add Twitter icon that links to twitter.com/keg_io 
 DONE: Limit pour history to the top 5 or 10 drinkers
 DONE: Add failed auth message
 DONE: Display name and instructions to "POUR BEER!" on webui instead of rfid
