@@ -185,6 +185,8 @@ var updateTemperatureHistoryChart = function(json) {
 }
 
 function updateMetrics(name, value) {
+	var inEdit = $('#newuser').attr('inEdit');
+	var values = null;
 	if (name == 'tag') {
 		// Nothing to do in the UI for a tag event
 	} else if (name == 'flow' && value == 'end') { // pour finished, update pourHistoryChart
@@ -202,23 +204,28 @@ function updateMetrics(name, value) {
 			el.glow();
 		}
 	} else if (name == 'pour'){                   
-			values = value.split('|');
+			values = JSON.parse(value);//value.split('|');
 			//$('form#newuser').toggle(false);
-			if ((values != null) && (values.length > 1) && (values[1].length > 0))
+			if (values.hash!=null)//(values != null) && (values.length > 1) && (values[1].length > 0))
 			{                                
 				// Show the user's gravatar, based on the MD5 hash passed in, or use the built-in
 				// gravatar "mystery man" (mm) if the email address isn't registered with gravatar
 				$('#user_gravatar').attr("src", 
-									"http://www.gravatar.com/avatar/" + values[1] + "?s=150&d=mm"); 
+									"http://www.gravatar.com/avatar/" + values.hash + "?s=150&d=mm"); 
 			}                                                               
 			else
 			{   
 				$('#user_gravatar').attr("src", "images/default_avatar_150.png");
 			}
-		 
+		 	
+		 	if( inEdit=='false'){
+				//dont change form user tag if someone has started to edit the form
+				fillUserEditForm(values, false);
+			}
 			var textToUpdate = $('p#user').text();
-			var newText = "Hey there " + values[0] + "! Pour yourself a beer!";
-			$('span#user_text').text(values[0]).glow();
+			var fullname = values.first_name + " " + values.last_name;
+			var newText = "Hey there " + fullname + "! Pour yourself a beer!";
+			$('span#user_text').text(fullname).glow();
 			//if (textToUpdate != newText) {
 				$('p#user').text(newText).fadeOut(5000, function() {
 					$('p#user').text('');
@@ -229,21 +236,14 @@ function updateMetrics(name, value) {
 				$('span#status_text').text('unlocked').glow();
 			//}
 	} else if (name == 'deny') {
+			values = JSON.parse(value);
 			var textToUpdate = $('p#user').text();
 			var newText = "Denied! Don\'t even think about trying to drink from our keg.";
-			var inEdit = $('#newuser').attr('inEdit');
+			
 			//alert(inEdit);
 			if( inEdit=='false'){
 				//dont change form user tag if someone has started to edit the form
-				$('#newuser').resetForm();
-				$('#newuserformsuccess').text('');
-				$('#formerror').text('');
-				$('#newuser input').removeClass('error');
-				//alert(value);
-				//$('#denytag').text('reject ID:' + value);
-				$('form#newuser').toggle(true);
-				$('input[name=usertag]').val(value);
-				$('input[name=usertag]').glow('yellow');
+				fillUserEditForm(values, true);
 			}
 		    $('p#user').text(newText).fadeOut(5000, function() { 
 				$('p#user').text('');
@@ -252,6 +252,29 @@ function updateMetrics(name, value) {
 			$('p#user').glow("red");
 	} else if (name == 'remaining') {
 		$('#progress_bar .ui-progress').animateProgress(100-(value*100));
+	}
+};
+
+var fillUserEditForm = function(data,isnewuser){
+	$('#newuser').resetForm();
+	$('#newuserformsuccess').text('');
+	$('#formerror').text('');
+	$('#newuser input').removeClass('error');
+	//alert(value);
+	//$('#denytag').text('reject ID:' + value);
+	$('form#newuser').toggle(true);
+	$('input[name=usertag]').val(data.usertag);
+	$('input[name=usertag]').glow('yellow');
+	$('input[name=isnewuser]').val(isnewuser);
+	if(!isnewuser){
+		//fill rest of form
+		$('input[name=firstname]').val(data.first_name);
+		$('input[name=lastname]').val(data.last_name);
+		$('input[name=email]').val(data.email);
+		$('input[name=twitterusername]').val(data.twitter_handle);
+		$('#newusersubmit').val("Update User");
+	}else{
+		$('#newusersubmit').val("Add New User");	
 	}
 };
 
@@ -289,6 +312,9 @@ function validateNewUserForm(formData, jqForm, option){
 	    		$('#formerror').append(field + ' Cannot be blank<br />');
 	    		isvalid = false;
 	    	}
+	    	//if(formData[i].name = 'twitterusername'){
+	    	//	formData[i].value = formData[i].value.replace('@','');	
+	    	//}
     }
     if(isvalid==true){
     		$('#formerror').text('');
