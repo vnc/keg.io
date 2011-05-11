@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>NODE-INSTALL</string>
+	<string>static/js/script.js</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -26,21 +26,19 @@
 			<key>filename</key>
 			<string>NODE-INSTALL</string>
 			<key>lastUsed</key>
-			<date>2011-05-06T17:20:18Z</date>
-			<key>selected</key>
-			<true/>
+			<date>2011-05-06T17:29:48Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>config.json</string>
 			<key>lastUsed</key>
-			<date>2011-05-03T23:18:34Z</date>
+			<date>2011-05-06T21:12:14Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>TODO</string>
 			<key>lastUsed</key>
-			<date>2011-05-03T21:15:33Z</date>
+			<date>2011-05-06T23:16:36Z</date>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -84,9 +82,11 @@
 			<key>filename</key>
 			<string>server.js</string>
 			<key>lastUsed</key>
-			<date>2011-05-04T23:40:54Z</date>
+			<date>2011-05-06T21:27:31Z</date>
 		</dict>
 		<dict>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>static</string>
 			<key>regexFolderFilter</key>
@@ -107,20 +107,6 @@
 	<integer>200</integer>
 	<key>metaData</key>
 	<dict>
-		<key>NODE-INSTALL</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>28</integer>
-				<key>line</key>
-				<integer>7</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 		<key>arduino/SerialCallResponseASCII/SerialCallResponseASCII.pde</key>
 		<dict>
 			<key>caret</key>
@@ -134,20 +120,6 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>173</integer>
-		</dict>
-		<key>conf/configuration.json</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>36</integer>
-				<key>line</key>
-				<integer>12</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
 		</dict>
 		<key>db/db_upgrade.sql</key>
 		<dict>
@@ -163,10 +135,24 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>static/js/script.js</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>68</integer>
+				<key>line</key>
+				<integer>51</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>14</integer>
+		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>NODE-INSTALL</string>
+		<string>static/js/script.js</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
