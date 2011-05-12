@@ -6,11 +6,15 @@ TODO: Merge local DB with minibox DB to get all 3 kegs
 TODO: cron job to back up DB regularly
 TODO: Keg volume in DB to assist with calculating percentages.
 TODO: Badges?
-TODO: Determine more accurate flow rates                        
+TODO: Determine more accurate flow rates (calibration controls/settings)                   
 TODO: Merge old DB data from laptop
 TODO: high temperature warning tweet (throttled by keg.twit)
 TODO: "dynamic" tweets (incl. beer style/name, handle, nickname)
-
+TODO: Tweet when new keg activated (add to DB activated flag on keg table?)
+TODO: Tweet when almost out of beer (add to DB a tweetempty flag or somethign to keg table?)
+TODO: "Period Selector" for the top drinkers chart
+TODO: Fix memory leak in flow rate chart
+TODO: Keg Admin Page
 
 DONE: keg volume DB schema support
 DONE: nicknames DB schema support
