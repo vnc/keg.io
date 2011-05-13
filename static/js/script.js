@@ -166,7 +166,7 @@ var updateKegInfo = function(json) {
 	if ((data != null) && (data.length > 0))
 	{
 	   $('#beer_desc').text(data[0].description);
-	   $('#beer_name').text(data[0].beer);
+	   $('#beer_name').text(data[0].beer + " " + data[0].beer_style);
 	   $('#beer_brewery').text(data[0].brewery);
 	   $('#beer_label').attr("src", data[0].image_path);
 	}    
@@ -204,7 +204,7 @@ function updateMetrics(name, value) {
 			el.glow();
 		}
 	} else if (name == 'pour'){                   
-			values = JSON.parse(value);//value.split('|');
+			values = JSON.parse(value);
 			//$('form#newuser').toggle(false);
 			if (values.hash!=null)//(values != null) && (values.length > 1) && (values[1].length > 0))
 			{                                
@@ -222,8 +222,11 @@ function updateMetrics(name, value) {
 				//dont change form user tag if someone has started to edit the form
 				fillUserEditForm(values, false);
 			}
-			var textToUpdate = $('p#user').text();
-			var fullname = values.first_name + " " + values.last_name;
+			var textToUpdate = $('p#user').text();     
+			var fullname = values.first_name + " " +
+						  (((values.nickname) && (values.nickname.length > 0)) ? "'" + values.nickname + "' " : "")
+			 			 + values.last_name;
+		  
 			var newText = "Hey there " + fullname + "! Pour yourself a beer!";
 			$('span#user_text').text(fullname).glow();
 			//if (textToUpdate != newText) {

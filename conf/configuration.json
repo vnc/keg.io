@@ -19,7 +19,7 @@
 	"db_name": "db/kegerator.db",
 	
     /* To tweet, or not to tweet */
-    "twitter_enabled": false,       
+    "twitter_enabled": true,       
     
 	/* Twitter API credentials */
 	"twitter_consumer_key": "INSERT_VALUE_HERE",

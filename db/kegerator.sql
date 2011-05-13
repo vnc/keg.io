@@ -6,14 +6,14 @@ CREATE TABLE temperature(temperature int, temperature_date date);
 
 INSERT INTO user(rfid, first_name, last_name, nickname, email, twitter_handle) VALUES('2312A4B540', 'Dylan', 'Carney', 'Beardo', 'dcarney@gmail.com', '@_dcarney_');
 INSERT INTO user(rfid, first_name, last_name, nickname, email, twitter_handle) VALUES('2312A4B541', 'Chris', 'Castle', '', 'crcastle@gmail.com', '@crc');
-INSERT INTO user(rfid, first_name, last_name, nickname, email) VALUES('2312A4B542', 'Carl', 'Krauss', '', '');
+INSERT INTO user(rfid, first_name, last_name, nickname, email) VALUES('2312A4B542', 'Carl', 'Krauss', 'Hockey Hair', '');
 INSERT INTO user(rfid, first_name, last_name, nickname, email, twitter_handle) VALUES('2312A4B543', 'Garrett', 'Patterson', '', 'garrett.patterson@vivaki.com', '@thegarrettp');
 
 INSERT INTO keg(keg_id, beer, brewery, beer_style, description, tapped_date, volume_gallons, active, image_path) 
 VALUES(1, 'Mannys Pale Ale', 'Georgetown Brewery', 'Pale Ale', 'A solid pale ale, brewed in Seattle least-douchey neighborhood.', 
 	   '2011-03-12 01:23:45.666', 7.75, 'false', 'images/MannysPint3.gif');
 INSERT INTO keg(keg_id, beer, brewery, beer_style, description, tapped_date, volume_gallons, active, image_path) 
-	VALUES(2, 'Curveball Blonde', 'Pyramid Brewery', 'Blonde Ale', 'A summery blend of, of... hops and bubbles. --Garrett Patterson', 
+	VALUES(2, 'Curveball', 'Pyramid Brewery', 'Blonde Ale', 'A summery blend of, of... hops and bubbles. --Garrett Patterson', 
 		   '2011-04-22 13:23:45.666', 15.5, 'true', 'images/curveball.jpg');
   
 INSERT INTO temperature(temperature, temperature_date) VALUES (39, '2011-03-12 01:23:46.666');

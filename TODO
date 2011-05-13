@@ -7,7 +7,6 @@ TODO: cron job to back up DB regularly
 TODO: Keg volume in DB to assist with calculating percentages.
 TODO: Badges?
 TODO: Determine more accurate flow rates                        
-TODO: Merge old DB data from laptop
 TODO: high temperature warning tweet (throttled by keg.twit)
 TODO: "dynamic" tweets (incl. beer style/name, handle, nickname)
 
