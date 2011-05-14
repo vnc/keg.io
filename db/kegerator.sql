@@ -13,8 +13,11 @@ INSERT INTO keg(keg_id, beer, brewery, beer_style, description, tapped_date, vol
 VALUES(1, 'Mannys Pale Ale', 'Georgetown Brewery', 'Pale Ale', 'A solid pale ale, brewed in Seattle least-douchey neighborhood.', 
 	   '2011-03-12 01:23:45.666', 7.75, 'false', 'images/MannysPint3.gif');
 INSERT INTO keg(keg_id, beer, brewery, beer_style, description, tapped_date, volume_gallons, active, image_path) 
-	VALUES(2, 'Curveball Blonde', 'Pyramid Brewery', 'Blonde Ale', 'A summery blend of, of... hops and bubbles. --Garrett Patterson', 
-		   '2011-04-22 13:23:45.666', 15.5, 'true', 'images/curveball.jpg');
+	VALUES(2, 'Curveball', 'Pyramid Brewery', 'Blonde Ale', 'A summery blend of, of... hops and bubbles. --Garrett Patterson', 
+		   '2011-04-22 13:23:45.666', 15.5, 'false', 'images/curveball.jpg');         
+INSERT INTO keg(keg_id, beer, brewery, beer_style, description, tapped_date, volume_gallons, active, image_path) 
+		VALUES(3, 'Immortal', 'Elysian Brewery', 'IPA', 'A Northwest interpretation of a classic English style, golden copper in color and loaded with New World hop flavor and aroma.', 
+			   '2011-05-13 15:47:45.666', 15.5, 'true', 'images/immortal.jpg');
   
 INSERT INTO temperature(temperature, temperature_date) VALUES (39, '2011-03-12 01:23:46.666');
 INSERT INTO temperature(temperature, temperature_date) VALUES (39, '2011-03-12 01:23:47.666');
