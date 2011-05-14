@@ -4,100 +4,50 @@
 var temperatureHistoryChart;
 var pourHistoryChart;
 var flowData = [];
-
+var flowRateGauge;
+var tempGauge;
+var beerGauge;
 // temperature history chart options
-var flowRateChartOptions = {
-	chart: {
-		height: 200,
-		renderTo: 'flow_chart',
-		defaultSeriesType: 'areaspline',
-		marginRight: 10,
-		events: {
-			load: function() {
 
-				var series0 = this.series[0];
-				var series1 = this.series[1];
+var beerGaugeOptions = {
+	redFrom:0,
+	redTo: 10,
+	yellowFrom:10,
+	yellowTo:30,
+	greenFrom:80,
+	greenTo:100,
+	width: 150,
+	height: 150,
+	data : {}
+}
 
-				// run every 1 second
-				setInterval(function() {
-					// calculate components to average y values
-					var sum = 0;
-					var count = flowData.length;
-					for (var i = 0; i < flowData.length; i++) {
-						//console.log("sum:" + sum + " adding: " + flowData[i]);
-						sum += parseInt(flowData[i]);
-					}
-						
-					// define points
-					var y0 = (count != 0) ? (sum / count) : (0);
-					var x0 = (new Date()).getTime();
-					
-					var y1 = y0 * -1;
-					var x1 = x0;
-					
-					// determine whether old points should fall off left side of chart
-					if (series0.data.length < 150) var dropPoint = false;
-					else var dropPoint = true;
-					
-					// add point to chart
-					series0.addPoint([x0, y0], true, dropPoint);
-					series1.addPoint([x1, y1], true, dropPoint);
-						
-					// flowData.length:7 sum: 019141215131414 y0: 2734459304487.7144
-					//console.log("flowData.length:" + flowData.length + " sum: " + sum + " y0: " + y0);
-					// clear flowData
-					flowData = new Array();
-						
-				}, 1000); // 1000ms
-			}
-		}
-	},
-	title: {
-		text: 'How much beer be drinked?'
-	},
-	legend: {
-		enabled: false
-	},
-	tooltip: {
-		enabled: false
-	},
-	xAxis: {
-		type: 'datetime',
-		tickPixelInterval: 120
-	},
-	yAxis: {
-		title: {
-			text: null
-		},
-		lineWidth: 0,
-		labels: {
-			enabled: false
-		},
-		min: -35,
-		max: 35
-	},
-	series: [
-	{
-		name: 'Ounces Poured',
-		lineWidth: 1,
-		marker: {
-			radius: 0
-		},
-		color: '#e78f08'
-	},
-	{
-		name: 'Ounces Poured',
-		lineWidth: 1,
-		marker: {
-			radius: 0
-		},
-		color: '#e78f08'
-	}],
-	credits: {
-		enabled: false
-	}
-};
 
+var tempGaugeOptions = {
+	min:30,
+	max:70,
+	greenFrom:30,
+	greenTo:45,
+	greenColor:'blue',
+	yellowFrom:45,
+	yellowTo:53,
+	redFrom:53,
+	redTo:70,
+	width:150,
+	height:150,
+	data:{}
+}
+
+var flowRateGaugeOptions = {
+	redFrom:45,
+	redTo:50,
+	yellowFrom:40,
+	yellowTo:45,
+	width:150,
+	height:150,
+	min: 0,
+	max: 50,
+	data:{}
+}
 // Pour history chart options
 var pourHistoryChartOptions = {
       chart: {
@@ -145,6 +95,66 @@ var pourHistoryChartOptions = {
 		}]
 	};
 
+var drawGauges = function(){
+	     tempGaugeOptions.data = new google.visualization.DataTable();
+        tempGaugeOptions.data.addColumn('string', 'Label');
+        tempGaugeOptions.data.addColumn('number', 'Value');
+        tempGaugeOptions.data.addRows(1);
+        tempGaugeOptions.data.setValue(0, 0, 'Temp °F');
+        tempGaugeOptions.data.setValue(0, 1, 0);
+        
+        flowRateGaugeOptions.data = new google.visualization.DataTable();
+        flowRateGaugeOptions.data.addColumn('string', 'Label');
+        flowRateGaugeOptions.data.addColumn('number', 'Value');
+        flowRateGaugeOptions.data.addRows(1);
+        flowRateGaugeOptions.data.setValue(0, 0, 'Flow');
+        flowRateGaugeOptions.data.setValue(0, 1, 0);
+        
+      tempGauge = new google.visualization.Gauge(document.getElementById('temp_chart'));
+		
+        tempGauge.draw(tempGaugeOptions.data , tempGaugeOptions);
+        
+        flowRateGauge =  new google.visualization.Gauge(document.getElementById('flow_chart'));
+        flowRateGauge.draw(flowRateGaugeOptions.data,flowRateGaugeOptions);
+        window.setInterval(needleBump,100);
+        
+	     beerGaugeOptions.data = new google.visualization.DataTable();
+        beerGaugeOptions.data.addColumn('string', 'Label');
+        beerGaugeOptions.data.addColumn('number', 'Value');
+        beerGaugeOptions.data.addRows(1);
+        beerGaugeOptions.data.setValue(0, 0, 'Beer %');
+        beerGaugeOptions.data.setValue(0, 1, 0);
+        beerGauge =  new google.visualization.Gauge(document.getElementById('beer_chart'));
+        beerGauge.draw(beerGaugeOptions.data,beerGaugeOptions);
+	
+}
+
+var updateFlowRateGauge = function(value){
+		  		flowRateGaugeOptions.data.setValue(0,1,value*1);
+		  		flowRateGauge.draw(flowRateGaugeOptions.data,flowRateGaugeOptions);
+}
+
+var updateBeerGauge = function(value){
+			  	beerGaugeOptions.data.setValue(0,1,value*1);
+		  		beerGauge.draw(beerGaugeOptions.data,beerGaugeOptions);
+}
+
+var updateTempGauge = function(value){
+	if(typeof(tempGauge) != 'undefined' && tempGauge!=null){
+		tempGaugeOptions.data.setValue(0,1,value*1);
+		tempGauge.draw(tempGaugeOptions.data , tempGaugeOptions);
+	}
+}
+
+var needleBump = function(){
+	if(flowRateGaugeOptions.data.getValue(0, 1)!=0){
+		var bump = Math.random()>.5?1:-1;
+		var nv = flowRateGaugeOptions.data.getValue(0, 1) + bump;
+		flowRateGaugeOptions.data.setValue(0,1,nv);
+		flowRateGauge.draw(flowRateGaugeOptions.data,flowRateGaugeOptions);
+	}
+}
+
 var updatePourHistoryChart = function(json) {
 	var receivedJson = JSON.parse(json);
 	pourHistoryChartOptions.series[0].data = receivedJson.value;
@@ -172,18 +182,6 @@ var updateKegInfo = function(json) {
 	}    
 }
 
-var updateTemperatureHistoryChart = function(json) {
-	var receivedJson = JSON.parse(json);
-	
-	/*
-	flowRateChartOptions.series[1].data = new Array();
-	for (var i = 0; i < receivedJson.value.length; i++) {
-		flowRateChartOptions.series[1].data.push(["somejunk", receivedJson.value[i][1] * -1]);
-	}
-	flowRateChartOptions.series[0].data = receivedJson.value;*/
-	temperatureHistoryChart = new Highcharts.Chart(flowRateChartOptions);
-}
-
 function updateMetrics(name, value) {
 	var inEdit = $('#newuser').attr('inEdit');
 	var values = null;
@@ -194,11 +192,13 @@ function updateMetrics(name, value) {
 		jQuery.get('pourHistory.json', null, function(json) { 
 			pourHistoryChart.destroy();
 			updatePourHistoryChart(json);
+			updateFlowRateGauge(0);
 		});
 	} else if (name == 'temp') {
 		var el = $('span#temp_text');
 		var textToUpdate = el.text();
 		var newText = value;
+		updateTempGauge(value);
 		if (textToUpdate != newText) {
 			el.text(newText);
 			el.glow();
@@ -255,6 +255,7 @@ function updateMetrics(name, value) {
 			$('p#user').glow("red");
 	} else if (name == 'remaining') {
 		$('#progress_bar .ui-progress').animateProgress(100-(value*100));
+		updateBeerGauge(100-Math.round(value*100)/100);
 	}
 };
 
@@ -355,7 +356,8 @@ $(document).ready(function() {
 				// hold on to all incoming flow data (if it's not an "END" flow message)
 				if ((d.name == 'flow') && (d.value != 'end')) {
 					//console.log("pushing: " + d.value);
-					flowData.push(d.value);
+					//flowData.push(d.value);
+					updateFlowRateGauge(d.value);
 				}
 			}
 		});
@@ -364,7 +366,7 @@ $(document).ready(function() {
 	
                                                                                                     
 	jQuery.get('kegInfo.json', null, function(json) { updateKegInfo(json); } );
-	jQuery.get('temperatureHistory.json', null, function(json) { updateTemperatureHistoryChart(json); } );
+	//jQuery.get('temperatureHistory.json', null, function(json) { updateTemperatureHistoryChart(json); } );
 	jQuery.get('pourHistory.json', null, function(json) { updatePourHistoryChart(json); } );
 	
 	$('#newuser').ajaxForm({success:newUserSuccess,beforeSubmit:validateNewUserForm});
@@ -372,7 +374,9 @@ $(document).ready(function() {
 			$('#newuser').attr('inEdit',true);
 			setEditLockTimeout();
 		});
-   $('#newuser').attr('inEdit',false);       
+   $('#newuser').attr('inEdit',false);   
+   
+  	drawGauges();
    
 });
 
