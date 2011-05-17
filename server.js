@@ -1,27 +1,49 @@
-function printUsage(logger)
-{                 
-	logger.error("USAGE:")
-	logger.error("node server.js <path_to_config_file>");
-	logger.error("\tWhere <path_to_config_file> is the path to a JSON configuration file");   
-	logger.error("\t containing all the required keg.io config options.  Optionally, the");
-	logger.error("\t config file may contain C-style comments (/* */).")
-};   
+// ## About
+// **keg.io** is a techonology-laden kegerator, developed by VNC employees, to
+// satisfy their nerdiest beer-drinking needs.  It's built on node.js, and utilizes
+// an arduino microcontroller for interfacing with the actual keg HW and sensors.
+//                                                                                   
+// It's got several cool features, including:  
+//
+// * Gravatar support 
+// * Twitter integration
 
-// Setup dependencies
+// ##Setup dependencies 
 require(__dirname + "/lib/setup").ext( __dirname + "/lib");     
 var	  fs = require('fs')
-    , sys = require('sys')
+	, sys = require('sys')
 	, http = require('http')
 	, url = require('url')
 	, querystring = require('querystring')
-    , io = require('Socket.IO-node')
+	, io = require('Socket.IO-node')
 	, files = require('node-static')
 	, router = require('choreographer').router()
 	, keg_io = require('keg.io')
 	, keg = new keg_io.Keg()
 	, log4js = require('log4js')();       
+
+function printUsage(logger)
+{                
+ 	logger.error("USAGE:")
+ 	logger.error("node server.js <path_to_config_file>");
+ 	logger.error("\tWhere <path_to_config_file> is the path to a JSON configuration file");   
+ 	logger.error("\t containing all the required keg.io config options.  Optionally, the");
+ 	logger.error("\t config file may contain C-style comments (/* */).")
+};   
                                     
 // Setup our logging
+// We're using [**log4js**](http://log4js.berlios.de/) for all of our logging  
+// The logging verbosity (particularly to the console for debugging) can be changed via the 
+// **conf/log4js.json** configuration file, using standard log4js log levels:
+//
+// * OFF
+// * FATAL
+// * ERROR
+// * WARN
+// * INFO
+// * DEBUG
+// * TRACE
+// * ALL
 log4js.configure('conf/log4js.json');
 var logger = log4js.getLogger('default');   
 
@@ -38,8 +60,7 @@ process.argv.forEach(function (val, index, array) {
 	logger.debug(index + ": " + val);
 });                                 
 
-// Load our commented JSON configuration file,
-// and echo it
+// Load our commented JSON configuration file, and echo it
 var config = JSON.parse(
 	fs.readFileSync(process.argv[2]).toString().replace(
 		new RegExp("\\/\\*(.|\\r|\\n)*?\\*\\/", "g"),
@@ -76,10 +97,11 @@ var images = new(files.Server)('./static/images');
 var js = new(files.Server)('./static/js');
 var js2 = new(files.Server)('./static/js/profiling');
 
-///////////////////////////////////////////
-//              Routes                   //
-///////////////////////////////////////////
-router.ignoreCase = true;	
+
+// ##Routes
+// We're using [**choreographer**](https://github.com/laughinghan/choreographer) for our request routing
+router.ignoreCase = true;	   
+
 /////// ADD ALL YOUR ROUTES HERE  /////////
 router.get('/', function(req, res) {
 	base.serveFile('/index.html', 200, {}, req, res);
@@ -142,7 +164,7 @@ server.listen(config.http_port);
                                   
 // Create a server for the web socket
 // Depending on the port assignments, this 
-// could be the same server that we user for HTTP
+// could be the same server that we use for HTTP
 var socketServer = server;
 if (config.http_port != config.socket_listen_port) 
 {
