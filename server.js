@@ -31,7 +31,7 @@ function printUsage(logger)
  	logger.error("\t config file may contain C-style comments (/* */).")
 };   
                                     
-// Setup our logging
+// Setup our logging     
 // We're using [**log4js**](http://log4js.berlios.de/) for all of our logging  
 // The logging verbosity (particularly to the console for debugging) can be changed via the 
 // **conf/log4js.json** configuration file, using standard log4js log levels:
