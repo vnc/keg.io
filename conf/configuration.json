@@ -28,6 +28,8 @@
 	"twitter_access_token_secret": "INSERT_VALUE_HERE",
 	
 	/* password to use for adding a new user via the UI */
-	"admin_ui_password": "INSERT_VALUE_HERE"
-	
+	"admin_ui_password": "INSERT_VALUE_HERE",
+	                           
+	/* Keg.io will start tweeting about temps above this value */ 
+	"high_temp_threshold": "60"
 }
