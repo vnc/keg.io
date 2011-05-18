@@ -159,7 +159,7 @@ router.get('/', function(req, res) {
 	js.serveFile(file, 200, {}, req,res);
 })
 .get('/docs/*', function(req, res, file) {
-	js.serveFile(file, 200, {}, req, res);
+	docs.serveFile(file, 200, {}, req, res);
 });
 
 // Create an HTTP server
