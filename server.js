@@ -96,6 +96,7 @@ var css3 = new(files.Server)('./static/css/ui-lightness/images');
 var images = new(files.Server)('./static/images');
 var js = new(files.Server)('./static/js');
 var js2 = new(files.Server)('./static/js/profiling');
+var docs = new(files.Server)('./static/docs');
 
 
 // ##Routes
@@ -156,6 +157,9 @@ router.get('/', function(req, res) {
 })
 .get('/js/*', function(req, res, file) {
 	js.serveFile(file, 200, {}, req,res);
+})
+.get('/docs/*', function(req, res, file) {
+	docs.serveFile(file, 200, {}, req, res);
 });
 
 // Create an HTTP server
