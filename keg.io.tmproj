@@ -30,13 +30,15 @@
 			<key>filename</key>
 			<string>config.json</string>
 			<key>lastUsed</key>
-			<date>2011-05-06T21:12:14Z</date>
+			<date>2011-05-18T00:07:03Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>TODO</string>
 			<key>lastUsed</key>
-			<date>2011-05-10T20:32:57Z</date>
+			<date>2011-05-18T00:27:09Z</date>
+			<key>selected</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -66,7 +68,7 @@
 			<key>filename</key>
 			<string>README</string>
 			<key>lastUsed</key>
-			<date>2011-04-27T16:58:53Z</date>
+			<date>2011-05-17T21:36:46Z</date>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -80,7 +82,7 @@
 			<key>filename</key>
 			<string>server.js</string>
 			<key>lastUsed</key>
-			<date>2011-05-17T19:45:27Z</date>
+			<date>2011-05-17T22:19:12Z</date>
 		</dict>
 		<dict>
 			<key>name</key>
