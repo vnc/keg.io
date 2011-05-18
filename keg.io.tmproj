@@ -30,15 +30,13 @@
 			<key>filename</key>
 			<string>config.json</string>
 			<key>lastUsed</key>
-			<date>2011-05-18T00:07:03Z</date>
+			<date>2011-05-18T20:33:30Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>TODO</string>
 			<key>lastUsed</key>
 			<date>2011-05-18T00:27:09Z</date>
-			<key>selected</key>
-			<true/>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -82,9 +80,11 @@
 			<key>filename</key>
 			<string>server.js</string>
 			<key>lastUsed</key>
-			<date>2011-05-17T22:19:12Z</date>
+			<date>2011-05-18T21:21:22Z</date>
 		</dict>
 		<dict>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>static</string>
 			<key>regexFolderFilter</key>
