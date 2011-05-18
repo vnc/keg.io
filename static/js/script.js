@@ -195,14 +195,8 @@ function updateMetrics(name, value) {
 			updateFlowRateGauge(0);
 		});
 	} else if (name == 'temp') {
-		var el = $('span#temp_text');
-		var textToUpdate = el.text();
 		var newText = value;
 		updateTempGauge(value);
-		if (textToUpdate != newText) {
-			el.text(newText);
-			el.glow();
-		}
 	} else if (name == 'pour'){                   
 			values = JSON.parse(value);
 			//$('form#newuser').toggle(false);
