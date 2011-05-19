@@ -6,7 +6,7 @@ CREATE TABLE temperature(temperature int, temperature_date date);
 
 INSERT INTO user(rfid, first_name, last_name, nickname, email, twitter_handle) VALUES('2312A4B540', 'Dylan', 'Carney', 'Beardo', 'dcarney@gmail.com', '@_dcarney_');
 INSERT INTO user(rfid, first_name, last_name, nickname, email, twitter_handle) VALUES('2312A4B541', 'Chris', 'Castle', '', 'crcastle@gmail.com', '@crc');
-INSERT INTO user(rfid, first_name, last_name, nickname, email) VALUES('2312A4B542', 'Carl', 'Krauss', 'Hockey Hair', '');
+INSERT INTO user(rfid, first_name, last_name, nickname, email) VALUES('2312A4B542', 'Carl', 'Krauss', '', '');
 INSERT INTO user(rfid, first_name, last_name, nickname, email, twitter_handle) VALUES('2312A4B543', 'Garrett', 'Patterson', '', 'garrett.patterson@vivaki.com', '@thegarrettp');
 
 INSERT INTO keg(keg_id, beer, brewery, beer_style, description, tapped_date, volume_gallons, active, image_path) 
