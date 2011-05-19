@@ -342,7 +342,7 @@ $(document).ready(function() {
 	
                                                                                                     
 	jQuery.get('kegInfo.json', null, function(json) { updateKegInfo(json); } );
-	jQuery.get('pourHistory.json', null, function(json) { updatePourHistoryChart(json); } );
+	jQuery.get('pourHistory.json', null, function(json) { drawPourHistoryChart(json); } );
 	
 	$('#newuser').ajaxForm({success:newUserSuccess,beforeSubmit:validateNewUserForm});
 	$('#newuser input').focus(function(){
