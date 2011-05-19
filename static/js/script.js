@@ -165,7 +165,7 @@ var updateKegInfo = function(json) {
 	if ((data != null) && (data.length > 0))
 	{
 	   $('#beer_desc').text(data[0].description);
-	   $('#beer_name').text(data[0].beer);
+	   $('#beer_name').text(data[0].beer + " " + data[0].beer_style);
 	   $('#beer_brewery').text(data[0].brewery);
 	   $('#beer_label').attr("src", data[0].image_path);
 	}    
@@ -176,8 +176,9 @@ function updateMetrics(name, value) {
 	var values = null;
 	if (name == 'tag') {
 		// Nothing to do in the UI for a tag event
-	} else if (name == 'flow' && value == 'end') { // pour finished, update pourHistoryChart
-		$('span#status_text').text('locked').glow();
+	} else if (name == 'flow' && value == 'end') { // pour finished, update pourHistoryChart  
+		$('img#flow_status').attr("src", "images/padlock-closed.png").glow();  
+		
 		jQuery.get('pourHistory.json', null, function(json) { 
 			//pourHistoryChart.destroy();
 			//updatePourHistoryChart(json);
@@ -185,18 +186,11 @@ function updateMetrics(name, value) {
 			updateFlowRateGauge(0);
 		});
 	} else if (name == 'temp') {
-		var el = $('span#temp_text');
-		var textToUpdate = el.text();
 		var newText = value;
 		updateTempGauge(value);
-		if (textToUpdate != newText) {
-			el.text(newText);
-			el.glow();
-		}
 	} else if (name == 'pour'){                   
-			values = JSON.parse(value);//value.split('|');
-			//$('form#newuser').toggle(false);
-			if (values.hash!=null)//(values != null) && (values.length > 1) && (values[1].length > 0))
+			values = JSON.parse(value);
+			if (values.hash!=null)
 			{                                
 				// Show the user's gravatar, based on the MD5 hash passed in, or use the built-in
 				// gravatar "mystery man" (mm) if the email address isn't registered with gravatar
@@ -212,8 +206,11 @@ function updateMetrics(name, value) {
 				//dont change form user tag if someone has started to edit the form
 				fillUserEditForm(values, false);
 			}
-			var textToUpdate = $('p#user').text();
-			var fullname = values.first_name + " " + values.last_name;
+			var textToUpdate = $('p#user').text();     
+			var fullname = values.first_name + " " +
+						  (((values.nickname) && (values.nickname.length > 0)) ? "'" + values.nickname + "' " : "")
+			 			 + values.last_name;
+		  
 			var newText = "Hey there " + fullname + "! Pour yourself a beer!";
 			$('span#user_text').text(fullname).glow();
 			//if (textToUpdate != newText) {
@@ -222,8 +219,7 @@ function updateMetrics(name, value) {
 					$('p#user').show();
 				});
 				$('p#user').glow('green');
-				
-				$('span#status_text').text('unlocked').glow();
+				$('img#flow_status').attr("src", "images/padlock-open2.png").glow();
 			//}
 	} else if (name == 'deny') {
 			values = JSON.parse(value);
@@ -293,19 +289,14 @@ function validateNewUserForm(formData, jqForm, option){
   var isvalid = true;
 	    for (var i=0; i < formData.length; i++) { 
 
-	    if((formData[i].name=='kegiopassword' || formData[i].name == 'firstname' || formData[i].name == 'lastname')&& formData[i].value.replace(' ','') ==''
-				//formData[i].required    	
-	    	){
-	    		//alert('label[for='+ formData[i].name + ']');
+	    if((formData[i].name=='kegiopassword' || formData[i].name == 'firstname' || formData[i].name == 'lastname')&& formData[i].value.replace(' ','') =='')
+		{
 	    		var field = $('label[for='+ formData[i].name + ']').text();
 	    		$('input[name=' + formData[i].name + ']').addClass('error');
 	    		$('input[name=' + formData[i].name + ']').glow('red');
 	    		$('#formerror').append(field + ' Cannot be blank<br />');
 	    		isvalid = false;
 	    	}
-	    	//if(formData[i].name = 'twitterusername'){
-	    	//	formData[i].value = formData[i].value.replace('@','');	
-	    	//}
     }
     if(isvalid==true){
     		$('#formerror').text('');
@@ -342,8 +333,6 @@ $(document).ready(function() {
 
 				// hold on to all incoming flow data (if it's not an "END" flow message)
 				if ((d.name == 'flow') && (d.value != 'end')) {
-					//console.log("pushing: " + d.value);
-					//flowData.push(d.value);
 					updateFlowRateGauge(d.value);
 				}
 			}
@@ -353,8 +342,7 @@ $(document).ready(function() {
 	
                                                                                                     
 	jQuery.get('kegInfo.json', null, function(json) { updateKegInfo(json); } );
-	//jQuery.get('temperatureHistory.json', null, function(json) { updateTemperatureHistoryChart(json); } );
-	jQuery.get('pourHistory.json', null, function(json) { drawPourHistoryChart(json); } );
+	jQuery.get('pourHistory.json', null, function(json) { updatePourHistoryChart(json); } );
 	
 	$('#newuser').ajaxForm({success:newUserSuccess,beforeSubmit:validateNewUserForm});
 	$('#newuser input').focus(function(){

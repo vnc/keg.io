@@ -1,0 +1,126 @@
+<!DOCTYPE html>  <html> <head>   <title>keg.db.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">                                           <a class="source" href="keg.db.html">                 keg.db.js               </a>                                           <a class="source" href="keg.io.html">                 keg.io.js               </a>                                           <a class="source" href="keg.tweet.html">                 keg.tweet.js               </a>                                           <a class="source" href="server.html">                 server.js               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               keg.db.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>                            </td>             <td class="code">               <div class="highlight"><pre><span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">),</span>
+	<span class="nx">sys</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;sys&#39;</span><span class="p">),</span>
+	<span class="nx">util</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">binding</span><span class="p">(</span><span class="s1">&#39;natives&#39;</span><span class="p">).</span><span class="nx">util</span> <span class="o">?</span> <span class="s1">&#39;util&#39;</span><span class="o">:</span> <span class="s1">&#39;sys&#39;</span><span class="p">),</span>
+	<span class="nx">sqlite</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../node-sqlite/sqlite&#39;</span><span class="p">);</span>
+
+<span class="nx">KegDb</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>                
+    <span class="k">this</span><span class="p">.</span><span class="nx">db</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sqlite</span><span class="p">.</span><span class="nx">Database</span><span class="p">();</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">logger</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>        
+<span class="p">};</span></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p>util.inherits(Keg, process.EventEmitter);     </p>             </td>             <td class="code">               <div class="highlight"><pre>                       </pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>I have no idea why, but this no longer works if the 'method'
+is named 'init'.  It's the strangest error...</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">KegDb</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">initialize</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">logger</span><span class="p">,</span> <span class="nx">dbName</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">logger</span> <span class="o">=</span> <span class="nx">logger</span><span class="p">;</span>       
+	<span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;Opening DB: &quot;</span> <span class="o">+</span> <span class="nx">dbName</span><span class="p">);</span>
+	
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>    
+	<span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">dbName</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error opening db. Please check your configuration.&quot;</span><span class="p">);</span>
+            <span class="k">throw</span> <span class="nx">error</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="nx">dbName</span> <span class="o">+</span> <span class="s2">&quot; opened for reading/writing.&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="nx">KegDb</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getTemperatureHistory</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s1">&#39;SELECT temperature, temperature_date FROM temperature ORDER BY temperature_date&#39;</span><span class="p">,</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">rows</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">callback</span><span class="p">(</span><span class="nx">rows</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="nx">KegDb</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getPourHistory</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s1">&#39;SELECT rfid, keg_id, pour_date, volume_ounces FROM pour ORDER BY pour_date DESC&#39;</span><span class="p">,</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">rows</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">callback</span><span class="p">(</span><span class="nx">rows</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="nx">KegDb</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getKegs</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s1">&#39;SELECT keg_id, beer, brewery, description, tapped_date FROM keg ORDER BY tapped_date DESC&#39;</span><span class="p">,</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">rows</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">callback</span><span class="p">(</span><span class="nx">rows</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="nx">KegDb</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getActiveKeg</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s2">&quot;SELECT beer, brewery, description, beer_style, tapped_date, image_path FROM keg WHERE active = &#39;true&#39; ORDER BY tapped_date DESC&quot;</span><span class="p">,</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">rows</span><span class="p">)</span> <span class="p">{</span>         
+        <span class="nx">callback</span><span class="p">(</span><span class="nx">rows</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">};</span></pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <p>Get the top 10 drinkers</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">KegDb</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getPourTotalsByUser</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">sql</span> <span class="o">=</span> <span class="s1">&#39;SELECT user.first_name, user.last_name, SUM(pour.volume_ounces) as volume &#39;</span> <span class="o">+</span>
+    		  <span class="s1">&#39;FROM pour INNER JOIN user ON pour.rfid = user.rfid &#39;</span> <span class="o">+</span>
+    		  <span class="s1">&#39;GROUP BY user.rfid, user.first_name, user.last_name &#39;</span> <span class="o">+</span>
+    		  <span class="s1">&#39;ORDER BY SUM(pour.volume_ounces) DESC &#39;</span> <span class="o">+</span>
+    		  <span class="s1">&#39;LIMIT 10&#39;</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">sql</span><span class="p">,</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">rows</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">callback</span><span class="p">(</span><span class="nx">rows</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="nx">KegDb</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getPourTotalsByUserByKeg</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">keg_id</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">sql</span> <span class="o">=</span> <span class="s1">&#39;SELECT user.first_name, user.last_name, SUM(pour.volume_ounces) &#39;</span> <span class="o">+</span>
+    		  <span class="s1">&#39;FROM pour INNER JOIN user ON pour.rfid = user.rfid &#39;</span> <span class="o">+</span>
+    		  <span class="s1">&#39;WHERE pour.keg_id = \&#39;&#39;</span> <span class="o">+</span> <span class="nx">keg_id</span> <span class="o">+</span> <span class="s1">&#39;\&#39; &#39;</span>
+    		  <span class="s1">&#39;GROUP BY user.rfid, user.first_name, user.last_name &#39;</span> <span class="o">+</span>
+    		  <span class="s1">&#39;ORDER BY SUM(pour.volume_ounces) DESC &#39;</span> <span class="o">+</span>
+    		  <span class="s1">&#39;LIMIT 10&#39;</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">sql</span><span class="p">,</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">rows</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">callback</span><span class="p">(</span><span class="nx">rows</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="nx">KegDb</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">validateUser</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">tag</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">sql</span> <span class="o">=</span> <span class="s1">&#39;SELECT first_name, last_name, nickname, email, twitter_handle &#39;</span> <span class="o">+</span>
+    		  <span class="s1">&#39;FROM user &#39;</span> <span class="o">+</span>
+    		  <span class="s1">&#39;WHERE rfid=\&#39;&#39;</span> <span class="o">+</span> <span class="nx">tag</span> <span class="o">+</span> <span class="s1">&#39;\&#39; &#39;</span> <span class="o">+</span>
+    		  <span class="s1">&#39;LIMIT 1&#39;</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">sql</span><span class="p">,</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">rows</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">callback</span><span class="p">(</span><span class="nx">rows</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="nx">KegDb</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">addTemperature</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">temperature</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span>
+    <span class="s2">&quot;INSERT INTO temperature (temperature, temperature_date) VALUES (?, ?)&quot;</span>
+    <span class="p">,</span> <span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">temperature</span><span class="p">),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
+    <span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">rows</span><span class="p">)</span> <span class="p">{});</span>
+<span class="p">};</span>
+
+<span class="nx">KegDb</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">addPour</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">rfid</span><span class="p">,</span> <span class="nx">volumeInOunces</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span>
+    <span class="s2">&quot;INSERT INTO pour (rfid, keg_id, pour_date, volume_ounces) VALUES (?, ?, ?, ?)&quot;</span>
+    <span class="p">,</span> <span class="p">[</span><span class="nx">rfid</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">volumeInOunces</span><span class="p">)]</span>
+    <span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">rows</span><span class="p">)</span> <span class="p">{});</span>
+<span class="p">};</span>
+
+<span class="nx">KegDb</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">addUser</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">first_name</span><span class="p">,</span> <span class="nx">last_name</span><span class="p">,</span> <span class="nx">rfid</span><span class="p">,</span> <span class="nx">email</span><span class="p">,</span><span class="nx">twitter_handle</span><span class="p">){</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span>
+		<span class="s2">&quot;INSERT INTO user (first_name,last_name,rfid,email) VALUES (?, ?, ?, ?,?)&quot;</span>
+		<span class="p">,</span> <span class="p">[</span><span class="nx">first_name</span><span class="p">,</span> <span class="nx">last_name</span><span class="p">,</span> <span class="nx">rfid</span><span class="p">,</span> <span class="nx">email</span><span class="p">,</span><span class="nx">twitter_handle</span><span class="p">]</span>
+		<span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">rows</span><span class="p">)</span> <span class="p">{});</span>
+<span class="p">};</span>
+
+<span class="nx">KegDb</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">updateUser</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">first_name</span><span class="p">,</span> <span class="nx">last_name</span><span class="p">,</span> <span class="nx">rfid</span><span class="p">,</span> <span class="nx">email</span><span class="p">,</span><span class="nx">twitter_handle</span><span class="p">){</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span>
+		<span class="s2">&quot;UPDATE user SET first_name =? ,last_name = ?,email =?,twitter_handle = ? WHERE rfid = ?&quot;</span>
+		<span class="p">,</span> <span class="p">[</span><span class="nx">first_name</span><span class="p">,</span> <span class="nx">last_name</span><span class="p">,</span> <span class="nx">email</span><span class="p">,</span><span class="nx">twitter_handle</span><span class="p">,</span><span class="nx">rfid</span><span class="p">]</span>
+		<span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">rows</span><span class="p">)</span> <span class="p">{});</span>
+<span class="p">};</span>
+ 
+<span class="nx">exports</span><span class="p">.</span><span class="nx">KegDb</span> <span class="o">=</span> <span class="nx">KegDb</span><span class="p">;</span>
+
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 

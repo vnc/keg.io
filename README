@@ -40,20 +40,4 @@ Running:
 *********************************                      
 Misc. Info:                      
 *********************************
-- The logging verbosity (particularly to the console for debugging) can be changed via the 
-  conf/log4js.json file, using standard log4js log levels (OFF, FATAL, ERROR, WARN, INFO, DEBUG, TRACE, ALL)
-
-- The "protocol" we're using to communicate with the arduino consists of the following messages:
-
-	arduino --> node:
-		**FLOW_<number>** 	// indicates the current flow rate, where <number> is in liters/min
-		**FLOW_END**		// indicates that pouring in complete (e.g. solenoid closed)
-		**TAG_<rfid>**		// indicates an rfid scan, where <rfid> is the value that was scanned
-		**TAG_0000000000**	// special case of the above: solenoid closed
-		**TEMP_<temp>**		// indicates the current keg temp, where <temp> is in F
-	
-	node --> arduino
-		**REQUEST_TAG**		// requests the last rfid tag scanned
-		**REQUEST_TEMP**	// requests the current temperature
-		**REQUEST_FLOW**	// requests the current flow rate
-		**REQUEST_OPEN**	// requests that the solenoid open to pour some brewski
+- Docco HTML documentation for the 'important' keg.io code can be found in the docs/ directory. 

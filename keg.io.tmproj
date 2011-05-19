@@ -30,15 +30,13 @@
 			<key>filename</key>
 			<string>config.json</string>
 			<key>lastUsed</key>
-			<date>2011-05-06T21:12:14Z</date>
+			<date>2011-05-18T20:33:30Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>TODO</string>
 			<key>lastUsed</key>
-			<date>2011-05-10T20:32:57Z</date>
-			<key>selected</key>
-			<true/>
+			<date>2011-05-18T00:27:09Z</date>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -68,7 +66,7 @@
 			<key>filename</key>
 			<string>README</string>
 			<key>lastUsed</key>
-			<date>2011-04-27T16:58:53Z</date>
+			<date>2011-05-17T21:36:46Z</date>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -82,9 +80,11 @@
 			<key>filename</key>
 			<string>server.js</string>
 			<key>lastUsed</key>
-			<date>2011-05-06T21:27:31Z</date>
+			<date>2011-05-18T21:21:22Z</date>
 		</dict>
 		<dict>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>static</string>
 			<key>regexFolderFilter</key>
@@ -123,6 +123,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{204, 72}, {1227, 806}}</string>
+	<string>{{210, 72}, {1390, 1106}}</string>
 </dict>
 </plist>

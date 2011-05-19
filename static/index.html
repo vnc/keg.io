@@ -18,7 +18,7 @@ google.load("visualization", "1", {packages:["corechart"]});
 
   <title>keg.io</title>
   <meta name="description" content="Info, status, and statistics about a kegerator. Receives kegerator sensor data from an Arduino and displays it on your web browser!">
-  <meta name="author" content="Garrett" >
+  <meta name="author" content="VNC" >
 
   <!--  Mobile Viewport Fix
         j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag 
@@ -70,10 +70,9 @@ google.load("visualization", "1", {packages:["corechart"]});
 				</ul>                                                
 				<a href="http://www.twitter.com/keg_io"><img src="http://twitter-badges.s3.amazonaws.com/follow_me-b.png" alt="Follow keg_io on Twitter"/></a>
 				<div id="current" class="grid_12 ui-tabs-hide">
-					<img id="beer_label" src="" class="grid_2"></img>
-					<img id="keg_pic" src="images/keg1.png" class="grid_3"></img>
-					<div id="readout" class="grid_5">
-						Flow Status: <span id="status_text">locked</span><br />
+					<img id="beer_label" src="" class="grid_2" />
+				    <img id="flow_status" src="images/padlock-closed.png" />        
+					<div id="readout" class="grid_5">  
 						Last Drinker: <span id="user_text"></span><br /> 
 						<img id="user_gravatar" />
 					</div>
@@ -138,8 +137,8 @@ google.load("visualization", "1", {packages:["corechart"]});
   <script src="/js/socket.io.js"></script>
   <script src="/js/jquery-ui-1.8.10.custom.min.js"></script>
   <script src="/js/highcharts.js"></script>
-  <script src="/js/plugins.js?v=1"></script>
-  
+  <script src="/js/plugins.js?v=1"></script>                  
+  <script src="js/jquery.ieblocker.js" type="text/javascript"></script>
   <script src="/js/jquery.form.js?v=1"></script><script type="text/javascript"></script> 
 
     <script src="/js/script.js?v=1"></script>
