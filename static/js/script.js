@@ -59,7 +59,7 @@ var g_pourHistoryChartOptions = {
 			height: 100,
 			top:10
 		},
-	hAxis: {	title: 'Name', 
+	hAxis: {   
 				maxAlternation:2,
 				showTextEvery:1,
 				titleTextStyle: {color: 'Black', fontSize:'8px'},
@@ -140,7 +140,7 @@ var updateFlowRateGauge = function(value){
 
 var updateBeerGauge = function(value){
 	  	beerGaugeOptions.data.setValue(0,1,value*1);
-  		beerGauge.draw(beerGaugeOptions.data,beerGaugeOptions);
+  		beerGauge.draw(beerGaugeOptions.data, beerGaugeOptions);
 }
 
 var updateTempGauge = function(value){
@@ -180,8 +180,6 @@ function updateMetrics(name, value) {
 		$('img#flow_status').attr("src", "images/padlock-closed.png").glow();  
 		
 		jQuery.get('pourHistory.json', null, function(json) { 
-			//pourHistoryChart.destroy();
-			//updatePourHistoryChart(json);
 			drawPourHistoryChart(json);
 			updateFlowRateGauge(0);
 		});
@@ -237,8 +235,8 @@ function updateMetrics(name, value) {
 			});
 			$('p#user').glow("red");
 	} else if (name == 'remaining') {
-		$('#progress_bar .ui-progress').animateProgress(100-(value*100));
-		updateBeerGauge(100-Math.round(value*100)/100);
+		$('#progress_bar .ui-progress').animateProgress(value*100);
+		updateBeerGauge(Math.round(value*100)/100);
 	}
 };
 
