@@ -19,3 +19,6 @@
 [submodule "lib/log4js-node"]
 	path = lib/log4js-node
 	url = https://github.com/csausdev/log4js-node.git
+[submodule "lib/node-twitter"]
+	path = lib/node-twitter
+	url = https://github.com/jdub/node-twitter.git
