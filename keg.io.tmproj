@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>currentDocument</key>
+	<string>static/index.html</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -80,7 +82,7 @@
 			<key>filename</key>
 			<string>server.js</string>
 			<key>lastUsed</key>
-			<date>2011-05-18T21:21:22Z</date>
+			<date>2011-05-18T23:29:16Z</date>
 		</dict>
 		<dict>
 			<key>expanded</key>
@@ -119,10 +121,28 @@
 			<key>firstVisibleLine</key>
 			<integer>173</integer>
 		</dict>
+		<key>static/index.html</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>71</integer>
+				<key>line</key>
+				<integer>58</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>38</integer>
+		</dict>
 	</dict>
+	<key>openDocuments</key>
+	<array>
+		<string>static/index.html</string>
+	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{210, 72}, {1390, 1106}}</string>
+	<string>{{210, 72}, {1230, 806}}</string>
 </dict>
 </plist>
