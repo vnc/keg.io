@@ -4,6 +4,9 @@
 <script src="https://www.google.com/jsapi?key=ABQIAAAA-hloRCoCScu-_bN2fSn1sRR4EqRj3RNZnoYuzojShxUjcPQKRRTnvFxdzgemDA4fIDmabxpsMJwNew" type="text/javascript">
 </script>
 <script src="https://www.google.com/uds/?file=visualization&v=1&packages=gauge" language="javascript"></script>
+<script type="text/javascript" >
+google.load("visualization", "1", {packages:["corechart"]});
+</script>
   <meta charset="utf-8">
 
   <!-- www.phpied.com/conditional-comments-block-downloads/ -->
@@ -69,16 +72,7 @@
 				<div id="current" class="grid_12 ui-tabs-hide">
 					<img id="beer_label" src="" class="grid_2"></img>
 					<img id="keg_pic" src="images/keg1.png" class="grid_3"></img>
-					<!-- Progress bar -->
-					<div class="suffix_1 grid_1 prefix_1">
-					    <div id="progress_bar" class="ui-progress-bar ui-container">
-					      <div class="ui-progress" style="height: 75%; width: 100%;">
-					        <span class="ui-label" style="display:none;">Processing <b class="value">79%</b></span>
-					      </div>
-					    </div>
-					</div>
 					<div id="readout" class="grid_5">
-						Current Temp: <span id="temp_text">43</span>˚F<br />
 						Flow Status: <span id="status_text">locked</span><br />
 						Last Drinker: <span id="user_text"></span><br /> 
 						<img id="user_gravatar" />
@@ -95,6 +89,7 @@
 					<div id="temp_chart" class="grid_2"></div>
 					<div id="beer_chart" class="grid_2"></div>
 					<div id="pour_day_chart" class="grid_5 suffix_1"></div>
+					
 				</div>
 				<div id="admin" class="ui-tabs-hide">
 					<p>a little nosey, aren't we?</p>
