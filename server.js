@@ -125,7 +125,13 @@ router.get('/', function(req, res) {
 		res.writeHead(200, {'Content-Type': 'text/plain'});
 		res.end(result);
 	});
-})       
+})     
+.get('/pourHistoryAllTime.json', function(req, res) {
+	keg.getPourTrendAllTime(function(result) {
+		res.writeHead(200, {'Content-Type': 'text/plain'});
+		res.end(result);
+	});
+})  
 .get('/kegInfo.json', function(req, res) {
 	keg.getKegInfo(function(result) {   
 	   res.writeHead(200, {'Content-Type': 'text/plain'});

@@ -14,4 +14,4 @@
 # ex. /home/keg/local/bin/s3cmd --config /home/keg/.s3cfg blah blah blah
 
 DATE="`date +%d-%b-%Y_%H%M%S`"
-s3cmd put ../db/kegerator.db s3://$1/DBBackups/kegerator.db.$DATE
+/home/keg/local/bin/s3cmd --config /home/keg/.s3cfg put ../db/kegerator.db s3://$1/DBBackups/keg.io/kegerator.db.$DATE
