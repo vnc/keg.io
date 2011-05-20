@@ -20,4 +20,47 @@ COMMIT;
 
 BEGIN TRANSACTION;
 	ALTER TABLE user ADD COLUMN nickname varchar(255);
+COMMIT;                     
+
+
+BEGIN TRANSACTION;
+	ALTER TABLE pour ADD COLUMN pour_date2 datetime;  
+	   
+	-- Update May dates to ISO8601 format
+	UPDATE pour SET pour_date2 = substr(pour_date, 12,4) || '-05-' || substr(pour_date, 9, 2) || 'T' || substr(pour_date, 17, 8) || 'Z' 
+	WHERE substr(pour_date, 5, 3) = 'May';  
+	
+	-- Update April dates to ISO8601 format 
+	UPDATE pour SET pour_date2 = substr(pour_date, 12,4) || '-04-' || substr(pour_date, 9, 2) || 'T' || substr(pour_date, 17, 8) || 'Z' 
+	WHERE substr(pour_date, 5, 3) = 'Apr';
+	
+	-- Update March dates to ISO8601 format 
+	UPDATE pour SET pour_date2 = substr(pour_date, 12,4) || '-03-'|| substr(pour_date, 9, 2) || 'T' || substr(pour_date, 17, 8) || 'Z' 
+	WHERE substr(pour_date, 5, 3) = 'Mar';     
+	
+	-- Update the 'real' date column with our new parsed date column's values
+	UPDATE pour SET pour_date = pour_date2;  
+	                                                                         
+	-- Clean up malformed/test dates
+	DELETE FROM pour WHERE pour_date = '';
+	DELETE FROM pour WHERE pour_date IS NULL;  
+	                                         
+	-- Clean up empty pours
+	DELETE FROM pour WHERE volume_ounces = 0;
+	                                
+	-- Attribute old pours to the correct kegs
+	UPDATE pour  
+	SET keg_id = 4
+    WHERE pour_date >= '2011-05-13T15:37:45Z';
+                                  
+    UPDATE pour  
+	SET keg_id = 3
+    WHERE pour_date < '2011-05-13T15:37:45Z'
+      AND pour_date >= '2011-04-22T13:23:45Z';
+
+	 UPDATE pour  
+	 SET keg_id = 2
+	 WHERE pour_date < '2011-04-22T13:23:45Z'
+	   AND pour_date >= '2011-04-08T16:30:45Z';
+	
 COMMIT;
