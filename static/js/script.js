@@ -8,6 +8,7 @@ var flowRateGauge;
 var tempGauge;
 var beerGauge;
 var g_pourHistoryChart;
+var g_pourHistoryAllTimeChart;
 // temperature history chart options
 
 var beerGaugeOptions = {
@@ -69,22 +70,31 @@ var g_pourHistoryChartOptions = {
 			},
 	vAxis:{title:'Ounces'}
 };
-// Pour history chart options
-	
-	function drawPourHistoryChart(json) {
-		if(json!=null){
-			var receivedJson = JSON.parse(json);
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Name');
-        data.addColumn('number', 'Ounces');
-		  data = googleDatafy(data,receivedJson);
 
-		  if(typeof(g_pourHistoryChart) == 'undefined'){
-        	g_pourHistoryChart = new google.visualization.ColumnChart(document.getElementById('pour_day_chart'));
+function drawPourChart(historyChart, chartElementId, title, json) {
+		if(json!=null) {
+			var receivedJson = JSON.parse(json);
+        	var data = new google.visualization.DataTable();
+        	data.addColumn('string', 'Name');
+        	data.addColumn('number', 'Ounces');
+		  	data = googleDatafy(data,receivedJson);
+
+		  	if(typeof(historyChart) == 'undefined') {
+        		historyChart = new google.visualization.ColumnChart(document.getElementById(chartElementId));
+        	}                        
+			g_pourHistoryChartOptions.title = title;
+        	historyChart.draw(data, g_pourHistoryChartOptions);
         }
-        g_pourHistoryChart.draw(data, g_pourHistoryChartOptions);
-        }
-      }
+};                          
+
+// Pour history chart options	
+function drawPourHistoryChart(json) {
+	drawPourChart(g_pourHistoryChart, 'pour_day_chart', 'Who be drinkin all of this keg?', json);
+};          
+
+function drawPourHistoryAllTimeChart(json) { 
+	drawPourChart(g_pourHistoryAllTimeChart, 'pour_day_chart_all_time', 'Who be drinkin the most? (all time)', json);
+};
       
 var googleDatafy  = function(g_data,json){
 	
@@ -184,6 +194,11 @@ function updateMetrics(name, value) {
 			drawPourHistoryChart(json);
 			updateFlowRateGauge(0);
 		});
+		
+		jQuery.get('pourHistoryAllTime.json', null, function(json) {
+		   drawPourHistoryAllTimeChart(json); 
+		});                           
+		
 	} else if (name == 'temp') {
 		var newText = value;
 		updateTempGauge(value);
@@ -213,16 +228,16 @@ function updateMetrics(name, value) {
 			var newText = "Hey there " + fullname + "! Pour yourself a beer!";
 			$('span#user_text').text(fullname).glow();
 			//if (textToUpdate != newText) {
-				$('span#user').text(newText).fadeOut(5000, function() {
-					$('span#user').text('');
-					$('span#user').show();
+				$('p#user').text(newText).fadeOut(5000, function() {
+					$('p#user').text('');
+					$('p#user').show();
 				});
-				$('span#user').glow('green');
+				$('p#user').glow('green');
 				$('img#flow_status').attr("src", "images/padlock-open2.png").glow();
 			//}
 	} else if (name == 'deny') {
 			values = JSON.parse(value);
-			var textToUpdate = $('span#user').text();
+			var textToUpdate = $('p#user').text();
 			var newText = "Denied! Don\'t even think about trying to drink from our keg.";
 			
 			//alert(inEdit);
@@ -341,7 +356,8 @@ $(document).ready(function() {
 	
                                                                                                     
 	jQuery.get('kegInfo.json', null, function(json) { updateKegInfo(json); } );
-	jQuery.get('pourHistory.json', null, function(json) { drawPourHistoryChart(json); } );
+	jQuery.get('pourHistory.json', null, function(json) { drawPourHistoryChart(json); } );  
+	jQuery.get('pourHistoryAllTime.json', null, function(json) { drawPourHistoryAllTimeChart(json); } );  
 	
 	$('#newuser').ajaxForm({success:newUserSuccess,beforeSubmit:validateNewUserForm});
 	$('#newuser input').focus(function(){
