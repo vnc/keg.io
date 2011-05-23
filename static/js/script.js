@@ -52,14 +52,14 @@ var flowRateGaugeOptions = {
 
 var g_pourHistoryChartOptions = {
 	width: 400, 
-	height: 200, 
+	height: 250, 
 	backgroundColor: '#fff',
 
 	legend: 'none',
 	title: 'Who be drinkin all the beer?',
 	chartArea: {
 			height: 100,
-			top:10
+			top:50
 		},
 	hAxis: {   
 				maxAlternation:2,
