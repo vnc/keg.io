@@ -54,9 +54,8 @@ var g_pourHistoryChartOptions = {
 	width: 400, 
 	height: 250, 
 	backgroundColor: '#fff',
-
 	legend: 'none',
-	title: 'Who be drinkin all the beer?',
+	title: 'Who be drinkin all the beer?', 
 	chartArea: {
 			height: 100,
 			top:50
@@ -214,16 +213,16 @@ function updateMetrics(name, value) {
 			var newText = "Hey there " + fullname + "! Pour yourself a beer!";
 			$('span#user_text').text(fullname).glow();
 			//if (textToUpdate != newText) {
-				$('p#user').text(newText).fadeOut(5000, function() {
-					$('p#user').text('');
-					$('p#user').show();
+				$('span#user').text(newText).fadeOut(5000, function() {
+					$('span#user').text('');
+					$('span#user').show();
 				});
-				$('p#user').glow('green');
+				$('span#user').glow('green');
 				$('img#flow_status').attr("src", "images/padlock-open2.png").glow();
 			//}
 	} else if (name == 'deny') {
 			values = JSON.parse(value);
-			var textToUpdate = $('p#user').text();
+			var textToUpdate = $('span#user').text();
 			var newText = "Denied! Don\'t even think about trying to drink from our keg.";
 			
 			//alert(inEdit);
