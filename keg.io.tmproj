@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>static/index.html</string>
+	<string>static/js/script.js</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -26,19 +26,19 @@
 			<key>filename</key>
 			<string>NODE-INSTALL</string>
 			<key>lastUsed</key>
-			<date>2011-05-06T17:29:48Z</date>
+			<date>2011-05-20T20:34:23Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>config.json</string>
 			<key>lastUsed</key>
-			<date>2011-05-18T20:33:30Z</date>
+			<date>2011-05-20T21:48:03Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>TODO</string>
 			<key>lastUsed</key>
-			<date>2011-05-18T00:27:09Z</date>
+			<date>2011-05-19T18:32:26Z</date>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -82,7 +82,7 @@
 			<key>filename</key>
 			<string>server.js</string>
 			<key>lastUsed</key>
-			<date>2011-05-18T23:29:16Z</date>
+			<date>2011-05-20T22:06:56Z</date>
 		</dict>
 		<dict>
 			<key>expanded</key>
@@ -121,28 +121,104 @@
 			<key>firstVisibleLine</key>
 			<integer>173</integer>
 		</dict>
+		<key>lib/keg.io/keg.io.js</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>17</integer>
+				<key>line</key>
+				<integer>180</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>157</integer>
+		</dict>
+		<key>server.js</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>24</integer>
+				<key>line</key>
+				<integer>129</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>90</integer>
+		</dict>
+		<key>static/css/style.css</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>12</integer>
+				<key>line</key>
+				<integer>523</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>484</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>6</integer>
+				<key>line</key>
+				<integer>523</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>12</integer>
+				<key>line</key>
+				<integer>523</integer>
+			</dict>
+		</dict>
 		<key>static/index.html</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>71</integer>
-				<key>line</key>
 				<integer>58</integer>
+				<key>line</key>
+				<integer>65</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>38</integer>
+			<integer>54</integer>
+		</dict>
+		<key>static/js/script.js</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>71</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>56</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
+		<string>lib/keg.io/keg.io.js</string>
+		<string>server.js</string>
 		<string>static/index.html</string>
+		<string>static/js/script.js</string>
+		<string>static/css/style.css</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{210, 72}, {1230, 806}}</string>
+	<string>{{258, 86}, {1262, 1074}}</string>
 </dict>
 </plist>
