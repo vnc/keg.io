@@ -8,7 +8,6 @@ var flowRateGauge;
 var tempGauge;
 var beerGauge;
 var g_pourHistoryChart;
-var g_pourHistoryAllTimeChart;
 // temperature history chart options
 
 var beerGaugeOptions = {
@@ -54,11 +53,13 @@ var flowRateGaugeOptions = {
 var g_pourHistoryChartOptions = {
 	width: 400, 
 	height: 200, 
+	backgroundColor: '#fff',
+
 	legend: 'none',
-//	title: 'Who be drinkin all the beer?',
+	title: 'Who be drinkin all the beer?',
 	chartArea: {
 			height: 100,
-			top:25
+			top:10
 		},
 	hAxis: {   
 				maxAlternation:2,
@@ -69,31 +70,22 @@ var g_pourHistoryChartOptions = {
 			},
 	vAxis:{title:'Ounces'}
 };
-
-function drawPourChart(historyChart, chartElementId, title, json) {
-		if(json!=null) {
+// Pour history chart options
+	
+	function drawPourHistoryChart(json) {
+		if(json!=null){
 			var receivedJson = JSON.parse(json);
-        	var data = new google.visualization.DataTable();
-        	data.addColumn('string', 'Name');
-        	data.addColumn('number', 'Ounces');
-		  	data = googleDatafy(data,receivedJson);
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Name');
+        data.addColumn('number', 'Ounces');
+		  data = googleDatafy(data,receivedJson);
 
-		  	if(typeof(historyChart) == 'undefined') {
-        		historyChart = new google.visualization.ColumnChart(document.getElementById(chartElementId));
-        	}                        
-			g_pourHistoryChartOptions.title = title;
-        	historyChart.draw(data, g_pourHistoryChartOptions);
+		  if(typeof(g_pourHistoryChart) == 'undefined'){
+        	g_pourHistoryChart = new google.visualization.ColumnChart(document.getElementById('pour_day_chart'));
         }
-};                          
-
-// Pour history chart options	
-function drawPourHistoryChart(json) {
-	drawPourChart(g_pourHistoryChart, 'pour_day_chart', 'Who be drinkin all of this keg?', json);
-};          
-
-function drawPourHistoryAllTimeChart(json) { 
-	drawPourChart(g_pourHistoryAllTimeChart, 'pour_day_chart_all_time', 'Who be drinkin the most? (all time)', json);
-};
+        g_pourHistoryChart.draw(data, g_pourHistoryChartOptions);
+        }
+      }
       
 var googleDatafy  = function(g_data,json){
 	
@@ -193,11 +185,6 @@ function updateMetrics(name, value) {
 			drawPourHistoryChart(json);
 			updateFlowRateGauge(0);
 		});
-		
-		jQuery.get('pourHistoryAllTime.json', null, function(json) {
-		   drawPourHistoryAllTimeChart(json); 
-		});                           
-		
 	} else if (name == 'temp') {
 		var newText = value;
 		updateTempGauge(value);
@@ -355,8 +342,7 @@ $(document).ready(function() {
 	
                                                                                                     
 	jQuery.get('kegInfo.json', null, function(json) { updateKegInfo(json); } );
-	jQuery.get('pourHistory.json', null, function(json) { drawPourHistoryChart(json); } );  
-	jQuery.get('pourHistoryAllTime.json', null, function(json) { drawPourHistoryAllTimeChart(json); } );  
+	jQuery.get('pourHistory.json', null, function(json) { drawPourHistoryChart(json); } );
 	
 	$('#newuser').ajaxForm({success:newUserSuccess,beforeSubmit:validateNewUserForm});
 	$('#newuser input').focus(function(){

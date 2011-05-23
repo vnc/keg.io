@@ -1,0 +1,177 @@
+body{
+background-image: url("../images/wood-texture-background.jpg");
+position:fixed; top:0; left:0; width:100%; height:100%;
+	overflow:auto;
+}
+
+.main{
+	width: 1300px;
+	min-height: 600px;
+	margin: 0px auto;
+
+}
+
+.pint{
+	width: 320px;
+	height: 475px;
+	background-image: url("../images/beer.png");
+	background-repeat: no-repeat;
+	position: absolute;
+	bottom: 100px;
+}
+.beer_logo{
+	margin-top: 78px;
+	margin-left: 55px;
+}
+
+.center_box{
+	width: 500px;
+	height: 400px;
+	position: absolute;
+	margin-left: 320px;
+	bottom: 150px;
+	
+}
+
+.gauges{
+	float:left;
+	width: 155px;
+	height: 170px;
+	padding-bottom: 6px;
+	background-image: url("../images/gauge-outline.png");
+	background-repeat: no-repeat;
+	padding-left: 3px;
+	padding-top: 3px;
+}
+
+.pour_chart{
+	float:left;
+	padding-left: 40px;
+}
+	
+.right_box{
+	width: 400px;
+	height: 500px;
+	font-family: 'Cabin Sketch', arial, serif; 
+	font-size: 150px;
+	position: absolute;
+	bottom: 100px;
+	margin-left: 810px;
+	
+}
+.sign{
+	width: 400px;
+	height: 200px;
+	float: left;
+	margin-left: 30px;
+}
+
+.badge{
+	height:230;
+	width: 390;
+	border: 1px solid;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+
+}
+
+.badge_header{
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	height: 40px;
+	line-height: 40px;
+	width: 100%;
+	background-color: #000;
+	color: #fff;
+	font-family: arial, serif; 
+	font-size: 30px;
+	text-align: center;
+	
+}
+
+.badge_main{
+	background-color: #fff;
+	font-family: arial, serif; 
+	font-size: 18px;
+	height: 170px;	
+
+}
+
+.badge_footer{
+	background-color: #000;
+	height:20px;
+	line-height: 20px;
+	width: 100%;
+	-moz-border-radius-bottomleft: 10px;
+	-moz-border-radius-bottomright: 10px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	font-family: arial, serif; 
+	font-size: 18px;
+	text-align: center;
+	color: #fff;	
+}
+
+#user_gravatar{
+	height: 170px;
+	width: 170px;
+	float: left;
+}
+
+.gauge_box{
+	height: 70px;
+	width: 400px;
+	background-color: #ccc;
+	padding: 10px;
+	border: 2px solid;
+	border-color: #666;
+	border-radius: 15px;
+	/* for IE */
+	filter:alpha(opacity=50);
+	/* CSS3 standard */
+	opacity:0.5;
+
+}
+
+#ribbon{
+	position: absolute; bottom: 30px;
+	margin: 10px;
+	padding: 10px;
+	padding-left: 30px;
+	height: 50px;
+	width: 100%;
+	margin-top: 467px;
+	color: #fff;
+	font-size: 30px;
+	line-height: 50px;
+	background-color: #000;
+	/* for IE */
+	filter:alpha(opacity=50);
+	/* CSS3 standard */
+	opacity:0.5;
+	font-family: 'Rock Salt', arial, serif;
+	-moz-border-radius-topleft: 15px;
+	-moz-border-radius-bottomleft: 15px;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+}
+
+
+#ribbon a{
+	color: #fff;
+	text-decoration: none;
+	padding-left: 20px;
+	padding-right: 10px;
+}
+
+#ribbon a:hover{
+	color: #ccc;
+	text-decoration: none;
+}
+
+#ribbon a:visited{
+	color: #fff;
+	text-decoration: none;
+}
