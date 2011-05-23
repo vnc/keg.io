@@ -106,7 +106,10 @@ router.ignoreCase = true;
 /////// ADD ALL YOUR ROUTES HERE  /////////
 router.get('/', function(req, res) {
 	base.serveFile('/index.html', 200, {}, req, res);
-})     
+})                  
+.get('/new', function(req, res) {
+	base.serveFile('/index1.html', 200, {}, req, res);
+})
 .get('/socketPort.json', function(req, res) {
  	 res.writeHead(200, {'Content-Type': 'text/plain'});
 	 res.end(config.socket_client_connect_port);
