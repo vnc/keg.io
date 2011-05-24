@@ -55,7 +55,7 @@ var g_pourHistoryChartOptions = {
 	width: 400, 
 	height: 250, 
 	backgroundColor: '#fff',
-	legend: 'none',
+	legend: 'none', 
 	title: 'Who be drinkin all the beer?', 
 	chartArea: {
 			height: 100,
@@ -71,7 +71,7 @@ var g_pourHistoryChartOptions = {
 	vAxis:{title:'Ounces'}
 };
 
-function drawPourChart(historyChart, chartElementId, title, json) {
+function drawPourChart(historyChart, chartElementId, title, colors, json) {
 		if(json!=null) {
 			var receivedJson = JSON.parse(json);
         	var data = new google.visualization.DataTable();
@@ -83,17 +83,18 @@ function drawPourChart(historyChart, chartElementId, title, json) {
         		historyChart = new google.visualization.ColumnChart(document.getElementById(chartElementId));
         	}                        
 			g_pourHistoryChartOptions.title = title;
+			g_pourHistoryChartOptions.colors = colors; 
         	historyChart.draw(data, g_pourHistoryChartOptions);
         }
 };                          
 
 // Pour history chart options	
 function drawPourHistoryChart(json) {
-	drawPourChart(g_pourHistoryChart, 'pour_day_chart', 'Who be drinkin all of this keg?', json);
+	drawPourChart(g_pourHistoryChart, 'pour_day_chart', 'Who be drinkin all of this keg?', ['blue'], json);
 };          
 
 function drawPourHistoryAllTimeChart(json) { 
-	drawPourChart(g_pourHistoryAllTimeChart, 'pour_day_chart_all_time', 'Who be drinkin the most? (all time)', json);
+	drawPourChart(g_pourHistoryAllTimeChart, 'pour_day_chart_all_time', 'Who be drinkin the most? (All time)', ['red'], json);
 };
       
 var googleDatafy  = function(g_data,json){
@@ -192,8 +193,7 @@ var rotateCharts = function rotateCharts() {
 	    });  
 
 		// Show the newly visible chart
-		var newChart = $("#rotating_charts").children().eq(visibleIndex);
-		newChart.show().glow();
+		var newChart = $("#rotating_charts").children().eq(visibleIndex).show();
 }
                                           
 var updateKegInfo = function(json) {   
@@ -253,7 +253,7 @@ function updateMetrics(name, value) {
 			var newText = "Hey there " + fullname + "! Pour yourself a beer!";
 			$('span#user_text').text(fullname).glow();
 			//if (textToUpdate != newText) {
-				$('span#user').text(newText).fadeOut(5000, function() {
+				$('span#user').text(newText).fadeOut(10000, function() {
 					$('span#user').text('');
 					$('span#user').show();
 				});
