@@ -169,7 +169,32 @@ var needleBump = function(){
 		flowRateGauge.draw(flowRateGaugeOptions.data,flowRateGaugeOptions);
 	}
 }
+               
+var rotateCharts = function rotateCharts() {
+	                          
+	// Get the # of charts
+	var numChildren = $("#rotating_charts").children().length;   
+	                     
+	var visibleIndex = 0;  
+	
+	// Loop through each chart, until we find the visible one
+	$("#rotating_charts").children().each(function(index){
+			
+		    if ($(this).is(':visible'))
+			{                                                
+				// Make the next chart visible, wrapping around to the first one if necessary
+			    visibleIndex = ((index + 1) % numChildren);  
+				
+				// Hide the currently visible one    
+				$(this).hide();
+				return false; 	// done
+			}
+	    });  
 
+		// Show the newly visible chart
+		var newChart = $("#rotating_charts").children().eq(visibleIndex);
+		newChart.show().glow();
+}
                                           
 var updateKegInfo = function(json) {   
 	var data = JSON.parse(json);  
@@ -367,7 +392,19 @@ $(document).ready(function() {
    $('#newuser').attr('inEdit',false);   
    
   	drawGauges();
-  	//drawPourHistoryChart();
+
+	// define a generic repeater
+	var repeater = function(func, times, interval) {
+	  var ID = window.setInterval( function(times) {
+	    return function() {
+	      if (--times <= 0) window.clearInterval(ID);
+	      func();
+	    }
+	  } (times), interval);
+	};
+
+	// call the repeater with a function as the argument
+	repeater(rotateCharts, 100000000, 10000);
    
 });
 

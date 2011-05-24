@@ -63,8 +63,14 @@
 	<div class="center_box">
 		<div id="flow_chart" class="gauges"></div>
 		<div id="temp_chart" class="gauges"></div>
-		<div id="beer_chart" class="gauges"></div>
-		<div id="pour_day_chart" class="pour_chart"></div>	
+		<div id="beer_chart" class="gauges"></div> 
+		
+		<!-- Adding a chart div as a direct child of this div will cause it to get rotated on an interval by jQuery -->    
+		<!-- Just ensure that only one chart is visible on page load -->
+		<div id="rotating_charts">
+			<div id="pour_day_chart" class="pour_chart"></div> 
+			<div id="pour_day_chart_all_time" class="pour_chart" style="display:none;"></div>    
+		</div>
 	</div>
 	<div class="right_box">
 		keg.io
