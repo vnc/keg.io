@@ -568,7 +568,11 @@ div#readout {
 	width: 450px;
 	text-shadow: 3px 3px 3px #999;
 }
-
+       
+div#coasters
+{
+	font-size: 50%;
+}
 /*
  * For Progress Bar
 Copyright (c) 2010 Ivan Vanderbyl

@@ -74,9 +74,16 @@ google.load("visualization", "1", {packages:["corechart"]});
 				    <img id="flow_status" src="images/padlock-closed.png" />        
 					<div id="readout" class="grid_5">  
 						Last Drinker: <span id="user_text"></span><br /> 
-						<img id="user_gravatar" />
+						<img id="user_gravatar" /> 
+						
+						<div id="coaster_template" style="display:none;">
+							<h1>{{title}}</h1>
+							<ul>
+								{{#rows}}<li>{{name}} ({{description}}) <img src="{{image_path}}" /></li>{{/rows}}
+							</ul>
+						</div>
+						<div id="coasters"> </div>
 					</div>
-				    <!-- /Progress bar -->
 					<p class="grid_11">
 						<strong><span id="beer_name">beer name</span> from <span id="beer_brewery">brewery</span> </strong>
 						<br />
@@ -147,7 +154,7 @@ google.load("visualization", "1", {packages:["corechart"]});
   <script src="/js/plugins.js?v=1"></script>                  
   <script src="/js/jquery.ieblocker.js" type="text/javascript"></script>
   <script src="/js/jquery.form.js?v=1"></script><script type="text/javascript"></script> 
-
+   <script src="js/mustache.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/script.js?v=1"></script>
   <!--[if lt IE 7 ]>
     <script src="js/dd_belatedpng.js?v=1"></script>

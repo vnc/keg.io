@@ -283,7 +283,22 @@ function updateMetrics(name, value) {
 	//  COASTER
 	///////////
 	else if (name == 'coaster') {
-		var coasters = JSON.parse(value);
+		                          
+		// Get the mustache template, which is currently just stored in the
+		// markup of a hidden div.  We might want to move this into a seperate
+		// file that we can serve up.
+	    var template = $('#coaster_template').html();
+	                                    
+		// parse the data, and tweak it to get it into a format that's better
+		// suited to our iterative template
+		var rowData = JSON.parse(value);
+		var data = { title: "Coasters",
+					rows: rowData 
+		   		  };
+		var html = Mustache.to_html(template, data);
+		                          
+		// Display
+		$('#coasters').html(html);
 	}
 };
 
