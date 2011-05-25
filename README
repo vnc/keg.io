@@ -28,6 +28,9 @@
 - Install the twitter module and it's dependencies (since the git submodule doesn't seem to get it all)
 	# npm install twitter
 	
+- Also install the forever module. This is used to ensure the node process is automatically restarted if it dies.
+	# npm install forever
+	
 - Install the Sqlite cmd line shell and create the default Sqlite3 database: 
 	# sudo apt-get install sqlite3
 	# cd scripts
@@ -41,11 +44,14 @@
 Running:                             
 *********************************                                                  
 - Run the node server:
-	# node server.js conf/configuration.json          
+	# scripts/prod-start.sh      
   (Depending on the USB port/HW/OS you're running on, you may need su privs to get node to open the 
    serial port)
 
 - Connect a client UI by opening a browser and navigating to the proper IP/port, per the server's config.
+
+- Stop the node server:
+	# scripts/prod-stop.sh
                                                      
 *********************************                      
 Misc. Info:                      
