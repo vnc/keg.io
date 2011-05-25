@@ -183,10 +183,18 @@ var updateKegInfo = function(json) {
 
 function updateMetrics(name, value) {
 	var inEdit = $('#newuser').attr('inEdit');
-	var values = null;
+	var values = null;  
+	
+	///////////
+	//  TAG
+	///////////
 	if (name == 'tag') {
 		// Nothing to do in the UI for a tag event
-	} else if (name == 'flow' && value == 'end') { // pour finished, update pourHistoryChart  
+	}
+	///////////
+	//  FLOW
+	/////////// 
+	else if (name == 'flow' && value == 'end') { // pour finished, update pourHistoryChart  
 		$('img#flow_status').attr("src", "images/padlock-closed.png").glow();  
 		
 		jQuery.get('pourHistory.json', null, function(json) { 
@@ -199,10 +207,19 @@ function updateMetrics(name, value) {
 				});                           
 		
 		
-	} else if (name == 'temp') {
+	}
+	///////////
+	//  TEMP
+	/////////// 
+	else if (name == 'temp') {
 		var newText = value;
 		updateTempGauge(value);
-	} else if (name == 'pour'){                   
+	} 
+	///////////
+	//  POUR
+	///////////
+	else if (name == 'pour')
+	{                   
 			values = JSON.parse(value);
 			if (values.hash!=null)
 			{                                
@@ -235,7 +252,11 @@ function updateMetrics(name, value) {
 				$('p#user').glow('green');
 				$('img#flow_status').attr("src", "images/padlock-open2.png").glow();
 			//}
-	} else if (name == 'deny') {
+	}
+	///////////
+	//  DENY
+	/////////// 
+	else if (name == 'deny') {
 			values = JSON.parse(value);
 			var textToUpdate = $('p#user').text();
 			var newText = "Denied! Don\'t even think about trying to drink from our keg.";
@@ -250,9 +271,19 @@ function updateMetrics(name, value) {
 				$('p#user').show();
 			});
 			$('p#user').glow("red");
-	} else if (name == 'remaining') {
+	}
+	///////////
+	//  REMAINING
+	/////////// 
+	else if (name == 'remaining') {
 		$('#progress_bar .ui-progress').animateProgress(value*100);
 		updateBeerGauge(Math.round(value*100)/100);
+	}
+	///////////
+	//  COASTER
+	///////////
+	else if (name == 'coaster') {
+		var coasters = JSON.parse(value);
 	}
 };
 

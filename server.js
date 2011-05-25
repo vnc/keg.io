@@ -222,7 +222,15 @@ socket.on('connection', function(client){
 		{
 			client.send(JSON.stringify({name: 'remaining', value: data }));
 		}
-	});
+	});       
+	
+	keg.on('coaster', function(data){
+		if (data)
+		{
+			client.send(JSON.stringify({name: 'coaster', value: data }));
+		}
+	}); 
+	
 	client.on('disconnect', function(){
 		logger.info('Client Disconnected.');
 	});
