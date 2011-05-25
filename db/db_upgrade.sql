@@ -68,7 +68,13 @@ COMMIT;
 BEGIN TRANSACTION;
 	CREATE TABLE coaster(coaster_id int, name varchar(64), description varchar(255), image_path varchar(255));        
 	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (1, 'Welcome', 'Pour a beer with keg.io!', 'images/coasters/firstbeer.jpg');
-	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (2, 'Early bird', 'Pour a beer before noon.', 'images/coasters/earlybird.jpg');
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (2, 'Early bird', 'Pour a beer before noon.', 'images/coasters/earlybird.jpg');   
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (3, 'Mayor', 'Become the current top drinker', 'images/coasters/mayor.jpg');  
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (4, 'Keg Mayor', 'Become the top drinker on a keg.', 'images/coasters/kegmayor.jpg');     
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (5, 'Get the party started', 'Pour the first beer of the day', 'images/coasters/first.jpg');      
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (6, 'Closer', 'Pour the last beer of the day', 'images/coasters/closer.jpg');      
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (7, 'Off the wagon', 'Pour a beer after a 2 week absence', 'images/coasters/wagon.jpg');  
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (8, 'Take the bus home', 'Pour 4 or more beers in an hour', 'images/coasters/bus.jpg');
 	
 	CREATE TABLE user_coaster(rfid varchar(10), coaster_id int);
 COMMIT;
