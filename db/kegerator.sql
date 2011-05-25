@@ -3,7 +3,7 @@ CREATE TABLE keg(keg_id int, beer varchar(64), brewery varchar(64), beer_style v
 				 volume_gallons real, active boolean, image_path varchar(255));
 CREATE TABLE pour(rfid varchar(10), keg_id int, pour_date date, volume_ounces int);
 CREATE TABLE temperature(temperature int, temperature_date date);  
-CREATE TABLE coaster(coaster_id int, description varchar(255), image_path varchar(255));    
+CREATE TABLE coaster(coaster_id int, name varchar(64), description varchar(255), image_path varchar(255));    
 CREATE TABLE user_coaster(rfid varchar(10), coaster_id int);   
 
 INSERT INTO user(rfid, first_name, last_name, nickname, email, twitter_handle) VALUES('2312A4B540', 'Dylan', 'Carney', 'Beardo', 'dcarney@gmail.com', '@_dcarney_');
@@ -31,14 +31,14 @@ INSERT INTO temperature(temperature, temperature_date) VALUES (39, '2011-03-12 0
 INSERT INTO temperature(temperature, temperature_date) VALUES (39, '2011-03-12 01:23:47.666');
 INSERT INTO temperature(temperature, temperature_date) VALUES (39, '2011-03-12 01:23:48.666');
 
-INSERT INTO pour(rfid, keg_id, pour_date, volume_ounces) VALUES('2312A4B541', 1, '2011-05-19T16:34:17Z', 16);
-INSERT INTO pour(rfid, keg_id, pour_date, volume_ounces) VALUES('2312A4B542', 1, '2011-05-19T16:38:17Z', 32);           
+INSERT INTO pour(rfid, keg_id, pour_date, volume_ounces) VALUES ('2312A4B541', 1, '2011-05-19T16:34:17Z', 16);
+INSERT INTO pour(rfid, keg_id, pour_date, volume_ounces) VALUES ('2312A4B542', 1, '2011-05-19T16:38:17Z', 32);           
 
-INSERT INTO coaster(coaster_id, description, image_path) VALUE(1, 'Welcome', 'images/coasters/firstbeer.jpg');
-INSERT INTO coaster(coaster_id, description, image_path) VALUE(2, 'Early bird', 'images/coasters/earlybird.jpg');     
+INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (1, 'Welcome', 'Pour a beer with keg.io!', 'images/coasters/firstbeer.jpg');
+INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (2, 'Early bird', 'Pour a beer before noon.', 'images/coasters/earlybird.jpg');     
 
-INSERT INTO user_coaster(rfid, coaster_id) VALUES(2312A4B540, 1);   
-INSERT INTO user_coaster(rfid, coaster_id) VALUES(2312A4B541, 1);   
-INSERT INTO user_coaster(rfid, coaster_id) VALUES(2312A4B542, 1); 
-INSERT INTO user_coaster(rfid, coaster_id) VALUES(2312A4B542, 2);   
-INSERT INTO user_coaster(rfid, coaster_id) VALUES(2312A4B543, 2);   
+INSERT INTO user_coaster(rfid, coaster_id) VALUES('2312A4B540', 1);   
+INSERT INTO user_coaster(rfid, coaster_id) VALUES('2312A4B541', 1);   
+INSERT INTO user_coaster(rfid, coaster_id) VALUES('2312A4B542', 1); 
+INSERT INTO user_coaster(rfid, coaster_id) VALUES('2312A4B542', 2);   
+INSERT INTO user_coaster(rfid, coaster_id) VALUES('2312A4B543', 2);   
