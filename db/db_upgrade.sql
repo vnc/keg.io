@@ -63,4 +63,12 @@ BEGIN TRANSACTION;
 	 WHERE pour_date < '2011-04-22T13:23:45Z'
 	   AND pour_date >= '2011-04-08T16:30:45Z';
 	
+COMMIT;  
+
+BEGIN TRANSACTION;
+	CREATE TABLE coaster(coaster_id int, description varchar(255), image_path varchar(255));        
+	INSERT INTO coaster(coaster_id, description, image_path) VALUE(1, 'Welcome', 'images/coasters/firstbeer.jpg');
+	INSERT INTO coaster(coaster_id, description, image_path) VALUE(2, 'Early bird', 'images/coasters/earlybird.jpg');
+	
+	CREATE TABLE user_coaster(rfid varchar(10), coaster_id int);
 COMMIT;
