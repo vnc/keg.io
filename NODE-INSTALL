@@ -19,4 +19,6 @@ echo 'export PATH=$HOME/local/bin:$PATH' >> ~/.bashrc
 git clone https://github.com/joyent/node.git
 cd node
 ./configure --prefix=~/local
-make install
+make install          
+
+source ~/.bash_rc
