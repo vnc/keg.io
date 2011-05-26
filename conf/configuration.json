@@ -31,5 +31,10 @@
 	"admin_ui_password": "INSERT_VALUE_HERE",
 	                           
 	/* Keg.io will start tweeting about temps above this value */ 
-	"high_temp_threshold": "60"
+	"high_temp_threshold": "60",
+	
+	/* Restart node after this many milliseconds without receiving temp data */
+	/* No temp data implies the serial port shat the bed. */
+	/* This is a hack to try to improve stability. */
+	"temp_update_threshold": "1200000"
 }
