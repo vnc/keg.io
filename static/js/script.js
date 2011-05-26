@@ -327,11 +327,12 @@ function setEditLockTimeout(ms){
 			window.clearTimeout(isEditTimeout);
 		}
 		isEditTimeout= window.setTimeout('$("#newuser").attr("inEdit",false);',ms);
-}
+} 
 
 $(document).ready(function() {   
    isEditTimeout = null;
 	io.setPath('/client/');
+	reloadAttempt = 0;
 	
 	jQuery.get('socketPort.json', null, function(json) {  
 		var socketPort = JSON.parse(json);
@@ -350,6 +351,12 @@ $(document).ready(function() {
 					updateFlowRateGauge(d.value);
 				}
 			}
+		});
+		socket.on('disconnect', function() {
+			setTimeout(function() {
+				location.reload(true);
+				reloadAttempt++;
+			}, Math.pow(2,reloadAttempt));
 		});
 	});
 		
