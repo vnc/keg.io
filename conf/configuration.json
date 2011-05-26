@@ -36,5 +36,5 @@
 	/* Restart node after this many milliseconds without receiving temp data */
 	/* No temp data implies the serial port shat the bed. */
 	/* This is a hack to try to improve stability. */
-	"temp_update_threshold": "1200000"
+	"temp_update_threshold": "120000"
 }
