@@ -86,6 +86,16 @@ keg.init(logger,
 		 config.admin_ui_password,
 		 config.high_temp_threshold);    
 
+// kill server (and let 'forever' restart it) if no temp data has been received in > 60s
+var lastTempUpdateTime = (new Date()).getTime();
+setInterval(function() {
+	var currentTime = (new Date()).getTime();
+	if ( (currentTime - lastTempUpdateTime) > config.temp_update_threshold) {
+		logger.error("Restarting node process because no temperature data received in at least 60 seconds.");
+		process.exit(99);
+	}
+}, 60000);
+
 //
 // Create several node-static server instances to serve the './public' folder
 //
@@ -190,6 +200,8 @@ socket.on('connection', function(client){
 	keg.on('temp', function(data) {
 		if (data) {
            	client.send(JSON.stringify({ name: 'temp', value: data }));
+			// now update lastTempUpdateTime so we don't unecessarily restart the server
+			lastTempUpdateTime = (new Date()).getTime();
 		}
 	});
 	
