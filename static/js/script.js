@@ -198,43 +198,46 @@ function updateMetrics(name, value) {
 				   drawPourHistoryAllTimeChart(json); 
 				});                           
 		
-		
 	} else if (name == 'temp') {  
 		var newText = value;
 		updateTempGauge(value);
-	} else if (name == 'pour'){                   
+	} else if (name == 'pour') {
+		if (value)
+		{
 			values = JSON.parse(value);
-			if (values.hash!=null)
-			{                                
+			if (values.hash != null)
+			{
 				// Show the user's gravatar, based on the MD5 hash passed in, or use the built-in
 				// gravatar "mystery man" (mm) if the email address isn't registered with gravatar
-				$('#user_gravatar').attr("src", 
-									"http://www.gravatar.com/avatar/" + values.hash + "?s=150&d=mm"); 
-			}                                                               
+				$('#user_gravatar').attr("src", "http://www.gravatar.com/avatar/" + values.hash + "?s=150&d=mm");
+			}
 			else
-			{   
+			{
 				$('#user_gravatar').attr("src", "images/default_avatar_150.png");
 			}
-		 	
-		 	if( inEdit=='false'){
+
+			if (inEdit == 'false') {
 				//dont change form user tag if someone has started to edit the form
 				fillUserEditForm(values, false);
-			}
-			var textToUpdate = $('p#user').text();     
+			}                                                                    
+			
+		    var textToUpdate = $('p#user').text();
 			var fullname = values.first_name + " " +
-						  (((values.nickname) && (values.nickname.length > 0)) ? "'" + values.nickname + "' " : "")
-			 			 + values.last_name;
-		  
-			var newText = "Hey there " + fullname + "! Pour yourself a beer!";
-			$('span#user_text').text(fullname).glow();
-			//if (textToUpdate != newText) {
-				$('p#user').text(newText).fadeOut(5000, function() {
-					$('p#user').text('');
-					$('p#user').show();
-				});
-				$('p#user').glow('green');
-				$('img#flow_status').attr("src", "images/padlock-open2.png").glow();
-			//}
+				(((values.nickname) && (values.nickname.length > 0)) ? "'" + values.nickname + "' ": "") + values.last_name;
+		   $('span#user_text').text(fullname).glow();
+			
+           if (values.pouring == true)
+		   {            
+				var newText = "Hey there " + fullname + "! Pour yourself a beer!"; 
+				$('p#user').text(newText).fadeOut(5000,
+					function() {
+						$('p#user').text('');
+						$('p#user').show();
+					});
+					$('p#user').glow('green');
+					$('img#flow_status').attr("src", "images/padlock-open2.png").glow();    
+			}
+	    }
 	} else if (name == 'deny') {
 			values = JSON.parse(value);
 			var textToUpdate = $('p#user').text();
@@ -366,7 +369,8 @@ $(document).ready(function() {
 	jQuery.get('pourHistory.json', null, function(json) { drawPourHistoryChart(json); } );      
 	jQuery.get('pourHistoryAllTime.json', null, function(json) { drawPourHistoryAllTimeChart(json); } ); 
 	jQuery.get('currentTemperature.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); } ); 
-	jQuery.get('currentPercentRemaining.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); });
+	jQuery.get('currentPercentRemaining.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); }); 
+	jQuery.get('lastDrinker.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); }); 
 	
 	
 	$('#newuser').ajaxForm({success:newUserSuccess,beforeSubmit:validateNewUserForm});

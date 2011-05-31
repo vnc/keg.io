@@ -139,6 +139,12 @@ router.get('/', function(req, res) {
 		 res.writeHead(200, {'Content-Type': 'text/plain'});                       
 		 res.end(JSON.stringify({ name: 'remaining', value: percent + "" }));
 		});
+})      
+.get('/lastDrinker.json', function(req, res) { 
+	keg.getLastDrinker(function(result) {     
+		res.writeHead(200, {'Content-Type': 'text/plain'});                       
+		res.end(JSON.stringify({ name: 'pour', value: result }));
+	}); 
 })
 .get('/pourHistory.json', function(req, res) {
 	keg.getPourTrend(function(result) {
