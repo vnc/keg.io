@@ -199,7 +199,7 @@ function updateMetrics(name, value) {
 				});                           
 		
 		
-	} else if (name == 'temp') {
+	} else if (name == 'temp') {  
 		var newText = value;
 		updateTempGauge(value);
 	} else if (name == 'pour'){                   
@@ -361,10 +361,11 @@ $(document).ready(function() {
 	});
 		
 	
-                                                                                                    
+    // Gather some info from the server to populate the initial UI                                                                                   
 	jQuery.get('kegInfo.json', null, function(json) { updateKegInfo(json); } );
 	jQuery.get('pourHistory.json', null, function(json) { drawPourHistoryChart(json); } );      
-	jQuery.get('pourHistoryAllTime.json', null, function(json) { drawPourHistoryAllTimeChart(json); } );  
+	jQuery.get('pourHistoryAllTime.json', null, function(json) { drawPourHistoryAllTimeChart(json); } ); 
+	jQuery.get('currentTemperature.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); } );  
 	
 	
 	$('#newuser').ajaxForm({success:newUserSuccess,beforeSubmit:validateNewUserForm});
