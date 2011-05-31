@@ -121,7 +121,8 @@ router.get('/', function(req, res) {
  	 res.writeHead(200, {'Content-Type': 'text/plain'});
 	 res.end(config.socket_client_connect_port);
 }) 
-.get('/currentTemperature.json', function(req, res) { 
+.get('/currentTemperature.json', function(req, res) {
+	 res.writeHead(200, {'Content-Type': 'text/plain'});                       
    res.end(JSON.stringify({ name: 'temp', value: keg.getLastTemperature() }));   
 })  
 .get('/temperatureHistory.json', function(req, res) {
@@ -132,7 +133,13 @@ router.get('/', function(req, res) {
 		res.writeHead(200, {'Content-Type': 'text/plain'});
 		res.end(result);
 	});
-})          
+})            
+.get('/currentPercentRemaining.json', function(req, res) {
+	keg.getPercentRemaining(function(percent) {
+		 res.writeHead(200, {'Content-Type': 'text/plain'});                       
+		 res.end(JSON.stringify({ name: 'remaining', value: percent + "" }));
+		});
+})
 .get('/pourHistory.json', function(req, res) {
 	keg.getPourTrend(function(result) {
 		res.writeHead(200, {'Content-Type': 'text/plain'});

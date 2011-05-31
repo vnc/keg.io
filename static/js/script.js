@@ -365,7 +365,8 @@ $(document).ready(function() {
 	jQuery.get('kegInfo.json', null, function(json) { updateKegInfo(json); } );
 	jQuery.get('pourHistory.json', null, function(json) { drawPourHistoryChart(json); } );      
 	jQuery.get('pourHistoryAllTime.json', null, function(json) { drawPourHistoryAllTimeChart(json); } ); 
-	jQuery.get('currentTemperature.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); } );  
+	jQuery.get('currentTemperature.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); } ); 
+	jQuery.get('currentPercentRemaining.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); });
 	
 	
 	$('#newuser').ajaxForm({success:newUserSuccess,beforeSubmit:validateNewUserForm});
