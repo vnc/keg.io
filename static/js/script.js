@@ -253,8 +253,7 @@ function updateMetrics(name, value) {
 					});
 					$('p#user').glow('green');
 					$('img#flow_status').attr("src", "images/padlock-open2.png").glow();    
-			}
-	    }
+		   }
     ///////////
 	//  DENY
 	/////////// 
