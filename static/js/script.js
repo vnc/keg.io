@@ -236,27 +236,29 @@ function updateMetrics(name, value) {
 		 	if( inEdit=='false'){
 				//dont change form user tag if someone has started to edit the form
 				fillUserEditForm(values, false);
-			}
-			var textToUpdate = $('p#user').text();     
+			}                                                                    
+			
+		    var textToUpdate = $('p#user').text();
 			var fullname = values.first_name + " " +
-						  (((values.nickname) && (values.nickname.length > 0)) ? "'" + values.nickname + "' " : "")
-			 			 + values.last_name;
-		  
-			var newText = "Hey there " + fullname + "! Pour yourself a beer!";
-			$('span#user_text').text(fullname).glow();
-			//if (textToUpdate != newText) {
-				$('p#user').text(newText).fadeOut(5000, function() {
-					$('p#user').text('');
-					$('p#user').show();
-				});
-				$('p#user').glow('green');
-				$('img#flow_status').attr("src", "images/padlock-open2.png").glow();
-			//}
-	}
-	///////////
+				(((values.nickname) && (values.nickname.length > 0)) ? "'" + values.nickname + "' ": "") + values.last_name;
+		   $('span#user_text').text(fullname).glow();
+			
+           if (values.pouring == true)
+		   {            
+				var newText = "Hey there " + fullname + "! Pour yourself a beer!"; 
+				$('p#user').text(newText).fadeOut(5000,
+					function() {
+						$('p#user').text('');
+						$('p#user').show();
+					});
+					$('p#user').glow('green');
+					$('img#flow_status').attr("src", "images/padlock-open2.png").glow();    
+			}
+	    }
+    ///////////
 	//  DENY
 	/////////// 
-	else if (name == 'deny') {
+	} else if (name == 'deny') {
 			values = JSON.parse(value);
 			var textToUpdate = $('p#user').text();
 			var newText = "Denied! Don\'t even think about trying to drink from our keg.";
@@ -373,11 +375,12 @@ function setEditLockTimeout(ms){
 			window.clearTimeout(isEditTimeout);
 		}
 		isEditTimeout= window.setTimeout('$("#newuser").attr("inEdit",false);',ms);
-}
+} 
 
 $(document).ready(function() {   
    isEditTimeout = null;
 	io.setPath('/client/');
+	reloadAttempt = 0;
 	
 	jQuery.get('socketPort.json', null, function(json) {  
 		var socketPort = JSON.parse(json);
@@ -397,13 +400,22 @@ $(document).ready(function() {
 				}
 			}
 		});
+		socket.on('disconnect', function() {
+			setTimeout(function() {
+				location.reload(true);
+				reloadAttempt++;
+			}, Math.pow(2,reloadAttempt));
+		});
 	});
 		
 	
-                                                                                                    
+    // Gather some info from the server to populate the initial UI                                                                                   
 	jQuery.get('kegInfo.json', null, function(json) { updateKegInfo(json); } );
 	jQuery.get('pourHistory.json', null, function(json) { drawPourHistoryChart(json); } );      
-	jQuery.get('pourHistoryAllTime.json', null, function(json) { drawPourHistoryAllTimeChart(json); } );  
+	jQuery.get('pourHistoryAllTime.json', null, function(json) { drawPourHistoryAllTimeChart(json); } ); 
+	jQuery.get('currentTemperature.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); } ); 
+	jQuery.get('currentPercentRemaining.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); }); 
+	jQuery.get('lastDrinker.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); }); 
 	
 	
 	$('#newuser').ajaxForm({success:newUserSuccess,beforeSubmit:validateNewUserForm});
