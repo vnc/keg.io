@@ -70,20 +70,34 @@ google.load("visualization", "1", {packages:["corechart"]});
 				</ul>                                                
 				<a href="http://www.twitter.com/keg_io"><img src="http://twitter-badges.s3.amazonaws.com/follow_me-b.png" alt="Follow keg_io on Twitter"/></a>
 				<div id="current" class="grid_12 ui-tabs-hide">
-					<img id="beer_label" src="" class="grid_2" />
-				    <img id="flow_status" src="images/padlock-closed.png" />        
-					<div id="readout" class="grid_5">  
-						Last Drinker: <span id="user_text"></span><br /> 
-						<img id="user_gravatar" /> 
-						
-						<div id="coaster_template" style="display:none;">
-							<h1>{{title}}</h1>
-							<ul>
-								{{#rows}}<li>{{name}} ({{description}}) <img src="{{image_path}}" /></li>{{/rows}}
-							</ul>
+					<div class="grid_2">  
+						<h1>Currently on tap</h1>
+						<img id="beer_label" src="" class="grid_2" />
+					</div>        
+					<div id="readout" class="grid_2">  
+						<h1>Last Drinker</h1>   
+						<div class="drinker">
+							<h4><span id="user_text"></span></h4> 
+							<div class="image"> 
+								<img id="user_gravatar" src="{{image_path}}" />
+							</div>
 						</div>
-						<div id="coasters"> </div>
 					</div>
+					<div id="coaster_template" style="display:none;">
+						<h1>{{title}}</h1>
+						<ul class="badges">
+							{{#rows}}
+							<li class="badge">
+								<h4>{{name}}</h4> 
+								<div class="image"> 
+									<img src="{{image_path}}" />
+								</div>
+								<p>{{description}}</p>
+							</li>
+							{{/rows}}
+						</ul>
+					</div>
+					<div id="coasters" class="grid_8"> </div>
 					<p class="grid_11">
 						<strong><span id="beer_name">beer name</span> from <span id="beer_brewery">brewery</span> </strong>
 						<br />
@@ -102,7 +116,7 @@ google.load("visualization", "1", {packages:["corechart"]});
 					</p>
 				   <div id="pour_day_chart" class="grid_5 suffix_1"></div>
 				   <div id="pour_day_chart_all_time" class="grid_5 suffix_1"></div>
- 
+                   <img id="flow_status" src="images/padlock-closed.png" class="grid_5 suffix_1" style="height:200px; width:200px; padding-right:0px;"/>
 				</div>
 				<div id="admin" class="ui-tabs-hide">
 					<p>a little nosey, aren't we?</p>
