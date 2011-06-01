@@ -284,7 +284,7 @@ function updateMetrics(name, value) {
 	//  COASTER
 	///////////
 	else if (name == 'coaster') {
-		                          
+		                
 		// Get the mustache template, which is currently just stored in the
 		// markup of a hidden div.  We might want to move this into a seperate
 		// file that we can serve up.
@@ -414,8 +414,8 @@ $(document).ready(function() {
 	jQuery.get('pourHistoryAllTime.json', null, function(json) { drawPourHistoryAllTimeChart(json); } ); 
 	jQuery.get('currentTemperature.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); } ); 
 	jQuery.get('currentPercentRemaining.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); }); 
-	jQuery.get('lastDrinker.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); }); 
-	
+	jQuery.get('lastDrinker.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); });  
+	jQuery.get('lastDrinkerCoasters.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); });
 	
 	$('#newuser').ajaxForm({success:newUserSuccess,beforeSubmit:validateNewUserForm});
 	$('#newuser input').focus(function(){

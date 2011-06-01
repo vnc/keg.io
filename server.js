@@ -103,7 +103,8 @@ var base = new(files.Server)('./static');
 var css = new(files.Server)('./static/css');
 var css2 = new(files.Server)('./static/css/ui-lightness');
 var css3 = new(files.Server)('./static/css/ui-lightness/images');
-var images = new(files.Server)('./static/images');
+var images = new(files.Server)('./static/images');   
+var coaster_images = new(files.Server)('./static/images/coasters');   
 var js = new(files.Server)('./static/js');
 var js2 = new(files.Server)('./static/js/profiling');
 var docs = new(files.Server)('./static/docs');
@@ -145,6 +146,13 @@ router.get('/', function(req, res) {
 		res.writeHead(200, {'Content-Type': 'text/plain'});                       
 		res.end(JSON.stringify({ name: 'pour', value: result }));
 	}); 
+}) 
+
+.get('/lastDrinkerCoasters.json', function(req, res) {
+	keg.getLastDrinkerCoasters(function(result) {
+	   	 res.writeHead(200, {'Content-Type': 'text/plain'});                       
+		 res.end(JSON.stringify({ name: 'coaster', value: result }));
+	});
 })
 .get('/pourHistory.json', function(req, res) {
 	keg.getPourTrend(function(result) {
@@ -180,6 +188,9 @@ router.get('/', function(req, res) {
 })
 .get('/css/*', function(req, res, file) {
 	css.serveFile(file, 200, {}, req, res);
+})          
+.get('/images/coasters/*', function(req, res, file) {
+	coaster_images.serveFile(file, 200, {}, req,res);
 })
 .get('/images/*', function(req, res, file) {
 	images.serveFile(file, 200, {}, req,res);
