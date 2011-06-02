@@ -31,8 +31,6 @@
 			<string>TODO</string>
 			<key>lastUsed</key>
 			<date>2011-05-18T00:27:09Z</date>
-			<key>selected</key>
-			<true/>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -76,15 +74,15 @@
 			<key>filename</key>
 			<string>server.js</string>
 			<key>lastUsed</key>
-			<date>2011-05-18T23:29:16Z</date>
+			<date>2011-06-02T17:03:51Z</date>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>static</string>
 			<key>regexFolderFilter</key>
 			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
+			<key>selected</key>
+			<true/>
 			<key>sourceDirectory</key>
 			<string>static</string>
 		</dict>
@@ -119,6 +117,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{286, 244}, {1230, 806}}</string>
+	<string>{{210, 72}, {1390, 1106}}</string>
 </dict>
 </plist>
