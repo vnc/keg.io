@@ -303,27 +303,27 @@ function updateMetrics(name, value) {
 	}
 };
 
-var fillUserEditForm = function(data,isnewuser){
-	$('#newuser').resetForm();
-	$('#newuserformsuccess').text('');
-	$('#formerror').text('');
-	$('#newuser input').removeClass('error');
-	//alert(value);
-	//$('#denytag').text('reject ID:' + value);
-	$('form#newuser').toggle(true);
-	$('input[name=usertag]').val(data.usertag);
-	$('input[name=usertag]').glow('yellow');
-	$('input[name=isnewuser]').val(isnewuser);
-	if(!isnewuser){
-		//fill rest of form
-		$('input[name=firstname]').val(data.first_name);
-		$('input[name=lastname]').val(data.last_name);
-		$('input[name=email]').val(data.email);
-		$('input[name=twitterusername]').val(data.twitter_handle);
-		$('#newusersubmit').val("Update User");
-	}else{
-		$('#newusersubmit').val("Add New User");	
-	}
+var fillUserEditForm = function(data, isnewuser) {
+    $('#newuser').resetForm();
+    $('#newuserformsuccess').text('');
+    $('#formerror').text('');
+    $('#newuser input').removeClass('error');
+    $('form#newuser').toggle(true);
+    if (data != null) {
+        $('input[name=usertag]').val(data.usertag);
+    }
+    $('input[name=usertag]').glow('yellow');
+    $('input[name=isnewuser]').val(isnewuser);
+    if ((!isnewuser) && (data != null)) {
+        //fill rest of form
+        $('input[name=firstname]').val(data.first_name);
+        $('input[name=lastname]').val(data.last_name);
+        $('input[name=email]').val(data.email);
+        $('input[name=twitterusername]').val(data.twitter_handle);
+        $('#newusersubmit').val("Update User");
+    } else {
+        $('#newusersubmit').val("Add New User");
+    }
 };
 
 function newUserSuccess(data){
