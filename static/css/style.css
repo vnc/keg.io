@@ -235,7 +235,7 @@ button {  width: auto; overflow: visible; }
 	display:inline;
 	float: left;
 	position: relative;
-	margin-left: 10px;
+   /* margin-left: 10px; */
 	margin-right: 10px;
 }
 
@@ -572,7 +572,8 @@ div#coasters
 	height: 250px;
 }   
 
-  div.drinker {
+ div.drinker,
+ div.beerinfo  {
     padding: 0px;
     display: inline;
     margin-right: 25px;
@@ -589,8 +590,13 @@ div#coasters
     box-shadow: 0 2px 3px #aaaaaa;
     -moz-box-shadow: 0 2px 3px #aaaaaa;
     -webkit-box-shadow: 0 2px 3px #aaaaaa;
-    /*height: 240px; */}
-  div.drinker .image {
+}
+div.beerinfo {
+	width:229px;
+}   
+
+div.drinker .image,
+div.beerinfo .image {
     padding: 8px 0px 5px 0px;
     background-color: white;
     box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
@@ -603,7 +609,8 @@ div#coasters
   ul.badges  h4 {
     margin: 0px 0px 8px 0px;
     padding: 0; }
-  ul.badges .badge p {
+  ul.badges .badge p,
+  div.beerinfo p {
     margin: 8px 0px 0px 0px;
 	font-size: 75%;
     padding: 0; }
@@ -619,7 +626,12 @@ div#coasters
   ul.badges .more a {
     font-weight: bold;
     color: #f3aa64;
-    text-decoration: none; }
+    text-decoration: none; }    
+
+ div.beerinfo  img {
+   margin-left: 15px;
+   width: 200px; }
+
 
 ul.badges {
   margin: 15px -15px 0px 0px;

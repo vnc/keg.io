@@ -71,8 +71,14 @@ google.load("visualization", "1", {packages:["corechart"]});
 				<a href="http://www.twitter.com/keg_io"><img src="http://twitter-badges.s3.amazonaws.com/follow_me-b.png" alt="Follow keg_io on Twitter"/></a>
 				<div id="current" class="grid_12 ui-tabs-hide">
 					<div class="grid_2">  
-						<h1>Currently on tap</h1>
-						<img id="beer_label" src="" class="grid_2" />
+						<h1>Currently on tap</h1> 
+						<div class="beerinfo"> 
+							<h4><span id="beer_name">beer name</span> from <span id="beer_brewery">brewery</span> <h4>
+							<div class="image">
+								<img id="beer_label" src="" />
+							</div>
+							<p id="beer_desc">description</p>
+						</div>
 					</div>        
 					<div id="readout" class="grid_2">  
 						<h1>Last Drinker</h1>   
@@ -98,21 +104,15 @@ google.load("visualization", "1", {packages:["corechart"]});
 						</ul>
 					</div>
 					<div id="coasters" class="grid_8"> </div>
-					<p class="grid_11">
-						<strong><span id="beer_name">beer name</span> from <span id="beer_brewery">brewery</span> </strong>
-						<br />
-						<span id="beer_desc">description</span>
-					</p>
 					<p id="user" class="grid_11">
 					</p>
-				   
 				   <div style="margin: 0 auto; width:100%;" class="grid_2">
 						<div id="flow_chart" class="grid_2"></div>
 						<div id="temp_chart" class="grid_2"></div>
 						<div id="beer_chart" class="grid_2"></div>
 				   </div>
 				   <p>
-				   	<br>
+				   	<br/>
 					</p>
 				   <div id="pour_day_chart" class="grid_5 suffix_1"></div>
 				   <div id="pour_day_chart_all_time" class="grid_5 suffix_1"></div>
