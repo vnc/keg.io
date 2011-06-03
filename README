@@ -27,6 +27,9 @@
 	                          
 - Install the twitter module and it's dependencies (since the git submodule doesn't seem to get it all)
 	# npm install twitter
+	                     
+- If you plan on doing any interactive debugging of keg.io, install node-inspector
+	# npm install node-insepctor
 	
 - Also install the forever module. This is used to ensure the node process is automatically restarted if it dies.
 	# npm install forever
