@@ -68,13 +68,13 @@ COMMIT;
 BEGIN TRANSACTION;
 	CREATE TABLE coaster(coaster_id int, name varchar(64), description varchar(255), image_path varchar(255));        
     INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (1, 'Welcome', 'Pour a beer with keg.io!', 'images/coasters/firstbeer.png');
-	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (2, 'Early bird', 'Pour a beer before noon.', 'images/coasters/earlybird.png');   
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (2, 'Early Bird', 'Pour a beer before noon.', 'images/coasters/earlybird.png');   
 	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (3, 'Mayor', 'Become the current top drinker', 'images/coasters/mayor.png');  
 	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (4, 'Keg Mayor', 'Become the top drinker on a keg.', 'images/coasters/kegmayor.png');     
-	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (5, 'Party starter', 'Pour the first beer of the day', 'images/coasters/first.png');      
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (5, 'Party Starter', 'Pour the first beer of the day', 'images/coasters/first.png');      
 	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (6, 'Closer', 'Pour the last beer of the day', 'images/coasters/closer.png');      
-	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (7, 'Off the wagon', 'Pour a beer after a 2 week absence', 'images/coasters/wagon.png');  
-	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (8, 'Take the bus home', 'Pour 4 or more beers in an hour', 'images/coasters/bus.png');
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (7, 'Off the Wagon', 'Pour a beer after a 2 week absence', 'images/coasters/wagon.png');  
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (8, 'Take the Bus Home', 'Pour 4 or more pints in an hour', 'images/coasters/bus.png');
 	
 	CREATE TABLE user_coaster(rfid varchar(10), coaster_id int, earned_date date);   
 	
