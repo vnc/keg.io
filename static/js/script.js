@@ -95,6 +95,10 @@ function drawPourHistoryAllTimeChart(json) {
 	drawPourChart(g_pourHistoryAllTimeChart, 'pour_day_chart_all_time', 'Who be drinkin the most? (all time)', json);
 };
 
+function trim(stringToTrim) { 
+	return (stringToTrim == null) ? null : stringToTrim.replace(/^\s+|\s+$/g,"");
+}
+
 var googleDatafy  = function(g_data,json){
 	
 	var values = json.value;
@@ -181,7 +185,8 @@ var updateKegInfo = function(json) {
 	}    
 }
 
-function updateMetrics(name, value) {
+function updateMetrics(name, value) {  
+
 	var inEdit = $('#newuser').attr('inEdit');
 	var values = null;  
 	
@@ -221,7 +226,13 @@ function updateMetrics(name, value) {
 	else if (name == 'pour')
 	{                   
 			values = JSON.parse(value);
-			if (values.hash!=null)
+			                
+			if ((typeof values == "undefined") || (values == null))
+			{
+				return;
+			}          
+			
+			if (values.hash != null)
 			{                                
 				// Show the user's gravatar, based on the MD5 hash passed in, or use the built-in
 				// gravatar "mystery man" (mm) if the email address isn't registered with gravatar
@@ -242,7 +253,7 @@ function updateMetrics(name, value) {
 			var fullname = values.first_name + " " +
 				(((values.nickname) && (values.nickname.length > 0)) ? "'" + values.nickname + "' ": "") + values.last_name;
 		   $('span#user_text').text(fullname).glow();
-			
+		   $('#coasters').html(""); 
            if (values.pouring == true)
 		   {            
 				var newText = "Hey there " + fullname + "! Pour yourself a beer!"; 
@@ -284,7 +295,7 @@ function updateMetrics(name, value) {
 	//  COASTER
 	///////////
 	else if (name == 'coaster') {
-		                
+		                        
 		// Get the mustache template, which is currently just stored in the
 		// markup of a hidden div.  We might want to move this into a seperate
 		// file that we can serve up.
@@ -297,9 +308,57 @@ function updateMetrics(name, value) {
 					rows: rowData 
 		   		  };
 		var html = Mustache.to_html(template, data);
-		                          
+		
+		console.log("ALL: " + html);                     
 		// Display
-		$('#coasters').html(html);
+		$('#coasters').html(html);  
+	}   
+	else if (name == 'coaster_earned') {   
+			var coaster_list = $('#coasters').find('#badgeslist');
+			
+			//var existingMarkup = trim($('#coasters').html());  
+			var existingMarkup = trim(coaster_list.html()); 
+			if ((existingMarkup != null) && (existingMarkup.length > 0))
+			{
+				// Get the mustache template, which is currently just stored in the
+					// markup of a hidden div.  We might want to move this into a seperate
+					// file that we can serve up.                
+				    var template = $('#badge_template').html();
+
+					// parse the data, and tweak it to get it into a format that's better
+					// suited to our iterative template
+					var rowData = JSON.parse(value); 
+					//alert(rowData);            
+					var html = Mustache.to_html(template, rowData[0]); 
+				  	console.log("EARNED: " + html);
+				    //$('#badgeslist').html(existingMarkup + html);  
+					coaster_list.html(existingMarkup + html);
+					$('li.badge').each(function(index) {
+					    $(this).glow("red");
+					  }); 
+			} 
+			else
+			{      
+				
+			   // TODO: COPIED VERBATIM FROM THE "COASTER"  EVENT ABOVE
+					// Get the mustache template, which is currently just stored in the
+					// markup of a hidden div.  We might want to move this into a seperate
+					// file that we can serve up.
+				    var template = $('#coaster_template').html();
+
+					// parse the data, and tweak it to get it into a format that's better
+					// suited to our iterative template
+					var rowData = JSON.parse(value);
+					var data = { title: "Coasters",
+								rows: rowData 
+					   		  };
+					var html = Mustache.to_html(template, data);
+					
+                    console.log("EARNED: " + html);                    
+					// Display
+					$('#coasters').html(html);
+					$('li.badge').glow("red");       
+			}        
 	}
 };
 
@@ -398,7 +457,7 @@ $(document).ready(function() {
 					updateFlowRateGauge(d.value);
 				}
 			}
-		});
+		});   
 		socket.on('disconnect', function() {
 			setTimeout(function() {
 				location.reload(true);

@@ -91,8 +91,9 @@ google.load("visualization", "1", {packages:["corechart"]});
 					</div>
 					<div id="coaster_template" style="display:none;">
 						<h1>{{title}}</h1>
-						<ul class="badges">
+						<ul class="badges" id="badgeslist">
 							{{#rows}}
+							<div id="badge_template">
 							<li class="badge">
 								<h4>{{name}}</h4> 
 								<div class="image"> 
@@ -100,10 +101,11 @@ google.load("visualization", "1", {packages:["corechart"]});
 								</div>
 								<p>{{description}}</p>
 							</li>
+							</div>
 							{{/rows}}
 						</ul>
 					</div>
-					<div id="coasters" class="grid_8"> </div>
+					<div id="coasters" class="grid_8"></div>
 					<p id="user" class="grid_11">
 					</p>
 				   <div style="margin: 0 auto; width:100%;" class="grid_2">

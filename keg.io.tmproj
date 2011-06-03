@@ -83,8 +83,6 @@
 			<date>2011-05-18T23:29:16Z</date>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>static</string>
 			<key>regexFolderFilter</key>
