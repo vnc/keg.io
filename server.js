@@ -107,6 +107,9 @@ router.ignoreCase = true;
 router.get('/', function(req, res) {
 	base.serveFile('/index.html', 200, {}, req, res);
 })     
+.get('/widget.html',function(req,res){
+	base.serveFile('/widget.html', 200, {}, req, res);
+})
 .get('/socketPort.json', function(req, res) {
  	 res.writeHead(200, {'Content-Type': 'text/plain'});
 	 res.end(config.socket_client_connect_port);
@@ -121,15 +124,23 @@ router.get('/', function(req, res) {
 	});
 })          
 .get('/pourHistory.json', function(req, res) {
+	var qs = querystring.parse(req.url.split('?')[1]);
+	var pre = '';
+	var post = '';
+	if(qs.callback!=null){
+		pre = qs.callback + '(';
+		post = ')';
+	}
 	keg.getPourTrend(function(result) {
 		res.writeHead(200, {'Content-Type': 'text/plain'});
-		res.end(result);
+		res.end(pre+result+post);
 	});
 })       
 .get('/kegInfo.json', function(req, res) {
+	var qs = querystring.parse(req.url.split('?')[1]);
 	keg.getKegInfo(function(result) {   
 	   res.writeHead(200, {'Content-Type': 'text/plain'});
-	   res.end(result);                 
+	   res.end(qs.callback!=null?qs.callback+'(' + result+ ')':result);                 
 	});
 })
 .get('/addUser.json',function(req,res){
