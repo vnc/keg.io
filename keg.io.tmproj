@@ -27,16 +27,12 @@
 			<date>2011-05-06T17:29:48Z</date>
 		</dict>
 		<dict>
-			<key>filename</key>
-			<string>TODO</string>
-			<key>lastUsed</key>
-			<date>2011-05-18T00:27:09Z</date>
-		</dict>
-		<dict>
 			<key>name</key>
 			<string>conf</string>
 			<key>regexFolderFilter</key>
 			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
+			<key>selected</key>
+			<true/>
 			<key>sourceDirectory</key>
 			<string>conf</string>
 		</dict>
@@ -74,15 +70,13 @@
 			<key>filename</key>
 			<string>server.js</string>
 			<key>lastUsed</key>
-			<date>2011-06-02T17:03:51Z</date>
+			<date>2011-06-08T21:43:53Z</date>
 		</dict>
 		<dict>
 			<key>name</key>
 			<string>static</string>
 			<key>regexFolderFilter</key>
 			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
-			<key>selected</key>
-			<true/>
 			<key>sourceDirectory</key>
 			<string>static</string>
 		</dict>
