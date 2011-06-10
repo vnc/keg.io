@@ -108,6 +108,8 @@ var coaster_images = new(files.Server)('./static/images/coasters');
 var js = new(files.Server)('./static/js');
 var js2 = new(files.Server)('./static/js/profiling');
 var docs = new(files.Server)('./static/docs');
+var swf = new(files.Server)('./static/swf');
+var audio = new(files.Server)('./static/audio');
 
 
 // ##Routes
@@ -194,6 +196,12 @@ router.get('/', function(req, res) {
 })
 .get('/images/*', function(req, res, file) {
 	images.serveFile(file, 200, {}, req,res);
+})
+.get('/swf/*', function(req, res, file) {
+	swf.serveFile(file, 200, {}, req,res);
+})
+.get('/audio/*', function(req, res, file) {
+	audio.serveFile(file, 200, {}, req,res);
 })
 .get('/js/profiling/*', function(req, res, file) {
 	js2.serveFile(file, 200, {}, req, res);

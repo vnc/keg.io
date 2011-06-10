@@ -85,3 +85,41 @@ BEGIN TRANSACTION;
 	GROUP BY rfid;
 	
 COMMIT;
+
+BEGIN TRANSACTION;
+	ALTER TABLE coaster ADD COLUMN audio_path varchar(255);
+COMMIT;
+BEGIN TRANSACTION;
+	UPDATE coaster
+	set audio_path = 'audio/firstbeer.mp3'
+	where coaster_id = 1;
+	
+	UPDATE coaster
+	set audio_path = 'audio/earlybird.mp3'
+	where coaster_id = 2;
+	
+	UPDATE coaster
+	set audio_path = 'audio/mayor.mp3'
+	where coaster_id = 3;
+	
+	UPDATE coaster
+	set audio_path = 'audio/kegmayor.mp3'
+	where coaster_id = 4;
+	
+	UPDATE coaster
+	set audio_path = 'audio/partystarter.mp3'
+	where coaster_id = 5;
+	
+	UPDATE coaster
+	set audio_path = 'audio/closer.mp3'
+	where coaster_id = 6;
+	
+	UPDATE coaster
+	set audio_path = 'audio/wagon.mp3'
+	where coaster_id = 7;
+	
+	UPDATE coaster
+	set audio_path = 'audio/bus.mp3'
+	where coaster_id = 8;
+	
+	COMMIT;

@@ -339,7 +339,7 @@ function updateMetrics(name, value) {
 				if(audio.coasters[coastersound]!= null){
 					sound = audio.coasters[coastersound];	
 				}	
-			}
+			}					
 			if(sound==null){
 				audio.sounds.levelup.play();	
 			}else{
