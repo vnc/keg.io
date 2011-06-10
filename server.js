@@ -86,6 +86,16 @@ keg.init(logger,
 		 config.admin_ui_password,
 		 config.high_temp_threshold);    
 
+// kill server (and let 'forever' restart it) if no temp data has been received in > 60s
+var lastTempUpdateTime = (new Date()).getTime();
+setInterval(function() {
+	var currentTime = (new Date()).getTime();
+	if ( (currentTime - lastTempUpdateTime) > config.temp_update_threshold) {
+		logger.error("Restarting node process because no temperature data received in at least 60 seconds.");
+		process.exit(99);
+	}
+}, 60000);
+
 //
 // Create several node-static server instances to serve the './public' folder
 //
@@ -93,7 +103,8 @@ var base = new(files.Server)('./static');
 var css = new(files.Server)('./static/css');
 var css2 = new(files.Server)('./static/css/ui-lightness');
 var css3 = new(files.Server)('./static/css/ui-lightness/images');
-var images = new(files.Server)('./static/images');
+var images = new(files.Server)('./static/images');   
+var coaster_images = new(files.Server)('./static/images/coasters');   
 var js = new(files.Server)('./static/js');
 var js2 = new(files.Server)('./static/js/profiling');
 var docs = new(files.Server)('./static/docs');
@@ -113,7 +124,11 @@ router.get('/', function(req, res) {
 .get('/socketPort.json', function(req, res) {
  	 res.writeHead(200, {'Content-Type': 'text/plain'});
 	 res.end(config.socket_client_connect_port);
-})    
+}) 
+.get('/currentTemperature.json', function(req, res) {
+	 res.writeHead(200, {'Content-Type': 'text/plain'});                       
+   res.end(JSON.stringify({ name: 'temp', value: keg.getLastTemperature() }));   
+})  
 .get('/temperatureHistory.json', function(req, res) {
 	keg.getTemperatureTrend(function(result) {
 		// For some reason, the following line doesn't work with the highcharts.
@@ -122,7 +137,26 @@ router.get('/', function(req, res) {
 		res.writeHead(200, {'Content-Type': 'text/plain'});
 		res.end(result);
 	});
-})          
+})            
+.get('/currentPercentRemaining.json', function(req, res) {
+	keg.getPercentRemaining(function(percent) {
+		 res.writeHead(200, {'Content-Type': 'text/plain'});                       
+		 res.end(JSON.stringify({ name: 'remaining', value: percent + "" }));
+		});
+})      
+.get('/lastDrinker.json', function(req, res) { 
+	keg.getLastDrinker(function(result) {     
+		res.writeHead(200, {'Content-Type': 'text/plain'});                       
+		res.end(JSON.stringify({ name: 'pour', value: result }));
+	}); 
+}) 
+
+.get('/lastDrinkerCoasters.json', function(req, res) {
+	keg.getLastDrinkerCoasters(function(result) {
+	   	 res.writeHead(200, {'Content-Type': 'text/plain'});                       
+		 res.end(JSON.stringify({ name: 'coaster', value: result }));
+	});
+})
 .get('/pourHistory.json', function(req, res) {
 	keg.getPourTrend(function(result) {
 		res.writeHead(200, {'Content-Type': 'text/plain'});
@@ -157,6 +191,9 @@ router.get('/', function(req, res) {
 })
 .get('/css/*', function(req, res, file) {
 	css.serveFile(file, 200, {}, req, res);
+})          
+.get('/images/coasters/*', function(req, res, file) {
+	coaster_images.serveFile(file, 200, {}, req,res);
 })
 .get('/images/*', function(req, res, file) {
 	images.serveFile(file, 200, {}, req,res);
@@ -193,6 +230,8 @@ socket.on('connection', function(client){
 	keg.on('temp', function(data) {
 		if (data) {
            	client.send(JSON.stringify({ name: 'temp', value: data }));
+			// now update lastTempUpdateTime so we don't unecessarily restart the server
+			lastTempUpdateTime = (new Date()).getTime();
 		}
 	});
 	
@@ -225,7 +264,20 @@ socket.on('connection', function(client){
 		{
 			client.send(JSON.stringify({name: 'remaining', value: data }));
 		}
+	});       
+	keg.on('coaster', function(data){
+		if (data)
+		{
+			client.send(JSON.stringify({name: 'coaster', value: data }));
+		}
+	});         
+	keg.on('coaster_earned', function(data){
+		if (data)
+		{
+			client.send(JSON.stringify({name: 'coaster_earned', value: data }));
+		}
 	});
+	
 	client.on('disconnect', function(){
 		logger.info('Client Disconnected.');
 	});

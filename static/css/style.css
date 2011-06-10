@@ -214,7 +214,7 @@ button {  width: auto; overflow: visible; }
 .container_12 {
 	margin-left: auto;
 	margin-right: auto;
-	width: 960px;
+	width: 1300px;
 }
 
 /* Grid >> Global
@@ -235,7 +235,7 @@ button {  width: auto; overflow: visible; }
 	display:inline;
 	float: left;
 	position: relative;
-	margin-left: 10px;
+   /* margin-left: 10px; */
 	margin-right: 10px;
 }
 
@@ -258,7 +258,7 @@ button {  width: auto; overflow: visible; }
 }
 
 .container_12 .grid_2 {
-	width:140px;
+   /* width:140px; */
 }
 
 .container_12 .grid_3 {
@@ -297,9 +297,6 @@ button {  width: auto; overflow: visible; }
 	width:860px;
 }
 
-.container_12 .grid_12 {
-	width:940px;
-}
 
 
 
@@ -564,11 +561,131 @@ p#user {
 }
 
 div#readout {
-	font-size: 25px;
-	width: 450px;
-	text-shadow: 3px 3px 3px #999;
+   /* font-size: 25px; */
+	width: 250px;
+/*	text-shadow: 3px 3px 3px #999; */
 }
+       
+div#coasters
+{
+	/*font-size: 50%;        */  
+	height: 250px;
+}   
 
+ div.drinker,
+ div.beerinfo  {
+    padding: 0px;
+    display: inline;
+    margin-right: 25px;
+    margin-bottom: 25px;
+    float: left;
+    width: 179px;
+    padding: 12px;
+    background: #efefef;
+    background: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#dfe1e2));
+    background: -moz-linear-gradient(-90deg, #efefef, #dfe1e2);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#efefef', endColorstr='#dfe1e2');
+    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#efefef', endColorstr='#dfe1e2');
+    border-bottom: 1px solid #ededed;
+    box-shadow: 0 2px 3px #aaaaaa;
+    -moz-box-shadow: 0 2px 3px #aaaaaa;
+    -webkit-box-shadow: 0 2px 3px #aaaaaa;
+}
+div.beerinfo {
+	width:229px;
+}   
+
+div.drinker .image,
+div.beerinfo .image {
+    padding: 8px 0px 5px 0px;
+    background-color: white;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5); }
+  div.drinker  img {
+    margin-left: 15px;
+    height: 150px;
+    width: 150px; }
+  ul.badges  h4 {
+    margin: 0px 0px 8px 0px;
+    padding: 0; }
+  ul.badges .badge p,
+  div.beerinfo p {
+    margin: 8px 0px 0px 0px;
+	font-size: 75%;
+    padding: 0; }
+  ul.badges .more h4 {
+    padding: 15px 0px 0px 0px;
+    text-align: center; }
+  ul.badges .more h5 {
+    margin: 15px 0px 0px 0px;
+    padding: 0; }
+  ul.badges .more p {
+    margin: 0;
+    padding: 0; }
+  ul.badges .more a {
+    font-weight: bold;
+    color: #f3aa64;
+    text-decoration: none; }    
+
+ div.beerinfo  img {
+   margin-left: 15px;
+   width: 200px; }
+
+
+ul.badges {
+  margin: 15px -15px 0px 0px;
+  padding: 0;
+  list-style-type: none;  
+  display:inline;
+  list-style-position: inside; }
+  ul.badges li {
+    padding: 0px;
+    display: inline;
+    margin-right: 25px;
+    margin-bottom: 25px;
+    float: left;
+    width: 154px;
+    padding: 12px;
+    background: #efefef;
+    background: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#dfe1e2));
+    background: -moz-linear-gradient(-90deg, #efefef, #dfe1e2);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#efefef', endColorstr='#dfe1e2');
+    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#efefef', endColorstr='#dfe1e2');
+    border-bottom: 1px solid #ededed;
+    box-shadow: 0 2px 3px #aaaaaa;
+    -moz-box-shadow: 0 2px 3px #aaaaaa;
+    -webkit-box-shadow: 0 2px 3px #aaaaaa;
+    /*height: 240px; */}
+  ul.badges .badge .image {
+    padding: 8px 0px 5px 0px;
+    background-color: white;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5); }
+  ul.badges .badge img {
+    margin-left: 15px;
+    height: 125px;
+    width: 125px; }
+  ul.badges .badge h4 {
+    margin: 0px 0px 8px 0px;
+    padding: 0; }
+  ul.badges .badge p {
+    margin: 8px 0px 0px 0px;
+    padding: 0; }
+  ul.badges .more h4 {
+    padding: 15px 0px 0px 0px;
+    text-align: center; }
+  ul.badges .more h5 {
+    margin: 15px 0px 0px 0px;
+    padding: 0; }
+  ul.badges .more p {
+    margin: 0;
+    padding: 0; }
+  ul.badges .more a {
+    font-weight: bold;
+    color: #f3aa64;
+    text-decoration: none; }
 /*
  * For Progress Bar
 Copyright (c) 2010 Ivan Vanderbyl
