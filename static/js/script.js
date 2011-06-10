@@ -10,11 +10,15 @@ var beerGauge;
 var g_pourHistoryChart;   
 var g_pourHistoryAllTimeChart;
 
+
+//app sounds called within-app
+//array hashed based on audio_file value stored in kegdb for coasters
 var audio = {
 	sounds:{
 		pour:'/audio/pour.mp3',
 		deny:'/audio/deny.mp3',
-		levelup:'/audio/1up.mp3'
+		levelup:'/audio/1up.mp3',
+		bottleopen:'/audio/bottleopen.mp3'
 	},
 	coasters:{
 		'audio/partystarter.mp3':null,
@@ -357,7 +361,7 @@ function updateMetrics(name, value) {
 
 					// parse the data, and tweak it to get it into a format that's better
 					// suited to our iterative template
-//					var rowData = JSON.parse(value); 
+					//var rowData = JSON.parse(value); 
 					//alert(rowData);      
 					
 					var html = Mustache.to_html(template, rowData[0]); 
@@ -379,7 +383,7 @@ function updateMetrics(name, value) {
 
 					// parse the data, and tweak it to get it into a format that's better
 					// suited to our iterative template
-//					var rowData = JSON.parse(value);
+					//var rowData = JSON.parse(value);
 					var data = { title: "Coasters",
 								rows: rowData 
 					   		  };
@@ -520,33 +524,28 @@ $(document).ready(function() {
 
 		// enable HTML5 audio support, if you're feeling adventurous. iPad/iPhone will always get this.
 		// soundManager.useHTML5Audio = true;
-		soundManager.onready(function() {
-		  // Ready to use; soundManager.createSound() etc. can now be called.
-		    var mySound = soundManager.createSound({
-			    id: 'aSound',
-			    url: '/audio/bottleopen.mp3'
-			    // onload: [ event handler function object ],
-			    // other options here..
-			  });
-			  mySound.play();
-				
-			 //load in a slightly more efficient fashion
-			 for(var z in audio.sounds){
-			 	var key = z;
-			 	var val = audio.sounds[z];
-			 	audio.sounds[z] = soundManager.createSound({
-			 		id:key,
-			 		url:val
-			 	});
-			 }
-			 
-			 for(var x in audio.coasters){
-			 	var val = x;
-			 	audio.coasters[val] = soundManager.createSound({
-			 		id:val,
-			 		url:val
-			 	});	
-			 }			  
-			  
-		});
+soundManager.onready(function() {
+  // Ready to use; soundManager.createSound() etc. can now be called.
+		
+	 //load in a slightly more efficient fashion
+	 for(var z in audio.sounds){
+	 	var key = z;
+	 	var val = audio.sounds[z];
+	 	audio.sounds[z] = soundManager.createSound({
+	 		id:key,
+	 		url:val
+	 	});
+	 }
+	 
+	audio.sounds.bottleopen.play();	 
+	 
+	 for(var x in audio.coasters){
+	 	var val = x;
+	 	audio.coasters[val] = soundManager.createSound({
+	 		id:val,
+	 		url:val
+	 	});	
+	 }			  
+	  
+});
 
