@@ -76,7 +76,7 @@ BEGIN TRANSACTION;
 	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (6, 'Closer', 'Pour the last beer of the day', 'images/coasters/closer.png');      
 	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (7, 'Off the Wagon', 'Pour a beer after a 3 week absence', 'images/coasters/wagon.png');  
 	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (8, 'Take the Bus Home', 'Pour 4 or more pints in an hour', 'images/coasters/bus.png');
-	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (9, 'Contributor', 'Contribute to the keg.io code on github', 'images/coasters/contributor.png');     
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (9, 'Contributor', 'Contribute to keg.io on github', 'images/coasters/contributor.png');        
 	
 	CREATE TABLE user_coaster(rfid varchar(10), coaster_id int, earned_date date);   
 	
