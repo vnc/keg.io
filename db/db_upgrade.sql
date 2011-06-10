@@ -39,7 +39,7 @@ BEGIN TRANSACTION;
 	WHERE substr(pour_date, 5, 3) = 'Mar';     
 	
 	-- Update the 'real' date column with our new parsed date column's values
-	UPDATE pour SET pour_date = pour_date2;  
+	UPDATE pour SET pour_date = CASE WHEN pour_date2 IS NULL THEN pour_date ELSE pour_date2 END;  
 	                                                                         
 	-- Clean up malformed/test dates
 	DELETE FROM pour WHERE pour_date = '';
@@ -48,19 +48,56 @@ BEGIN TRANSACTION;
 	-- Clean up empty pours
 	DELETE FROM pour WHERE volume_ounces = 0;
 	                                
-	-- Attribute old pours to the correct kegs
+	-- Attribute old pours to the correct kegs, but only if no pours are already
+	-- attributed to them
 	UPDATE pour  
-	SET keg_id = 4
+	SET keg_id = CASE WHEN EXISTS (SELECT 1 FROM pour WHERE keg_id = 4 LIMIT 1) THEN keg_id ELSE 4 END
     WHERE pour_date >= '2011-05-13T15:37:45Z';
                                   
     UPDATE pour  
-	SET keg_id = 3
+	SET keg_id = CASE WHEN EXISTS (SELECT 1 FROM pour WHERE keg_id = 3 LIMIT 1) THEN keg_id ELSE 3 END
     WHERE pour_date < '2011-05-13T15:37:45Z'
       AND pour_date >= '2011-04-22T13:23:45Z';
 
 	 UPDATE pour  
-	 SET keg_id = 2
+	 SET keg_id = CASE WHEN EXISTS (SELECT 1 FROM pour WHERE keg_id = 2 LIMIT 1) THEN keg_id ELSE 2 END
 	 WHERE pour_date < '2011-04-22T13:23:45Z'
 	   AND pour_date >= '2011-04-08T16:30:45Z';
+	
+COMMIT;  
+
+BEGIN TRANSACTION;
+	CREATE TABLE coaster(coaster_id int, name varchar(64), description varchar(255), image_path varchar(255));        
+    INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (1, 'Welcome', 'Pour a beer with keg.io!', 'images/coasters/firstbeer.png');
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (2, 'Early Bird', 'Pour a beer before noon.', 'images/coasters/earlybird.png');   
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (3, 'Mayor', 'Become the current top drinker', 'images/coasters/mayor.png');  
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (4, 'Keg Mayor', 'Become the top drinker on a keg.', 'images/coasters/kegmayor.png');     
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (5, 'Party Starter', 'Pour the first beer of the day', 'images/coasters/first.png');      
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (6, 'Closer', 'Pour the last beer of the day', 'images/coasters/closer.png');      
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (7, 'Off the Wagon', 'Pour a beer after a 3 week absence', 'images/coasters/wagon.png');  
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (8, 'Take the Bus Home', 'Pour 4 or more pints in an hour', 'images/coasters/bus.png');
+	INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (9, 'Contributor', 'Contribute to the keg.io code on github', 'images/coasters/contributor.png');     
+	
+	CREATE TABLE user_coaster(rfid varchar(10), coaster_id int, earned_date date);   
+	
+	-- Everyone gets the "welcome" coaster to start off with
+	INSERT INTO user_coaster(rfid, coaster_id, earned_date)
+	SELECT rfid, 1, MIN(pour_date)
+	FROM pour
+	WHERE rfid NOT IN (SELECT rfid 
+					   FROM user_coaster 
+					   WHERE coaster_id = 1)
+	GROUP BY rfid;
+	
+	-- For now, we'll just have to hardcode the list of who gets a "contributor" coaster
+	INSERT INTO user_coaster(rfid, coaster_id, earned_date)
+	SELECT rfid, 9, MIN(pour_date)
+	FROM pour 
+	WHERE rfid IN ('44004C234A', '44004C3A1A', '4400561A0A', '440055F873') 
+	  AND rfid NOT IN (SELECT rfid 
+					   FROM user_coaster 
+					   WHERE rfid IN ('44004C234A', '44004C3A1A', '4400561A0A', '440055F873' ) 
+					     AND coaster_id = 9)
+	GROUP BY rfid;
 	
 COMMIT;

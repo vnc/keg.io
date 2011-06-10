@@ -95,6 +95,10 @@ function drawPourHistoryAllTimeChart(json) {
 	drawPourChart(g_pourHistoryAllTimeChart, 'pour_day_chart_all_time', 'Who be drinkin the most? (all time)', json);
 };
 
+function trim(stringToTrim) { 
+	return (stringToTrim == null) ? null : stringToTrim.replace(/^\s+|\s+$/g,"");
+}
+
 var googleDatafy  = function(g_data,json){
 	
 	var values = json.value;
@@ -181,12 +185,21 @@ var updateKegInfo = function(json) {
 	}    
 }
 
-function updateMetrics(name, value) {
+function updateMetrics(name, value) {  
+
 	var inEdit = $('#newuser').attr('inEdit');
-	var values = null;
+	var values = null;  
+	
+	///////////
+	//  TAG
+	///////////
 	if (name == 'tag') {
 		// Nothing to do in the UI for a tag event
-	} else if (name == 'flow' && value == 'end') { // pour finished, update pourHistoryChart  
+	}
+	///////////
+	//  FLOW
+	/////////// 
+	else if (name == 'flow' && value == 'end') { // pour finished, update pourHistoryChart  
 		$('img#flow_status').attr("src", "images/padlock-closed.png").glow();  
 		
 		jQuery.get('pourHistory.json', null, function(json) { 
@@ -198,25 +211,40 @@ function updateMetrics(name, value) {
 				   drawPourHistoryAllTimeChart(json); 
 				});                           
 		
-	} else if (name == 'temp') {  
+		
+	}
+	///////////
+	//  TEMP
+	/////////// 
+	else if (name == 'temp') {
 		var newText = value;
 		updateTempGauge(value);
-	} else if (name == 'pour') {
-		if (value)
-		{
+	} 
+	///////////
+	//  POUR
+	///////////
+	else if (name == 'pour')
+	{                   
 			values = JSON.parse(value);
-			if (values.hash != null)
+			                
+			if ((typeof values == "undefined") || (values == null))
 			{
+				return;
+			}          
+			
+			if (values.hash != null)
+			{                                
 				// Show the user's gravatar, based on the MD5 hash passed in, or use the built-in
 				// gravatar "mystery man" (mm) if the email address isn't registered with gravatar
-				$('#user_gravatar').attr("src", "http://www.gravatar.com/avatar/" + values.hash + "?s=150&d=mm");
-			}
+				$('#user_gravatar').attr("src", 
+									"http://www.gravatar.com/avatar/" + values.hash + "?s=150&d=mm"); 
+			}                                                               
 			else
-			{
+			{   
 				$('#user_gravatar').attr("src", "images/default_avatar_150.png");
 			}
-
-			if (inEdit == 'false') {
+		 	
+		 	if( inEdit=='false'){
 				//dont change form user tag if someone has started to edit the form
 				fillUserEditForm(values, false);
 			}                                                                    
@@ -225,7 +253,7 @@ function updateMetrics(name, value) {
 			var fullname = values.first_name + " " +
 				(((values.nickname) && (values.nickname.length > 0)) ? "'" + values.nickname + "' ": "") + values.last_name;
 		   $('span#user_text').text(fullname).glow();
-			
+		   $('#coasters').html(""); 
            if (values.pouring == true)
 		   {            
 				var newText = "Hey there " + fullname + "! Pour yourself a beer!"; 
@@ -236,8 +264,10 @@ function updateMetrics(name, value) {
 					});
 					$('p#user').glow('green');
 					$('img#flow_status').attr("src", "images/padlock-open2.png").glow();    
-			}
-	    }
+		   }
+    ///////////
+	//  DENY
+	/////////// 
 	} else if (name == 'deny') {
 			values = JSON.parse(value);
 			var textToUpdate = $('p#user').text();
@@ -253,9 +283,82 @@ function updateMetrics(name, value) {
 				$('p#user').show();
 			});
 			$('p#user').glow("red");
-	} else if (name == 'remaining') {
+	}
+	///////////
+	//  REMAINING
+	/////////// 
+	else if (name == 'remaining') {
 		$('#progress_bar .ui-progress').animateProgress(value*100);
 		updateBeerGauge(Math.round(value*100)/100);
+	}
+	///////////
+	//  COASTER
+	///////////
+	else if (name == 'coaster') {
+		                        
+		// Get the mustache template, which is currently just stored in the
+		// markup of a hidden div.  We might want to move this into a seperate
+		// file that we can serve up.
+	    var template = $('#coaster_template').html();
+	                                    
+		// parse the data, and tweak it to get it into a format that's better
+		// suited to our iterative template
+		var rowData = JSON.parse(value);
+		var data = { title: "Coasters",
+					rows: rowData 
+		   		  };
+		var html = Mustache.to_html(template, data);
+		
+		console.log("ALL: " + html);                     
+		// Display
+		$('#coasters').html(html);  
+	}   
+	else if (name == 'coaster_earned') {   
+			var coaster_list = $('#coasters').find('#badgeslist');
+			
+			//var existingMarkup = trim($('#coasters').html());  
+			var existingMarkup = trim(coaster_list.html()); 
+			if ((existingMarkup != null) && (existingMarkup.length > 0))
+			{
+				// Get the mustache template, which is currently just stored in the
+					// markup of a hidden div.  We might want to move this into a seperate
+					// file that we can serve up.                
+				    var template = $('#badge_template').html();
+
+					// parse the data, and tweak it to get it into a format that's better
+					// suited to our iterative template
+					var rowData = JSON.parse(value); 
+					//alert(rowData);            
+					var html = Mustache.to_html(template, rowData[0]); 
+				  	console.log("EARNED: " + html);
+				    //$('#badgeslist').html(existingMarkup + html);  
+					coaster_list.html(existingMarkup + html);
+					$('li.badge').each(function(index) {
+					    $(this).glow("red");
+					  }); 
+			} 
+			else
+			{      
+				
+			   // TODO: COPIED VERBATIM FROM THE "COASTER"  EVENT ABOVE
+					// Get the mustache template, which is currently just stored in the
+					// markup of a hidden div.  We might want to move this into a seperate
+					// file that we can serve up.
+				    var template = $('#coaster_template').html();
+
+					// parse the data, and tweak it to get it into a format that's better
+					// suited to our iterative template
+					var rowData = JSON.parse(value);
+					var data = { title: "Coasters",
+								rows: rowData 
+					   		  };
+					var html = Mustache.to_html(template, data);
+					
+                    console.log("EARNED: " + html);                    
+					// Display
+					$('#coasters').html(html);
+					$('li.badge').glow("red");       
+			}        
 	}
 };
 
@@ -354,7 +457,7 @@ $(document).ready(function() {
 					updateFlowRateGauge(d.value);
 				}
 			}
-		});
+		});   
 		socket.on('disconnect', function() {
 			setTimeout(function() {
 				location.reload(true);
@@ -370,8 +473,8 @@ $(document).ready(function() {
 	jQuery.get('pourHistoryAllTime.json', null, function(json) { drawPourHistoryAllTimeChart(json); } ); 
 	jQuery.get('currentTemperature.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); } ); 
 	jQuery.get('currentPercentRemaining.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); }); 
-	jQuery.get('lastDrinker.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); }); 
-	
+	jQuery.get('lastDrinker.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); });  
+	jQuery.get('lastDrinkerCoasters.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); });
 	
 	$('#newuser').ajaxForm({success:newUserSuccess,beforeSubmit:validateNewUserForm});
 	$('#newuser input').focus(function(){
