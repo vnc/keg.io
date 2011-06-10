@@ -44,13 +44,6 @@ INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (3, 'Mayor
 INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (4, 'Keg Mayor', 'Become the top drinker on a keg.', 'images/coasters/kegmayor.png');     
 INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (5, 'Party Starter', 'Pour the first beer of the day', 'images/coasters/first.png');      
 INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (6, 'Closer', 'Pour the last beer of the day', 'images/coasters/closer.png');      
-INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (7, 'Off the Wagon', 'Pour a beer after a 2 week absence', 'images/coasters/wagon.png');  
-INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (8, 'Take the Bus Home', 'Pour 4 or more pints in an hour', 'images/coasters/bus.png');      
-
--- INSERT INTO user_coaster(rfid, coaster_id, earned_date) VALUES('2312A4B540', 3, '2011-05-19T18:38:17Z');      
--- INSERT INTO user_coaster(rfid, coaster_id, earned_date) VALUES('2312A4B542', 2, '2011-05-19T18:38:17Z');    
--- INSERT INTO user_coaster(rfid, coaster_id, earned_date) VALUES('2312A4B542', 3, '2011-05-19T18:38:17Z');    
--- INSERT INTO user_coaster(rfid, coaster_id, earned_date) VALUES('2312A4B542', 4, '2011-05-19T18:38:17Z');    
--- INSERT INTO user_coaster(rfid, coaster_id, earned_date) VALUES('2312A4B542', 5, '2011-05-19T18:38:17Z');    
--- INSERT INTO user_coaster(rfid, coaster_id, earned_date) VALUES('2312A4B542', 6, '2011-05-19T18:38:17Z');    
--- INSERT INTO user_coaster(rfid, coaster_id, earned_date) VALUES('2312A4B543', 2, '2011-05-19T18:38:17Z');     
+INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (7, 'Off the Wagon', 'Pour a beer after a 3 week absence', 'images/coasters/wagon.png');  
+INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (8, 'Take the Bus Home', 'Pour 4 or more pints in an hour', 'images/coasters/bus.png');        
+INSERT INTO coaster(coaster_id, name, description, image_path) VALUES (9, 'Contributor', 'Contribute to the keg.io code on github', 'images/coasters/contributor.png');        
