@@ -439,6 +439,7 @@ window.log = function(){
 })(document);
 
 // add background noise
+/*
 $('body').noisy({
     'intensity' : 0.816, 
     'size' : '500', 
@@ -446,7 +447,7 @@ $('body').noisy({
     'fallback' : '', 
     'monochrome' : true
 }).css('background-color', '#364A55');
-
+*/
 // initialize tabs
 $(function() {
 		$( "#tabs" ).tabs();
