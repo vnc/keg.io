@@ -119,7 +119,7 @@ var googleDatafy  = function(g_data,json){
 	
 };
 var drawGauges = function(){
-	     tempGaugeOptions.data = new google.visualization.DataTable();
+	    tempGaugeOptions.data = new google.visualization.DataTable();
         tempGaugeOptions.data.addColumn('string', 'Label');
         tempGaugeOptions.data.addColumn('number', 'Value');
         tempGaugeOptions.data.addRows(1);
@@ -133,15 +133,14 @@ var drawGauges = function(){
         flowRateGaugeOptions.data.setValue(0, 0, 'Flow');
         flowRateGaugeOptions.data.setValue(0, 1, 0);
         
-      tempGauge = new google.visualization.Gauge(document.getElementById('temp_chart'));
-		
+      	tempGauge = new google.visualization.Gauge(document.getElementById('temp_chart'));
         tempGauge.draw(tempGaugeOptions.data , tempGaugeOptions);
         
         flowRateGauge =  new google.visualization.Gauge(document.getElementById('flow_chart'));
         flowRateGauge.draw(flowRateGaugeOptions.data,flowRateGaugeOptions);
         window.setInterval(needleBump,100);
         
-	     beerGaugeOptions.data = new google.visualization.DataTable();
+	    beerGaugeOptions.data = new google.visualization.DataTable();
         beerGaugeOptions.data.addColumn('string', 'Label');
         beerGaugeOptions.data.addColumn('number', 'Value');
         beerGaugeOptions.data.addRows(1);
@@ -149,7 +148,6 @@ var drawGauges = function(){
         beerGaugeOptions.data.setValue(0, 1, 0);
         beerGauge =  new google.visualization.Gauge(document.getElementById('beer_chart'));
         beerGauge.draw(beerGaugeOptions.data,beerGaugeOptions);
-	
 }
 
 var updateFlowRateGauge = function(value){
@@ -240,8 +238,9 @@ function updateMetrics(name, value) {
 	///////////
 	//  FLOW
 	/////////// 
-	else if (name == 'flow' && value == 'end') { // pour finished, update pourHistoryChart  
-		$('img#flow_status').attr("src", "images/padlock-closed.png").glow();  
+	else if (name == 'flow' && value == 'end') { 
+		// pour finished, update pourHistoryChart  
+		$('img#flow_status').attr("src", "images/padlock-closed.png").attr("alt", "keg locked");   
 		
 		jQuery.get('pourHistory.json', null, function(json) { 
 			drawPourHistoryChart(json);
@@ -302,7 +301,7 @@ function updateMetrics(name, value) {
            if (values.pouring == true)
 		   {            
 				showSpeechBubble("Hey there " + fullname + "! Pour yourself a beer!", 8000);
-				$('img#flow_status').attr("src", "images/padlock-open2.png").glow();    
+				$('img#flow_status').attr("src", "images/padlock-open2.png").attr("alt", "keg unlocked!");   
 		   }
     ///////////
 	//  DENY
@@ -321,7 +320,6 @@ function updateMetrics(name, value) {
 	//  REMAINING
 	/////////// 
 	else if (name == 'remaining') {
-		$('#progress_bar .ui-progress').animateProgress(value*100);
 		updateBeerGauge(Math.round(value*100)/100);
 	}
 	///////////

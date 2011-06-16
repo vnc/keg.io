@@ -86,10 +86,6 @@ ul {
 	margin-left: 40px;
 }
 
-#main #flow_lock {
-	position: absolute; top: 25px; right: 125px; border: 0;
-}
-
 #footer p {
 	padding:10px;
 	margin:0;
@@ -136,7 +132,7 @@ ul.badges
     margin-right: 15px;
     margin-bottom: 15px;
     float: left;
-    width: 144px;
+    width: 175px;
     padding: 0px;
    /* background: #efefef;
     background: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#dfe1e2));
