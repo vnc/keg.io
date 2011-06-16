@@ -1,0 +1,125 @@
+/* ------------------------------------------
+PURE CSS SPEECH BUBBLES
+by Nicolas Gallagher
+- http://nicolasgallagher.com/pure-css-speech-bubbles/
+
+http://nicolasgallagher.com
+http://twitter.com/necolas
+
+Created: 02 March 2010
+Version: 1.2 (03 March 2011)
+
+Dual licensed under MIT and GNU GPLv2 © Nicolas Gallagher 
+------------------------------------------ */
+
+/* NOTE: Some declarations use longhand notation so that it can be clearly
+explained what specific properties or values do and what their relationship
+is to other properties or values in creating the effect */
+
+
+
+/* 
+ Should you want to set a background colour on a containing element
+ certain types of bubble effect may require you to include these 
+ style declarations.
+ */
+.content {
+    position:relative;
+    z-index:1;
+}
+
+/* ============================================================================================================================
+== RECTANGLE-BORDER STYLE WITH CURVE
+** ============================================================================================================================ */
+
+.rectangle-speech-border {
+	position:absolute;
+	top: 0px;
+	left: 400px; 
+	padding:15px 15px; 
+	margin:1em 0 3em;
+	border:10px solid #E3E839; 
+	text-align:center; 
+	color:#fff;
+	background:#000;
+ 	filter: alpha(opacity=80);
+  	-moz-opacity: 0.80;
+  	opacity: 0.80;
+	/* css3 */
+	-webkit-border-radius:20px;
+	-moz-border-radius:20px;
+	border-radius:20px;
+}
+
+/* creates larger curve */
+.rectangle-speech-border:before {
+	content:""; 
+	position:absolute; 
+	z-index:10; 
+	bottom:-40px; 
+	left:50px; 
+	width:50px; 
+	height:30px;
+	border-style:solid; 
+	border-width:0 10px 10px 0; 
+	border-color:#E3E839; 
+	background:transparent;
+	/* css3 */
+	-webkit-border-bottom-right-radius:80px 50px;
+	-moz-border-radius-bottomright:80px 50px;
+	border-bottom-right-radius:80px 50px;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+}
+
+/* creates smaller curve */
+.rectangle-speech-border:after {
+	content:""; 
+	position:absolute; 
+	z-index:10; 
+	bottom:-40px; 
+	left:50px; 
+	width:20px; 
+	height:30px; 
+	border-style:solid; 
+	border-width:0 10px 10px 0; 
+	border-color:#E3E839; 
+	background:transparent;
+	/* css3 */
+	-webkit-border-bottom-right-radius:40px 50px; 
+	-moz-border-radius-bottomright:40px 50px; 
+	border-bottom-right-radius:40px 50px; 
+    /* reduce the damage in FF3.0 */
+    display:block; 
+}
+
+/* creates a small circle to produce a rounded point where the two curves meet */
+.rectangle-speech-border > :first-child:before {
+	content:""; 
+	position:absolute; 
+	bottom:-40px; 
+	left:45px; 
+	width:10px; 
+	height:10px;
+	background:#E3E839;
+	/* css3 */
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+
+/* creates a white rectangle to cover part of the oval border*/
+.rectangle-speech-border > :first-child:after {
+	content:""; 
+	position:absolute; 
+	bottom:-10px; 
+	left:76px; 
+	width:24px; 
+	height:15px; 
+	color:#fff;
+	background:#000;
+ 	filter: alpha(opacity=80);
+  	-moz-opacity: 0.80;
+  	opacity: 0.80;
+}
+
