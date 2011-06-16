@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US">
+<head>
+	<meta name="description" content="Info, status, and statistics about a kegerator. Receives kegerator sensor data from an Arduino and displays it on your web browser!">
+  	<meta name="author" content="VNC" >
+	<meta charset="utf-8">
+  	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame. Remove this if you use the .htaccess -->
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<!--  Mobile Viewport Fix
+        j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag 
+  	device-width : Occupy full width of the screen in its current orientation
+  	initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
+  	maximum-scale = 1.0 retains dimensions instead of zooming in if page width < device width
+  	-->
+  	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+
+	<link href='http://fonts.googleapis.com/css?family=Cabin+Sketch:bold' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>  
+	<link href='http://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/style_dcarney.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="css/speech.css" media="screen" />
+	
+	<!-- Place favicon.ico and apple-touch-icon.png in the root of your domain and delete these references -->
+  	<link rel="shortcut icon" href="/favicon.ico">
+	<!-- Creates a nice-looking icon when someone adds keg.io to the iPhone's home screen -->
+	<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+	
+	<script src="https://www.google.com/jsapi?key=ABQIAAAA-hloRCoCScu-_bN2fSn1sRR4EqRj3RNZnoYuzojShxUjcPQKRRTnvFxdzgemDA4fIDmabxpsMJwNew" type="text/javascript"></script>
+	<script src="https://www.google.com/uds/?file=visualization&v=1&packages=gauge" language="javascript"></script>
+	<script type="text/javascript" >
+		google.load("visualization", "1", {packages:["corechart"]});
+	</script>
+ 
+	<!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+	<script src="js/modernizr-1.5.min.js"></script>
+</head>
+
+<body>
+<div id="wrap">
+	<a href="http://github.com/vnc/keg.io">
+		<img style="position: absolute; top: 0; right: 0; border: 0; z-index: 9999;" 												src="https://d3nwyuy0nl342s.cloudfront.net/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub">
+	</a>
+	
+	<div id="header"></div>
+	<div id="sidebar">
+		<h1>keg.io</h1>
+		
+	
+		<blockquote id="speech_bubble" class="rectangle-speech-border" style="display:none;">
+			<p>This is a blockquote that is styled to look like a speech bubble</p>
+		</blockquote>
+	
+					
+		<div class="beer_info">
+			<img id="beer_label" src="images/rainier.jpg" width="208" height="162"/>
+			<ul>
+				<li><strong>On tap:</strong> <span id="beer_name">beer name</span></li>
+				<li><strong>Beer style:</strong> <span id="beer_style">American Lager</span></li>
+			    <li><strong>Brewery:</strong> <span id="beer_brewery">Some Brewery</span></li>
+				<li><strong>Tapped on:</strong> <span id="beer_tapped_date">12-Jun-2011</span></li>
+			<ul>
+		</div>
+		
+		<br />
+		<div class="center_box" style="clear:both;">
+			<div id="flow_chart" class="gauges"></div>
+			<div id="temp_chart" class="gauges"></div>
+			<div id="beer_chart" class="gauges"></div> 
+
+			<!-- Adding a chart div as a direct child of this div will cause it to get rotated on an interval by jQuery -->    
+			<!-- Just ensure that only one chart is visible on page load -->
+			<div id="rotating_charts">
+				<div id="pour_day_chart" class="pour_chart"></div> 
+				<div id="pour_day_chart_all_time" class="pour_chart" style="display:none;"></div>    
+			</div>
+		</div>
+		<div class="sign">
+			<img id="flow_status" src="images/padlock-closed.png" /> 
+		</div>
+	</div>
+	
+	<div id="main">
+		<div class="badge">
+			<div class="badge_header"></div>
+			<div class="badge_main">
+				<img id="user_gravatar" />
+				<ul>
+					<li>Last drinker: <span id="user_text"></span></li>
+					<li>Member since: <span id="user_date">25-Mar-2011</span></li>
+				    <li>Total pours: <span id="user_pours">666</span></li>
+				<ul>
+			</div>
+		</div>
+		<div id="coaster_template" style="display:none;">
+			<h1>{{title}}</h1>
+			<ul class="badges" id="badgeslist">
+				{{#rows}}
+				<div id="badge_template">
+				<li class="badge">
+					<h4>{{name}}</h4> 
+					<div class="image"> 
+						<img src="{{image_path}}" />
+					</div>
+					<p>{{description}}</p>
+				</li>
+				</div>
+				{{/rows}}
+			</ul>
+		</div>
+		<div id="coasters"></div>
+		<!-- <p id="user">
+		</p> -->
+	</div>
+</div> <!-- wrap-->
+
+<!-- Javascript at the bottom for fast page loading -->
+
+<!-- Grab Google CDN's jQuery. fall back to local if necessary -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script>!window.jQuery && document.write('<script src="js/jquery-1.4.2.min.js"><\/script>')</script>
+
+<script src="/js/socket.io.js"></script>
+<script src="/js/jquery-ui-1.8.10.custom.min.js"></script>
+<script src="/js/jquery.ieblocker.js" type="text/javascript"></script>
+<script src="/js/jquery.form.js?v=1"></script><script type="text/javascript"></script> 
+ <script src="/js/plugins.js?v=1"></script>     
+<script src="js/mustache.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/script.js?v=1"></script>
+<!--[if lt IE 7 ]>
+  <script src="js/dd_belatedpng.js?v=1"></script>
+<![endif]-->
+
+<!-- yui profiler and profileviewer - remove for production -->
+<script src="/js/profiling/yahoo-profiling.min.js?v=1"></script>
+<script src="/js/profiling/config.js?v=1"></script>
+<!-- end profiling code -->
+
+</body>
+</html>
