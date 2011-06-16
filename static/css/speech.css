@@ -34,10 +34,11 @@ is to other properties or values in creating the effect */
 
 .rectangle-speech-border {
 	position:absolute;
-	top: 0px;
+	top: -10px;
 	left: 400px; 
-	padding:15px 15px; 
+	padding:5px 5px; 
 	margin:1em 0 3em;
+	font-size: 30px;
 	border:10px solid #E3E839; 
 	text-align:center; 
 	color:#fff;

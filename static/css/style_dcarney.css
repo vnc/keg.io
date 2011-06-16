@@ -34,7 +34,7 @@ ul {
 #sidebar {
 	float:left;
 	width:34%;
-	background:#222222;
+	background:#111;
 	color: white;
 	height:100%;
 	padding-left:1%;
@@ -46,6 +46,10 @@ ul {
 	width:63%;
 	height:100%;
 	color: white;
+}
+
+#main .badge_main {
+		font-size:25px;
 }
 
 #sidebar h1
@@ -90,8 +94,6 @@ ul {
 	padding:10px;
 	margin:0;
 }
-
-
 
 
 img#user_gravatar {

@@ -277,7 +277,7 @@ function updateMetrics(name, value) {
 				// Show the user's gravatar, based on the MD5 hash passed in, or use the built-in
 				// gravatar "mystery man" (mm) if the email address isn't registered with gravatar
 				$('#user_gravatar').attr("src", 
-									"http://www.gravatar.com/avatar/" + values.hash + "?s=150&d=mm"); 
+									"http://www.gravatar.com/avatar/" + values.hash + "?s=250&d=mm"); 
 			}                                                               
 			else
 			{   

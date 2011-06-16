@@ -70,13 +70,16 @@
 		
 		<br />
 		<div class="center_box" style="clear:both;">
-			<div id="flow_chart" class="gauges"></div>
-			<div id="temp_chart" class="gauges"></div>
-			<div id="beer_chart" class="gauges"></div> 
+			<div>
+				<div id="flow_chart" class="gauges"></div>
+				<div id="temp_chart" class="gauges"></div>
+				<div id="beer_chart" class="gauges"></div> 
+			</div>
 
 			<!-- Adding a chart div as a direct child of this div will cause it to get rotated on an interval by jQuery -->    
 			<!-- Just ensure that only one chart is visible on page load -->
-			<div id="rotating_charts">
+			<div id="rotating_charts" 
+			style="background-image: url('images/sp-outline.png'); background-repeat:no-repeat; width:475px; float:left; padding-left: 12px; padding-top: 11px; height: 224px;">
 				<div id="pour_day_chart" class="pour_chart"></div> 
 				<div id="pour_day_chart_all_time" class="pour_chart" style="display:none;"></div>    
 			</div>
@@ -90,9 +93,9 @@
 			<div class="badge_main">
 				<img id="user_gravatar" />
 				<ul>
-					<li>Last drinker: <span id="user_text"></span></li>
-					<li>Member since: <span id="user_date">25-Mar-2011</span></li>
-				    <li>Total pours: <span id="user_pours">666</span></li>
+					<li><strong>Last drinker:</strong> <span id="user_text"></span></li>
+					<li><strong>Member since:</strong> <span id="user_date">25-Mar-2011</span></li>
+				    <li><strong>Total pours:</strong> <span id="user_pours">666</span></li>
 				<ul>
 			</div>
 		</div>
