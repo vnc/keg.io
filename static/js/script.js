@@ -93,11 +93,11 @@ function drawPourChart(historyChart, chartElementId, title, colors, json) {
 
 // Pour history chart options	
 function drawPourHistoryChart(json) {
-	drawPourChart(g_pourHistoryChart, 'pour_day_chart', 'Who be drinkin all of this keg?', ['blue'], json);
+	drawPourChart(g_pourHistoryChart, 'pour_day_chart', 'Who be drinkin all of this keg?', ['#1FD8D8'], json);
 };          
 
 function drawPourHistoryAllTimeChart(json) { 
-	drawPourChart(g_pourHistoryAllTimeChart, 'pour_day_chart_all_time', 'Who be drinkin the most? (all time)',  ['red'], json);
+	drawPourChart(g_pourHistoryAllTimeChart, 'pour_day_chart_all_time', 'Who be drinkin the most? (all time)',  ['#FF6E00'], json);
 };
 
 function trim(stringToTrim) { 

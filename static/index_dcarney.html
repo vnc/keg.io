@@ -45,7 +45,6 @@
 	<div id="sidebar">
 		<h1>keg.io</h1>
 		
-	
 		<blockquote id="speech_bubble" class="rectangle-speech-border" style="display:none;">
 			<p>This is a blockquote that is styled to look like a speech bubble</p>
 		</blockquote>
@@ -58,6 +57,7 @@
 				<li><strong>Style:</strong> <span id="beer_style">American Lager</span></li>
 			    <li><strong>Brewery:</strong> <span id="beer_brewery">Some Brewery</span></li>
 				<li><strong>Tapped on:</strong> <span id="beer_tapped_date">01-Jan-1970</span></li>
+				<li><em><span id="beer_desc">It'll get you drunk!</span></em></li>
 			<ul>
 		</div>
 		
@@ -74,9 +74,7 @@
 				<div id="pour_day_chart_all_time" class="pour_chart" style="display:none;"></div>    
 			</div>
 		</div>
-		<div class="sign">
-			<img id="flow_status" src="images/padlock-closed.png" /> 
-		</div>
+		
 	</div>
 	
 	<div id="main">
@@ -90,6 +88,9 @@
 				    <li>Total pours: <span id="user_pours">666</span></li>
 				<ul>
 			</div>
+		</div>
+		<div id="flow_lock">
+			<img id="flow_status" src="images/padlock-closed.png" /> 
 		</div>
 		<div id="coaster_template" style="display:none;">
 			<h1>{{title}}</h1>

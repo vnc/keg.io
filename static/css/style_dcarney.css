@@ -33,10 +33,11 @@ ul {
 
 #sidebar {
 	float:left;
-	width:35%;
+	width:34%;
 	background:#222222;
 	color: white;
 	height:100%;
+	padding-left:1%;
 }
 
 #main {
@@ -80,6 +81,15 @@ ul {
 	float:left;
 	margin: 10px 10px 25px 10px;
 }
+
+#sidebar #rotating_charts {
+	margin-left: 40px;
+}
+
+#main #flow_lock {
+	position: absolute; top: 25px; right: 125px; border: 0;
+}
+
 #footer p {
 	padding:10px;
 	margin:0;
