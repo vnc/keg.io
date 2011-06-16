@@ -214,6 +214,16 @@ var updateKegInfo = function(json) {
 	}    
 }
 
+var showSpeechBubble = function(text, fadeDelayInMs) {
+	$('blockquote#speech_bubble p').text(text);
+	$('blockquote#speech_bubble').show();
+	$('blockquote#speech_bubble').fadeOut(fadeDelayInMs,
+		function() {
+			$('blockquote#speech_bubble p').text('');
+		});
+	$('blockquote#speech_bubble').glow('green');
+}
+
 function updateMetrics(name, value) {  
 
 	var inEdit = $('#newuser').attr('inEdit');
@@ -281,37 +291,26 @@ function updateMetrics(name, value) {
 		    var textToUpdate = $('blockquote#speech_bubble p').text();
 			var fullname = values.first_name + " " +
 				(((values.nickname) && (values.nickname.length > 0)) ? "'" + values.nickname + "' ": "") + values.last_name;
+				
+		   $('span#user_text').text(fullname);
 		   $('#coasters').html(""); 
            if (values.pouring == true)
 		   {            
-				var newText = "Hey there " + fullname + "! Pour yourself a beer!"; 
-				$('blockquote#speech_bubble p').text(newText);
-				$('blockquote#speech_bubble').show();
-				$('blockquote#speech_bubble').fadeOut(8000,
-					function() {
-						$('blockquote#speech_bubble p').text('');
-					});
-					$('blockquote#speech_bubble').glow('green');
-					$('img#flow_status').attr("src", "images/padlock-open2.png").glow();    
+				showSpeechBubble("Hey there " + fullname + "! Pour yourself a beer!", 8000);
+				$('img#flow_status').attr("src", "images/padlock-open2.png").glow();    
 		   }
     ///////////
 	//  DENY
 	/////////// 
 	} else if (name == 'deny') {
 			values = JSON.parse(value);
-			var textToUpdate = $('p#user').text();
-			var newText = "Denied! Don\'t even think about trying to drink from our keg.";
 			
-			//alert(inEdit);
 			if( inEdit=='false'){
 				//dont change form user tag if someone has started to edit the form
 				fillUserEditForm(values, true);
 			}
-		    $('p#user').text(newText).fadeOut(5000, function() { 
-				$('p#user').text('');
-				$('p#user').show();
-			});
-			$('p#user').glow("red");
+		    
+		showSpeechBubble("Denied! Don\'t even think about trying to drink from our keg.", 8000);
 	}
 	///////////
 	//  REMAINING
