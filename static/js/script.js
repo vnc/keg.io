@@ -16,6 +16,7 @@ var beerGaugeOptions = {
 	redTo: 10,
 	yellowFrom:10,
 	yellowTo:30,
+	yellowColor: '#FF6E00',
 	greenFrom:80,
 	greenTo:100,
 	width: 150,
@@ -29,11 +30,13 @@ var tempGaugeOptions = {
 	max:70,
 	greenFrom:30,
 	greenTo:48,
-	greenColor:'blue',
+	greenColor:'#1FD8D8',
 	yellowFrom:48,
 	yellowTo:60,
+	yellowColor: '#FF6E00',
 	redFrom:60,
 	redTo:70,
+	redColor: 'red',
 	width:150,
 	height:150,
 	data:{}
@@ -44,6 +47,7 @@ var flowRateGaugeOptions = {
 	redTo:80,
 	yellowFrom:60,
 	yellowTo:70,
+	yellowColor: '#FF6E00',
 	width:150,
 	height:150,
 	min: 0,
@@ -274,20 +278,20 @@ function updateMetrics(name, value) {
 				fillUserEditForm(values, false);
 			}                                                                    
 			
-		    var textToUpdate = $('p#user').text();
+		    var textToUpdate = $('blockquote#speech_bubble p').text();
 			var fullname = values.first_name + " " +
 				(((values.nickname) && (values.nickname.length > 0)) ? "'" + values.nickname + "' ": "") + values.last_name;
-		   $('span#user_text').text(fullname).glow();
 		   $('#coasters').html(""); 
            if (values.pouring == true)
 		   {            
 				var newText = "Hey there " + fullname + "! Pour yourself a beer!"; 
-				$('p#user').text(newText).fadeOut(5000,
+				$('blockquote#speech_bubble p').text(newText);
+				$('blockquote#speech_bubble').show();
+				$('blockquote#speech_bubble').fadeOut(8000,
 					function() {
-						$('p#user').text('');
-						$('p#user').show();
+						$('blockquote#speech_bubble p').text('');
 					});
-					$('p#user').glow('green');
+					$('blockquote#speech_bubble').glow('green');
 					$('img#flow_status').attr("src", "images/padlock-open2.png").glow();    
 		   }
     ///////////
@@ -484,10 +488,10 @@ $(document).ready(function() {
 			}
 		});   
 		socket.on('disconnect', function() {
-			setTimeout(function() {
+		/*	setTimeout(function() {
 				location.reload(true);
 				reloadAttempt++;
-			}, Math.pow(2,reloadAttempt));
+			}, Math.pow(2,reloadAttempt)); */
 		});
 	});
 		
