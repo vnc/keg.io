@@ -208,9 +208,11 @@ var updateKegInfo = function(json) {
 	if ((data != null) && (data.length > 0))
 	{
 	   $('#beer_desc').text(data[0].description);
-	   $('#beer_name').text(data[0].beer + " " + data[0].beer_style);
+	   $('#beer_name').text(data[0].beer);
+	   $('#beer_style').text(data[0].beer_style);
 	   $('#beer_brewery').text(data[0].brewery);
 	   $('#beer_label').attr("src", data[0].image_path);
+	   $('#beer_tapped_date').text(dateFormat(data[0].tapped_date, "dd-mmm-yyyy"));
 	}    
 }
 
@@ -265,7 +267,7 @@ function updateMetrics(name, value) {
 	else if (name == 'pour')
 	{                   
 			values = JSON.parse(value);
-			                
+			            
 			if ((typeof values == "undefined") || (values == null))
 			{
 				return;
@@ -293,6 +295,9 @@ function updateMetrics(name, value) {
 				(((values.nickname) && (values.nickname.length > 0)) ? "'" + values.nickname + "' ": "") + values.last_name;
 				
 		   $('span#user_text').text(fullname);
+		   $('span#user_date').text(dateFormat(values.member_since, "dd-mmm-yyyy"));
+		   $('span#user_pours').text(values.num_pours);
+		
 		   $('#coasters').html(""); 
            if (values.pouring == true)
 		   {            
@@ -337,7 +342,6 @@ function updateMetrics(name, value) {
 		   		  };
 		var html = Mustache.to_html(template, data);
 		
-		console.log("ALL: " + html);                     
 		// Display
 		$('#coasters').html(html);  
 	}   
@@ -358,7 +362,6 @@ function updateMetrics(name, value) {
 					var rowData = JSON.parse(value); 
 					//alert(rowData);            
 					var html = Mustache.to_html(template, rowData[0]); 
-				  	console.log("EARNED: " + html);
 				    //$('#badgeslist').html(existingMarkup + html);  
 					coaster_list.html(existingMarkup + html);
 					$('li.badge').each(function(index) {
@@ -381,8 +384,7 @@ function updateMetrics(name, value) {
 								rows: rowData 
 					   		  };
 					var html = Mustache.to_html(template, data);
-					
-                    console.log("EARNED: " + html);                    
+					         
 					// Display
 					$('#coasters').html(html);
 					$('li.badge').glow("red");       
