@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<script src="https://www.google.com/jsapi?key=ABQIAAAA-hloRCoCScu-_bN2fSn1sRR4EqRj3RNZnoYuzojShxUjcPQKRRTnvFxdzgemDA4fIDmabxpsMJwNew" type="text/javascript">
+</script>
+<script src="https://www.google.com/uds/?file=visualization&v=1&packages=gauge" language="javascript"></script>
+<script type="text/javascript" >
+google.load("visualization", "1", {packages:["corechart"]});
+</script>
+  <meta charset="utf-8">
+
+  <!-- www.phpied.com/conditional-comments-block-downloads/ -->
+  <!--[if IE]><![endif]-->
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
+       Remove this if you use the .htaccess -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>keg.io</title>
+  <meta name="description" content="Info, status, and statistics about a kegerator. Receives kegerator sensor data from an Arduino and displays it on your web browser!">
+  <meta name="author" content="VNC" >
+
+  <!--  Mobile Viewport Fix
+        j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag 
+  device-width : Occupy full width of the screen in its current orientation
+  initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
+  maximum-scale = 1.0 retains dimensions instead of zooming in if page width < device width
+  -->
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root of your domain and delete these references -->
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Creates a nice-looking icon when someone adds keg.io to the iPhone's home screen -->
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+
+  <!-- CSS : implied media="all" -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/forms.css">
+  <link rel="stylesheet" href="/css/ui-lightness/jquery-ui-1.8.10.custom.css">
+
+  <!-- For the less-enabled mobile browsers like Opera Mini -->
+  <link rel="stylesheet" media="handheld" href="/css/handheld.css">
+
+  <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+  <script src="js/modernizr-1.5.min.js"></script> 
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-10695781-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+
+<!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <body class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <body class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <body class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <body> <!--<![endif]-->
+
+<a href="http://github.com/vnc/keg.io">
+	<img style="position: absolute; top: 0; right: 0; border: 0; z-index: 9999;" 				src="https://d3nwyuy0nl342s.cloudfront.net/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub">
+</a>
+
+  <div class="container_12" id="container">
+    <div class="grid_12" id="main">
+        <div class="grid_12">
+
+			<div id="tabs" class="grid_12 ui-tabs" style="height: 800px;">
+				<ul>
+					<li><a href="#current"><span>Current</span></a></li>
+					<li><a href="#admin"><span>Admin</span></a></li> 
+				</ul>                                                
+				<a href="http://www.twitter.com/keg_io"><img src="http://twitter-badges.s3.amazonaws.com/follow_me-b.png" alt="Follow keg_io on Twitter"/></a>
+				<div id="current" class="grid_12 ui-tabs-hide">
+					<div class="grid_2">  
+						<h1>Currently on tap</h1> 
+						<div class="beerinfo"> 
+							<h4><span id="beer_name">beer name</span> from <span id="beer_brewery">brewery</span> <h4>
+							<div class="image">
+								<img id="beer_label" src="" />
+							</div>
+							<p id="beer_desc">description</p>
+						</div>
+					</div>        
+					<div id="readout" class="grid_2">  
+						<h1>Last Drinker</h1>   
+						<div class="drinker">
+							<h4><span id="user_text"></span></h4> 
+							<div class="image"> 
+								<img id="user_gravatar" src="{{image_path}}" />
+							</div>
+						</div>
+					</div>
+					<div id="coaster_template" style="display:none;">
+						<h1>{{title}}</h1>
+						<ul class="badges" id="badgeslist">
+							{{#rows}}
+							<div id="badge_template">
+							<li class="badge">
+								<h4>{{name}}</h4> 
+								<div class="image"> 
+									<img src="{{image_path}}" />
+								</div>
+								<p>{{description}}</p>
+							</li>
+							</div>
+							{{/rows}}
+						</ul>
+					</div>
+					<div id="coasters" class="grid_8"></div>
+					<p id="user" class="grid_11">
+					</p>
+				   <div style="margin: 0 auto; width:100%;" class="grid_2">
+						<div id="flow_chart" class="grid_2"></div>
+						<div id="temp_chart" class="grid_2"></div>
+						<div id="beer_chart" class="grid_2"></div>
+				   </div>
+				   <p>
+				   	<br/>
+					</p>
+				   <div id="pour_day_chart" class="grid_5 suffix_1"></div>
+				   <div id="pour_day_chart_all_time" class="grid_5 suffix_1"></div>
+                   <img id="flow_status" src="images/padlock-closed.png" class="grid_5 suffix_1" style="height:200px; width:200px; padding-right:0px;"/>
+				</div>
+				<div id="admin" class="ui-tabs-hide">
+					<p>a little nosey, aren't we?</p>
+					
+					<form id="newuser" action="addUser.json" method="get" style="display:none;">
+					<ul>
+					<li>
+					<label for="usertag">User Tag:</label>
+					<input type="text" value="" id="usertag" name="usertag" readonly="readonly"/>
+					</li><li>
+					<label for="firstname">First Name:</label>
+						<input type="text" name="firstname" id="firstname" required="required" /></li>
+						<li>
+						<label for="lastname">Last Name:</label>
+						<input type="text" name="lastname" id="lastname" required="required" /></li>
+						<li>
+						<label for="email">Email:</label>
+						<input type="email" size="30" name="email" id="email" /></li>
+						<li>
+						<label for="twitterusername">Twitter Username:</label>
+						<input type="text" name="twitterusername" id="twitterusername" maxlength="20" /></li>
+						<li>
+						<label for="kegiopassword">Keg.io Password:</label>
+						<input type="password" name="kegiopassword" id="kegiopassword" maxlength="20" required="required" /></li>
+						<li><span id="formerror" class="error"></span></li>						
+						<li>
+							<input type="submit" id="newusersubmit" value="Add New User" />						
+						</li>
+					</ul>
+					<input type="hidden" name="isnewuser" value="true" />
+					</form>
+					<span id="newuserformsuccess"></span>
+				</div>
+			</div>
+		</div>
+    </div>
+  </div> <!--! end of #container -->
+
+
+  <!-- Javascript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery. fall back to local if necessary -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script>!window.jQuery && document.write('<script src="js/jquery-1.4.2.min.js"><\/script>')</script>
+
+  <script src="/js/socket.io.js"></script>
+  <script src="/js/jquery-ui-1.8.10.custom.min.js"></script>
+  <script src="/js/highcharts.js"></script>
+  <script src="/js/plugins.js?v=1"></script>                  
+  <script src="/js/jquery.ieblocker.js" type="text/javascript"></script>
+  <script src="/js/jquery.form.js?v=1"></script><script type="text/javascript"></script> 
+   <script src="js/mustache.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/js/script.js?v=1"></script>
+  <!--[if lt IE 7 ]>
+    <script src="js/dd_belatedpng.js?v=1"></script>
+  <![endif]-->
+
+
+  <!-- yui profiler and profileviewer - remove for production -->
+  <script src="/js/profiling/yahoo-profiling.min.js?v=1"></script>
+  <script src="/js/profiling/config.js?v=1"></script>
+  <!-- end profiling code -->
+
+
+  <!-- asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet 
+       change the UA-XXXXX-X to be your site's ID -->
+  <script>
+/*
+   var _gaq = [['_setAccount', '<%= analyticssiteid %>'], ['_trackPageview']];
+   (function(d, t) {
+    var g = d.createElement(t),
+        s = d.getElementsByTagName(t)[0];
+    g.async = true;
+    g.src = '//www.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g, s);
+   })(document, 'script');
+*/
+  </script>
+  
+</body>
+</html>

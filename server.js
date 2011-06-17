@@ -118,11 +118,8 @@ router.ignoreCase = true;
 router.get('/', function(req, res) {
 	base.serveFile('/index.html', 200, {}, req, res);
 })                  
-.get('/new', function(req, res) {
-	base.serveFile('/index_c4.html', 200, {}, req, res);
-})
-.get('/newnew', function(req, res) {
-	base.serveFile('/index_dcarney.html', 200, {}, req, res);
+.get('/old', function(req, res) {
+	base.serveFile('/index_old.html', 200, {}, req, res);
 })
 .get('/socketPort.json', function(req, res) {
  	 res.writeHead(200, {'Content-Type': 'text/plain'});
