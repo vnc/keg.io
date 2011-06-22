@@ -157,6 +157,12 @@ router.get('/', function(req, res) {
 		 res.end(JSON.stringify({ name: 'coaster', value: result }));
 	});
 })
+.get('/recentHistory.json', function(req, res) {
+	keg.getRecentHistory(function(result) {
+		res.writeHead(200, {'Content-Type': 'text/plain'});
+		res.end(JSON.stringify(result));
+	})
+})
 .get('/pourHistory.json', function(req, res) {
 	keg.getPourTrend(function(result) {
 		res.writeHead(200, {'Content-Type': 'text/plain'});

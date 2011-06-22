@@ -102,11 +102,13 @@ img#user_gravatar {
 	padding-right: 10px;
 }
 
-div#coasters {
+div#coasters,
+div#history {
 	clear:both;
 }
 
-div#coasters h1 {
+div#coasters h1,
+div#history h1 {
 	clear:both;
 	margin: 0px;
 }

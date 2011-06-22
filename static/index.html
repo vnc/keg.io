@@ -116,8 +116,17 @@
 			</ul>
 		</div>
 		<div id="coasters"></div>
-		<!-- <p id="user">
-		</p> -->
+		
+		<div id="history_template" style="display:none;">
+			<h1>{{title}}</h1>
+			<ul>
+				{{#rows}}
+				<li>{{first_name}}&nbsp;{{last_name}}: {{volume_ounces}} ounces at {{pour_date}}</li>
+				{{/rows}}
+			</ul>
+		</div>
+		
+		<div id="history"></div>
 	</div>
 </div> <!-- wrap-->
 

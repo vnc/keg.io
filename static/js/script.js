@@ -201,6 +201,27 @@ var rotateCharts = function rotateCharts() {
 		var newChart = $("#rotating_charts").children().eq(visibleIndex).show();
 }
                                           
+var updateHistory = function(historyData) {
+	if ((historyData != null) && (historyData.length > 0)) {
+		
+		// Get the mustache template, which is currently just stored in the
+		// markup of a hidden div.  We might want to move this into a seperate
+		// file that we can serve up.           
+		var history = JSON.parse(historyData);
+	    var template = $('#history_template').html();
+
+		// parse the data, and tweak it to get it into a format that's better
+		// suited to our iterative template
+		for(var i = 0; i < history.length; i++){
+			history[i].pour_date = dateFormat(history[i].pour_date, "hh:mm, dd-mmm-yyyy ")
+		}
+
+		var html = Mustache.to_html(template, { title: "Recent Activity", rows: history}); 
+		
+		$('#history').html(html);
+	}
+}
+
 var updateKegInfo = function(json) {   
 	var data = JSON.parse(json);  
 	if ((data != null) && (data.length > 0))
@@ -503,6 +524,7 @@ $(document).ready(function() {
 	jQuery.get('currentPercentRemaining.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); }); 
 	jQuery.get('lastDrinker.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); });  
 	jQuery.get('lastDrinkerCoasters.json', null, function(json) { var d = JSON.parse(json); updateMetrics(d.name, d.value); });
+	jQuery.get('recentHistory.json', null, function(json) { var d = JSON.parse(json); updateHistory(d); });
 	
 	$('#newuser').ajaxForm({success:newUserSuccess,beforeSubmit:validateNewUserForm});
 	$('#newuser input').focus(function(){
