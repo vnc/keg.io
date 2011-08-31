@@ -91,8 +91,8 @@ var lastTempUpdateTime = (new Date()).getTime();
 setInterval(function() {
 	var currentTime = (new Date()).getTime();
 	if ( (currentTime - lastTempUpdateTime) > config.temp_update_threshold) {
-		logger.error("Restarting node process because no temperature data received in at least 60 seconds.");
-		process.exit(99);
+//		logger.error("Restarting node process because no temperature data received in at least 60 seconds.");
+//		process.exit(99);
 	}
 }, 60000);
 

@@ -1,0 +1,37 @@
+
+node.js:181
+        throw e; // process.nextTick error, or 'error' event on first tick
+        ^
+Error: Cannot find module '/home/keg/keg.io/lib/keg.io/server.js'
+    at Function._resolveFilename (module.js:320:11)
+    at Function._load (module.js:266:25)
+    at Array.<anonymous> (module.js:439:10)
+    at EventEmitter._tickCallback (node.js:173:26)
+
+node.js:181
+        throw e; // process.nextTick error, or 'error' event on first tick
+        ^
+Error: Cannot find module '/home/keg/keg.io/lib/keg.io/server.js'
+    at Function._resolveFilename (module.js:320:11)
+    at Function._load (module.js:266:25)
+    at Array.<anonymous> (module.js:439:10)
+    at EventEmitter._tickCallback (node.js:173:26)
+nohup: ignoring input
+
+node.js:181
+        throw e; // process.nextTick error, or 'error' event on first tick
+        ^
+Error: Cannot find module '/home/keg/keg.io/lib/keg.io/server.js'
+    at Function._resolveFilename (module.js:320:11)
+    at Function._load (module.js:266:25)
+    at Array.<anonymous> (module.js:439:10)
+    at EventEmitter._tickCallback (node.js:173:26)
+
+node.js:181
+        throw e; // process.nextTick error, or 'error' event on first tick
+        ^
+Error: Cannot find module '/home/keg/keg.io/lib/keg.io/server.js'
+    at Function._resolveFilename (module.js:320:11)
+    at Function._load (module.js:266:25)
+    at Array.<anonymous> (module.js:439:10)
+    at EventEmitter._tickCallback (node.js:173:26)
