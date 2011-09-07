@@ -4,6 +4,14 @@ html, body {
 	height: 100%;
 }
 
+#sidebar a:link, #sidebar a:hover, #sidebar a:active, #sidebar a:visited{
+		text-decoration: none;
+	}
+	
+	#sidebar a img{
+		border: 0;
+		}
+
 ul {
 		list-style-type:none;
 }
