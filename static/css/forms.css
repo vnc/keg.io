@@ -7,8 +7,7 @@ form li{
 form#newuser{
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	border-radius: 5px;
-	border: 1px solid #ccc;
+
 	padding: 1em .5em .5em .5em;
 	width: 500px;
 

@@ -8,6 +8,39 @@ ul {
 		list-style-type:none;
 }
 
+div.ui-widget-overlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: white;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+
+}
+
+.ui-dialog-title{
+	position: relative;
+	float: left;
+}
+	
+.ui-dialog-titlebar-close{
+
+}
+
+div.ui-dialog-titlebar{
+		background: #ccc;
+		border-bottom: 1px solid #999;
+		padding: .2em;
+		clear: both;
+		text-align: right;
+	}
+
+div.ui-dialog{
+	background: white;
+		border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
 #wrap {
 	background-image: url("../images/wood-texture-background.jpg");
 	background-repeat: repeat;

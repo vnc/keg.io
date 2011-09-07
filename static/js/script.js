@@ -421,6 +421,12 @@ function newUserSuccess(data){
 			$('#newuser').toggle(false);
 			$('#newuser input').removeClass('error');
 			 $('#newuser').attr('inEdit',false);
+			 window.setTimeout(function(){
+			 	$('div.ui-dialog').fadeOut('slow',function(){
+			 	//window.setTimeout("$('#admin').dialog('close')",2000);
+			 	$('#admin').dialog('close');
+			 	});
+			 },2000);
 		}	else{
 			$('#formerror').text(formResponse.error.message);
 			for(var z = 0; z < formResponse.error.fields.length; z++){
@@ -522,6 +528,17 @@ $(document).ready(function() {
 	    }
 	  } (times), interval);
 	};
+	
+	$('#flow_status').click(function(){
+		$('#admin').dialog({
+				modal:true,
+				width:550,
+				title:'User Form',
+				close: function(){
+						$('#newuser').attr('inEdit',false); 
+					}
+			});	
+	});
 
 	// call the repeater with a function as the argument
 	repeater(rotateCharts, 100000000, 10000);
