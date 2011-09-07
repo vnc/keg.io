@@ -416,7 +416,7 @@ var fillUserEditForm = function(data, isnewuser) {
 function newUserSuccess(data){
 	var formResponse = JSON.parse(data);
 	if(formResponse.success==true){
-		$('#newuserformsuccess').text(formResponse.user + ' sucessfully added');
+		$('#newuserformsuccess').text(formResponse.user + ' sucessfully updated');
 			$('#newuser').resetForm();
 			$('#newuser').toggle(false);
 			$('#newuser input').removeClass('error');
@@ -533,7 +533,7 @@ $(document).ready(function() {
 		$('#admin').dialog({
 				modal:true,
 				width:550,
-				title:'User Form',
+				title:'Update/Add User',
 				close: function(){
 						$('#newuser').attr('inEdit',false); 
 					}

@@ -8,6 +8,10 @@ ul {
 		list-style-type:none;
 }
 
+#flow_status{
+		cursor: pointer;
+	}
+
 div.ui-widget-overlay{
 	position: absolute;
 	top: 0;
