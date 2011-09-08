@@ -16,9 +16,14 @@ ul {
 		list-style-type:none;
 }
 
-#flow_status{
+#flow_status, #kegio_about{
 		cursor: pointer;
 	}
+	
+	#about {
+		padding: .3em;
+		text-align: center;
+		}
 
 div.ui-widget-overlay{
 	position: absolute;

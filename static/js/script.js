@@ -539,6 +539,14 @@ $(document).ready(function() {
 					}
 			});	
 	});
+	
+	$('#kegio_about').click(function(){
+			$('#about').dialog({
+				modal: true,
+				width: 800,
+				title: 'About Keg.io'
+			});
+		});
 
 	// call the repeater with a function as the argument
 	repeater(rotateCharts, 100000000, 10000);
