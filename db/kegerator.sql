@@ -35,7 +35,12 @@ VALUES(5, 'Rainier', 'Rainier Brewery', 'American Lager', 'Raiiiiiiiii-nieeeeeee
 INSERT INTO keg(keg_id, beer, brewery, beer_style, description, tapped_date, volume_gallons, active, image_path) 
 VALUES(6, 'Maritime Imperial', 'Maritime Pacific Brewery', 'Imperial IPA', 
       'Hoppy, crisp, and citrusy, with an underlying malt character. Made by blending lots of malted barley, wheat, and a judicious quantity of Cascade hops. A "big" beer!', 
-		'2011-06-30T13:38:00Z', 15.5, 'true', 'images/maritime.gif');
+		'2011-06-30T13:38:00Z', 15.5, 'false', 'images/maritime.gif');
+		
+INSERT INTO keg(keg_id, beer, brewery, beer_style, description, tapped_date, volume_gallons, active, image_path) 
+VALUES(7, 'Lightner', 'Boundary Bay Brewery', 'American pale ale', 
+          'This light American style ale is a clean, crisp and refreshing session beer.', 
+     	  '2011-08-09T10:08:00Z', 15.5, 'true', 'images/boundarybay.jpeg');
   
 INSERT INTO temperature(temperature, temperature_date) VALUES (39, '2011-03-12 01:23:46.666');
 INSERT INTO temperature(temperature, temperature_date) VALUES (39, '2011-03-12 01:23:47.666');
