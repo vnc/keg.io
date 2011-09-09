@@ -1,0 +1,40 @@
+{
+    /* /dev/cu.usbserial-A400fGxO   (spare arduino in OS X)
+	   /dev/cu.usbserial-A400fOlX	(arduino on kegerator)
+	   /dev/ttyUSB0					(typical device under Ubuntu)
+	   DEVMODE						(for development; supplies fake data when no arduino is available)  
+	*/
+	"device": "/dev/ARDUINO",
+	                          
+    /* Port to listen on for web socket communication */
+	"socket_listen_port": "8081",
+	
+	/* Port to tell the client (aka browser) to connect to for web socket communication */
+	"socket_client_connect_port": "80",                 
+	
+	/* Port to serve regular HTTP content on */
+	"http_port": "8081",
+
+    /* Sqlite3 DB path */
+	"db_name": "db/kegerator_for_cleaning.db",
+	
+    /* To tweet, or not to tweet */
+    "twitter_enabled": false,       
+    
+	/* Twitter API credentials */
+	"twitter_consumer_key": "OrERf20kDQ9L33bB9Tr7mA",
+	"twitter_consumer_secret": "7nd4UlcWpNt8tLKaQAH7KHkn9ebFbFrUS5sbs2I0U", 
+	"twitter_access_token_key": "287966086-eGyjobpA6vzTu72J9rJCRpmBBgDhdxnyTV5sdrxx", 
+	"twitter_access_token_secret": "eZ5GNS552sU2opwE5pE7OFZClUlitI0YCYSV2z64",
+        
+        /* password to use for adding a new user via the UI */
+	"admin_ui_password": "1<310+U$",    
+	
+	/* Restart node after this many milliseconds without receiving temp data */
+	/* No temp data implies the serial port shat the bed. */
+	/* This is a hack to try to improve stability. */
+	"temp_update_threshold": "120000",
+
+        /* Keg.io will start tweeting about temps above this value */ 
+	"high_temp_threshold": "60" 
+}

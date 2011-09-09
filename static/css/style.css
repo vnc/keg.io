@@ -4,8 +4,58 @@ html, body {
 	height: 100%;
 }
 
+#sidebar a:link, #sidebar a:hover, #sidebar a:active, #sidebar a:visited{
+		text-decoration: none;
+	}
+	
+	#sidebar a img{
+		border: 0;
+		}
+
 ul {
 		list-style-type:none;
+}
+
+#flow_status, #kegio_about{
+		cursor: pointer;
+	}
+	
+	#about {
+		padding: .3em;
+		text-align: center;
+		}
+
+div.ui-widget-overlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: white;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+
+}
+
+.ui-dialog-title{
+	position: relative;
+	float: left;
+}
+	
+.ui-dialog-titlebar-close{
+
+}
+
+div.ui-dialog-titlebar{
+		background: #ccc;
+		border-bottom: 1px solid #999;
+		padding: .2em;
+		clear: both;
+		text-align: right;
+	}
+
+div.ui-dialog{
+	background: white;
+		border-radius: 5px;
+	border: 1px solid #ccc;
 }
 
 #wrap {

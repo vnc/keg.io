@@ -1,0 +1,53 @@
+Step 1: Plug in your FTDI device (this will be an FTDI breakout of some sort, or perhaps an Arduino Duemilanove or older)
+
+Step 2: Find its current mountpoint: Ubuntu mounts FTDI devices to /dev/ttyUSB*, where * is a number.
+In the terminal, type this:
+
+ls /dev/ttyUSB*
+
+Output:
+
+$ ls /dev/ttyUSB*
+/dev/ttyUSB0
+/dev/ttyUSB1
+
+I’m going to assume that we’re working with /dev/ttyUSB0 for the rest of this post.
+
+Step 3: Find the udev properties that are unique to each FTDI device.
+In the terminal, type this:
+
+$ udevadm info -a -p $(udevadm info -q path -n ttyUSB0) | egrep -i "ATTRS{serial}|ATTRS{idVendor}|ATTRS{idProduct}" -m 3
+
+I recognize that the regex used in the egrep isn’t the most concise, but it works (anyone want to suggest something better?).
+The output will look something like this:
+
+$ udevadm info -a -p $(udevadm info -q path -n ttyUSB0) | egrep -i "ATTRS{serial}|ATTRS{idVendor}|ATTRS{idProduct}" -m 3
+ATTRS{idVendor}=="0403"
+ATTRS{idProduct}=="6001"
+ATTRS{serial}=="A400fOlX"   
+
+Note: This is arduino (ftdi chip) specific. Above is the current kegerator arduino values
+
+Record all the values in the quotes – you’ll need them in the next steps.
+
+Step 4: Create the udev file.
+In the terminal, create a file named 10-ftdi.rules in /etc/udev/rules.d with 644 permissions.
+$ sudo touch /etc/udev/rules.d/10-ftdi.rules && sudo chmod 644 /etc/udev/rules.d/10-ftdi.rules
+Open the file with your favorite text editor:
+
+$ sudo vim /etc/udev/rules.d/10-ftdi.rules
+
+and copy this line in:
+
+BUS=="usb", SYSFS{idProduct}=="IDPRODUCT", SYSFS{idVendor}=="IDVENDOR", SYSFS{serial}=="SERIAL", NAME="DEVICENAME"
+
+Current kegerator values:
+BUS=="usb", SYSFS{idProduct}=="6001", SYSFS{idVendor}=="0403", SYSFS{serial}=="A400fOlX", NAME="ARDUINO"
+
+
+Substitute your values from Step 3 for IDPRODUCT, IDVENDOR, and SERIAL. DEVICENAME will be your new mountpoint.
+Save and close the file.
+
+Step 5: Remove your FTDI cable and plug it back in (this will remount it using your new rule). It should now be mounted in /dev/DEVICENAME, where DEVICENAME is what you put in the NAME field in the udev rule.
+
+Now the arduino should mount it's tty device as /dev/ARDUINO

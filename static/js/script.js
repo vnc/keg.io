@@ -437,11 +437,17 @@ var fillUserEditForm = function(data, isnewuser) {
 function newUserSuccess(data){
 	var formResponse = JSON.parse(data);
 	if(formResponse.success==true){
-		$('#newuserformsuccess').text(formResponse.user + ' sucessfully added');
+		$('#newuserformsuccess').text(formResponse.user + ' sucessfully updated');
 			$('#newuser').resetForm();
 			$('#newuser').toggle(false);
 			$('#newuser input').removeClass('error');
 			 $('#newuser').attr('inEdit',false);
+			 window.setTimeout(function(){
+			 	$('div.ui-dialog').fadeOut('slow',function(){
+			 	//window.setTimeout("$('#admin').dialog('close')",2000);
+			 	$('#admin').dialog('close');
+			 	});
+			 },2000);
 		}	else{
 			$('#formerror').text(formResponse.error.message);
 			for(var z = 0; z < formResponse.error.fields.length; z++){
@@ -544,6 +550,25 @@ $(document).ready(function() {
 	    }
 	  } (times), interval);
 	};
+	
+	$('#flow_status').click(function(){
+		$('#admin').dialog({
+				modal:true,
+				width:550,
+				title:'Update/Add User',
+				close: function(){
+						$('#newuser').attr('inEdit',false); 
+					}
+			});	
+	});
+	
+	$('#kegio_about').click(function(){
+			$('#about').dialog({
+				modal: true,
+				width: 800,
+				title: 'About Keg.io'
+			});
+		});
 
 	// call the repeater with a function as the argument
 	repeater(rotateCharts, 100000000, 10000);
