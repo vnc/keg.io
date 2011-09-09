@@ -24,12 +24,18 @@ VALUES(3, 'Curveball', 'Pyramid Brewery', 'Blonde Ale', 'A summery blend of, of.
 		   '2011-04-22T13:23:45Z', 15.5, 'false', 'images/curveball.jpg');         
 		
 INSERT INTO keg(keg_id, beer, brewery, beer_style, description, tapped_date, volume_gallons, active, image_path) 
-VALUES(4, 'Immortal', 'Elysian Brewery', 'IPA', 'A Northwest interpretation of a classic English style, golden copper in color and loaded with New World hop flavor and aroma.', 
-			   '2011-05-13T15:37:45Z', 15.5, 'false', 'images/immortal.jpg');   
+VALUES(4, 'Immortal', 'Elysian Brewery', 'IPA', 
+       'A Northwest interpretation of a classic English style, golden copper in color and loaded with New World hop flavor and aroma.', 
+	   '2011-05-13T15:37:45Z', 15.5, 'false', 'images/immortal.jpg');   
 			
 INSERT INTO keg(keg_id, beer, brewery, beer_style, description, tapped_date, volume_gallons, active, image_path) 
 VALUES(5, 'Rainier', 'Rainier Brewery', 'American Lager', 'Raiiiiiiiii-nieeeeeeeer-beeeeeeeer', 
-						   '2011-05-26T16:39:00Z', 15.5, 'true', 'images/rainier.jpg');
+						   '2011-05-26T16:39:00Z', 15.5, 'false', 'images/rainier.jpg');
+						   
+INSERT INTO keg(keg_id, beer, brewery, beer_style, description, tapped_date, volume_gallons, active, image_path) 
+VALUES(6, 'Maritime Imperial', 'Maritime Pacific Brewery', 'Imperial IPA', 
+      'Hoppy, crisp, and citrusy, with an underlying malt character. Made by blending lots of malted barley, wheat, and a judicious quantity of Cascade hops. A "big" beer!', 
+		'2011-06-30T13:38:00Z', 15.5, 'true', 'images/maritime.gif');
   
 INSERT INTO temperature(temperature, temperature_date) VALUES (39, '2011-03-12 01:23:46.666');
 INSERT INTO temperature(temperature, temperature_date) VALUES (39, '2011-03-12 01:23:47.666');
