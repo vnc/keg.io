@@ -213,7 +213,7 @@ var updateHistory = function(historyData) {
 		// parse the data, and tweak it to get it into a format that's better
 		// suited to our iterative template
 		for(var i = 0; i < history.length; i++){
-			history[i].pour_date = dateFormat(history[i].pour_date, "hh:mm, dd-mmm-yyyy ")
+			history[i].pour_date = dateFormat(history[i].pour_date, "hh:MMtt, dd-mmm-yyyy ")
 		}
 
 		var html = Mustache.to_html(template, { title: "Recent Activity", rows: history}); 
