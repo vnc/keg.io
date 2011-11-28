@@ -7,29 +7,39 @@
 //
 // * Gravatar support 
 // * Twitter integration
+/* 
+ * **keg.io** accepts two types of clients: web browser and kegerator.
+ *
+ * A web browser client connects to keg.io to view its primary GUI.
+ * A kegerator client connects to keg.io to send and receive sensor information.
+ *
+ * Keg.io can accept multiple connections from both web browsers and kegerators.
+ *
+ */
+
 
 // ##Setup dependencies 
-require(__dirname + "/lib/setup").ext( __dirname + "/lib");     
+//require(__dirname + "/lib/setup").ext( __dirname + "/lib");     
 var	  fs = require('fs')
-	, sys = require('sys')
+	, sys = require('util')
 	, http = require('http')
 	, url = require('url')
 	, querystring = require('querystring')
-	, io = require('Socket.IO-node')
+	, io = require('socket.io')
 	, files = require('node-static')
 	, router = require('choreographer').router()
-	, keg_io = require('keg.io')
+	, keg_io = require('./lib/keg.io/keg.io')
 	, keg = new keg_io.Keg()
-	, log4js = require('log4js')();       
+	, log4js = require('log4js');       
 
 function printUsage(logger)
 {                
- 	logger.error("USAGE:")
- 	logger.error("node server.js <path_to_config_file>");
- 	logger.error("\tWhere <path_to_config_file> is the path to a JSON configuration file");   
- 	logger.error("\t containing all the required keg.io config options.  Optionally, the");
- 	logger.error("\t config file may contain C-style comments (/* */).")
-};   
+	logger.error("USAGE:");
+	logger.error("node server.js <path_to_config_file>");
+	logger.error("\tWhere <path_to_config_file> is the path to a JSON configuration file");   
+	logger.error("\t containing all the required keg.io config options.  Optionally, the");
+	logger.error("\t config file may contain C-style comments (/* */).");
+}
                                     
 // Setup our logging     
 // We're using [**log4js**](http://log4js.berlios.de/) for all of our logging  
@@ -84,17 +94,7 @@ keg.init(logger,
 		 config.twitter_access_token_key,
 		 config.twitter_access_token_secret,
 		 config.admin_ui_password,
-		 config.high_temp_threshold);    
-
-// kill server (and let 'forever' restart it) if no temp data has been received in > 60s
-var lastTempUpdateTime = (new Date()).getTime();
-setInterval(function() {
-	var currentTime = (new Date()).getTime();
-	if ( (currentTime - lastTempUpdateTime) > config.temp_update_threshold) {
-//		logger.error("Restarting node process because no temperature data received in at least 60 seconds.");
-//		process.exit(99);
-	}
-}, 60000);
+		 config.high_temp_threshold);
 
 //
 // Create several node-static server instances to serve the './public' folder
@@ -122,7 +122,7 @@ router.get('/', function(req, res) {
 	base.serveFile('/index_old.html', 200, {}, req, res);
 })
 .get('/socketPort.json', function(req, res) {
- 	 res.writeHead(200, {'Content-Type': 'text/plain'});
+	 res.writeHead(200, {'Content-Type': 'text/plain'});
 	 res.end(config.socket_client_connect_port);
 }) 
 .get('/currentTemperature.json', function(req, res) {
@@ -153,7 +153,7 @@ router.get('/', function(req, res) {
 
 .get('/lastDrinkerCoasters.json', function(req, res) {
 	keg.getLastDrinkerCoasters(function(result) {
-	   	 res.writeHead(200, {'Content-Type': 'text/plain'});                       
+		 res.writeHead(200, {'Content-Type': 'text/plain'});                       
 		 res.end(JSON.stringify({ name: 'coaster', value: result }));
 	});
 })
@@ -161,7 +161,7 @@ router.get('/', function(req, res) {
 	keg.getRecentHistory(function(result) {
 		res.writeHead(200, {'Content-Type': 'text/plain'});
 		res.end(JSON.stringify(result));
-	})
+	});
 })
 .get('/pourHistory.json', function(req, res) {
 	keg.getPourTrend(function(result) {
@@ -226,18 +226,16 @@ if (config.http_port != config.socket_listen_port)
 {
 	socketServer = http.createServer();
 	socketServer.listen(config.socket_listen_port);
-}                          
+}
 
 // Setup Socket.IO
 var socket = io.listen(socketServer);
-socket.on('connection', function(client){
-	logger.info('Client Connected');
+socket.sockets.on('connection', function(client){
+	logger.info('Web browser client connected');
 	
 	keg.on('temp', function(data) {
 		if (data) {
-           	client.send(JSON.stringify({ name: 'temp', value: data }));
-			// now update lastTempUpdateTime so we don't unecessarily restart the server
-			lastTempUpdateTime = (new Date()).getTime();
+           client.send(JSON.stringify({ name: 'temp', value: data }));
 		}
 	});
 	
@@ -285,7 +283,7 @@ socket.on('connection', function(client){
 	});
 	
 	client.on('disconnect', function(){
-		logger.info('Client Disconnected.');
+		logger.info('Web browser client disconnected.');
 	});
 });
 

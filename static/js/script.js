@@ -491,17 +491,14 @@ function setEditLockTimeout(ms){
 } 
 
 $(document).ready(function() {   
-   isEditTimeout = null;
-	io.setPath('/client/');
+	isEditTimeout = null;
 	reloadAttempt = 0;
 	
 	jQuery.get('socketPort.json', null, function(json) {  
 		var socketPort = JSON.parse(json);
-		socket = new io.Socket(null, { 
+		socket = io.connect(null, { 
 			port: socketPort
-			,transports: ['websocket', 'htmlfile', 'xhr-multipart', 'xhr-polling']
 		});
-		socket.connect();	
 		socket.on('message', function(data){
 			if (data) {
 				var d = JSON.parse(data);
